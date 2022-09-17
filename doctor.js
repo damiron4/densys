@@ -7,7 +7,7 @@ class Doctor {
     this.#password=password;
   }
   getName(){
-    return this.#Name; //Ali eshak
+    return this.#Name; 
   }
   getSurName(){
     return this.#SurName;
