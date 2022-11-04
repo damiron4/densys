@@ -8,6 +8,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 // ROUTES
+// TODO: Write Get/Post/Update routes
 
 app.post("/login", async (req, res) => {
     try {
