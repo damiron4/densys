@@ -1,5 +1,7 @@
 import { useState } from 'react';
+import DatePicker from 'react-datepicker';
 
+import "react-datepicker/dist/react-datepicker.css";
 
 export default function Form() {
 
@@ -10,6 +12,7 @@ const [iin, setiin] = useState('');
 const [email, setEmail] = useState('');
 const [password, setPassword] = useState('');
 const [bloodg, setBloodg] = useState('');
+const [dbirth, setDbirth] = useState(new Date());
 
 
 const [submitted, setSubmitted] = useState(false);
@@ -37,6 +40,11 @@ const handleiin = (e) => {
 
 const handlebloodg = (e) => {
 	setBloodg(e.target.value.toUpperCase());
+	setSubmitted(false);
+}
+
+const handleDbirth = (e) => {
+	setDbirth(e.target.value);
 	setSubmitted(false);
 }
 
@@ -122,6 +130,12 @@ return (
 		<input onChange={handleMidName} className="input"
 		value={midname} type="text" />
 
+		<label className="label">Date of birth</label>
+		<DatePicker
+			selected={dbirth}
+			onChange={(date:Date) => setDbirth(date)} />
+			
+
 		<label className="label">IIN number</label>
 		<input maxLength={12}
 		onChange={handleiin} className="input" 
@@ -131,7 +145,8 @@ return (
 		<select
 			onChange={handlebloodg} 
 			value={bloodg}
-		>
+		>	
+			<option>...</option>
 			<option>A+</option>
 			<option>A-</option>
 			<option>B+</option>
@@ -151,7 +166,7 @@ return (
 		value={password} type="password" />
 
 		<button onClick={handleSubmit} className="btn" type="submit">
-		Go on!
+		Register
 		</button>
 	</section>
 	<footer class="site-footer">
