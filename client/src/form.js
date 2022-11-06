@@ -93,22 +93,22 @@ return (
 	<header className="site-header">
 		<div class="container">
 			<p><ht class="back-ht">A-Clinic</ht></p>
-      		<p>About us</p>
+      		<p>Main Page</p>
+      		<p>Message</p>
       		<p>Health Care Services</p>
-      		<p>Locations</p>
 		</div>
 	</header>
-	<div>
-		<h1>Registration</h1>
-	</div>
 
 	{/* Calling to the methods */}
 	<div className="messages">
 		{errorMessage()}
 		{successMessage()}
 	</div>
+	<section class= "features">
 
-	<form>
+		<div>
+			<h1>Registration</h1>
+		</div>
 		{/* Labels and inputs for form data */}
 		<label className="label">Name</label>
 		<input onChange={handleName} className="input"
@@ -153,7 +153,13 @@ return (
 		<button onClick={handleSubmit} className="btn" type="submit">
 		Go on!
 		</button>
-	</form>
+	</section>
+	<footer class="site-footer">
+      <div class="con">
+        <p>© Кекс, 2020</p>
+        <p>Магазин товаров для дома</p>
+      </div>
+    </footer>
 	</div>
 );
 }
