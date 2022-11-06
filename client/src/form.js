@@ -1,5 +1,7 @@
 import { useState } from 'react';
+import DatePicker from 'react-datepicker';
 
+import "react-datepicker/dist/react-datepicker.css";
 
 export default function Form() {
 
@@ -7,9 +9,12 @@ const [name, setName] = useState('');
 const [surname, setSurName] = useState('');
 const [midname, setMidName] = useState('');
 const [iin, setiin] = useState('');
+const [id, setid] = useState('');
 const [email, setEmail] = useState('');
 const [password, setPassword] = useState('');
 const [bloodg, setBloodg] = useState('');
+const [adress, setAdress] = useState('');
+const [dbirth, setDbirth] = useState(new Date());
 
 
 const [submitted, setSubmitted] = useState(false);
@@ -34,9 +39,18 @@ const handleiin = (e) => {
 	setSubmitted(false);
 }
 
+const handleid = (e) => {
+	setid(e.target.value);
+	setSubmitted(false);
+}
 
 const handlebloodg = (e) => {
-	setBloodg(e.target.value.toUpperCase());
+	setBloodg(e.target.value);
+	setSubmitted(false);
+}
+
+const handleDbirth = (e) => {
+	setDbirth(e.target.value.toUpperCase());
 	setSubmitted(false);
 }
 
@@ -48,12 +62,16 @@ const handleEmail = (e) => {
 const handlePassword = (e) => {
 	setPassword(e.target.value);
 	setSubmitted(false);
+}
+const handleAdress = (e) => {
+	setAdress(e.target.value);
+	setSubmitted(false);	
 };
 
 // Handling the form submission
 const handleSubmit = (e) => {
 	e.preventDefault();
-	if (name === '' || email === '' || password === ''|| surname === '' || midname === '' || iin === '' || bloodg === '') {
+	if (name === '' || password === ''|| surname === '' || midname === '' || iin === '' || bloodg === '' || id === '' || bloodg === '...' ) {
 	setError(true);
 	} else {
 	setSubmitted(true);
@@ -89,26 +107,21 @@ const errorMessage = () => {
 
 return (
 	
-	<div className="form">
+	<div>
 	<header className="site-header">
 		<div class="container">
 			<p><ht class="back-ht">A-Clinic</ht></p>
-      		<p>About us</p>
+      		<p>Main Page</p>
+      		<p>Message</p>
       		<p>Health Care Services</p>
-      		<p>Locations</p>
 		</div>
 	</header>
-	<div>
-		<h1>Registration</h1>
-	</div>
 
-	{/* Calling to the methods */}
-	<div className="messages">
-		{errorMessage()}
-		{successMessage()}
-	</div>
-
-	<form>
+	
+	<section class= "features">
+		<div>
+			<h1>Registration</h1>
+		</div>
 		{/* Labels and inputs for form data */}
 		<label className="label">Name</label>
 		<input onChange={handleName} className="input"
@@ -122,16 +135,27 @@ return (
 		<input onChange={handleMidName} className="input"
 		value={midname} type="text" />
 
+		<label className="label">Date of birth</label>
+		<DatePicker
+			selected={dbirth}
+			onChange={(date:Date) => setDbirth(date)} />
+			
+
 		<label className="label">IIN number</label>
 		<input maxLength={12}
 		onChange={handleiin} className="input" 
 		value={iin} type="number" />
 
+		<label className="label">ID number</label>
+		<input onChange={handleid} className="input" 
+		value={id} type="number" />
+
 		<label className="label">Blood group</label>	
 		<select
 			onChange={handlebloodg} 
 			value={bloodg}
-		>
+		>	
+			<option>...</option>
 			<option>A+</option>
 			<option>A-</option>
 			<option>B+</option>
@@ -146,14 +170,30 @@ return (
 		<input onChange={handleEmail} className="input"
 		value={email} type="email" />
 
+		<label className="label">Adress</label>
+		<input onChange={handleAdress} className="input"
+		value={adress} type="text" />
+
 		<label className="label">Password</label>
 		<input onChange={handlePassword} className="input"
 		value={password} type="password" />
 
+		{/* Calling to the methods */}
+		<div className="messages">
+			{errorMessage()}
+			{successMessage()}
+		</div>
+
 		<button onClick={handleSubmit} className="btn" type="submit">
-		Go on!
+		Register
 		</button>
-	</form>
+	</section>
+	<footer class="site-footer">
+      <div class="con">
+        <p>© A-Clinic</p>
+        <p>If you are not stupid, come and care about yourself</p>
+      </div>
+    </footer>
 	</div>
 );
 }

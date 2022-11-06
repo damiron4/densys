@@ -5,6 +5,7 @@ body {
   font-size: 14px;
   line-height: 20px;
   color: #444444;
+  margin-bottom: 200;
 }
 .site-header {
   min-width: 100px;
@@ -47,15 +48,11 @@ ht{
   color: #ffffff;
   text-shadow: 2px 2px 4px #000000;
 }
-/* .App {
-  text-align: center;
-  background-color:rgb(5, 109, 113);
-}
  
 .label{
   display: block;
   font-size: larger;
-  color: white;
+  color:#000000;
   padding: 5px;
 }
  
@@ -65,9 +62,35 @@ ht{
   margin: 2px;
   
 }
+.features {
+  width: 100%;
+  padding: 0 20px;
+  text-align: center;
+  margin: 0 auto 100px;
+  text-shadow: 0px 1px 0px #000000;
+}
+.site-footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  background-color: rgb(154, 209, 213);
+  color: #ffffff;
+}
+
+.site-footer .con {
+  text-align: center;
+}
+
+.site-footer p {
+  display: inline-block;
+  vertical-align: middle;
+  padding: 0 20px;
+}
 .btn{
   color: white;
-  background-color: rgb(77, 21, 21);
+  background-color: rgb(154, 209, 213);
   border-radius: 5px;
   font-size: larger;
   display: block;
@@ -77,18 +100,19 @@ ht{
  
 .messages{
   display: flex;
+  text-align: center;
   justify-content: center;
 }
  
 .error{
   display: block;
-  background-color: red;
-  color: white;
+  background-color: rgb(255, 255, 255);
+  color: rgb(255, 0, 0);
   width: fit-content;
   height: 50px;
   padding: 5px;
 }
- 
+
 .success{
   display: block;
   background-color: lightblue;
@@ -96,4 +120,4 @@ ht{
   width: fit-content;
   height: 50px;
   padding: 5px;
-} */
+} 
