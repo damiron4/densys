@@ -13,8 +13,18 @@ app.use(express.json());
 app.post("/login", async (req, res) => {
     try {
         console.log(req.body);
-        const {iin, pass} = req.body;
-        const newUser = await pool.query("INSERT INTO auth VALUES($1,$2) RETURNING *", [iin, pass])
+        const {login, pass} = req.body;
+        await pool.query("SELECT * FROM auth WHERE login = $1 and pass = $2", [login, pass], (err, result) => {
+            if (err) {
+                res.json({ err: err});
+            }
+            if (result.rowCount > 0) {
+                res.json({ message: "Login successful."});
+            } else {
+                res.json({ message: "Wrong username or password."});
+            }
+        })
+        // const newUser = await pool.query("INSERT INTO auth VALUES($1,$2) RETURNING *", [iin, pass])        
     } catch (error) {
         console.log(error.message);
     }
