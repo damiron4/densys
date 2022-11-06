@@ -13,6 +13,7 @@ const [id, setid] = useState('');
 const [email, setEmail] = useState('');
 const [password, setPassword] = useState('');
 const [bloodg, setBloodg] = useState('');
+const [adress, setAdress] = useState('');
 const [dbirth, setDbirth] = useState(new Date());
 
 
@@ -61,6 +62,10 @@ const handleEmail = (e) => {
 const handlePassword = (e) => {
 	setPassword(e.target.value);
 	setSubmitted(false);
+}
+const handleAdress = (e) => {
+	setAdress(e.target.value);
+	setSubmitted(false);	
 };
 
 // Handling the form submission
@@ -169,6 +174,10 @@ return (
 		<label className="label">Email</label>
 		<input onChange={handleEmail} className="input"
 		value={email} type="email" />
+
+		<label className="label">Adress</label>
+		<input onChange={handleAdress} className="input"
+		value={adress} type="text" />
 
 		<label className="label">Password</label>
 		<input onChange={handlePassword} className="input"
