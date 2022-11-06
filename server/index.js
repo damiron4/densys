@@ -8,12 +8,23 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 // ROUTES
+// TODO: Write Get/Post/Update routes
 
 app.post("/login", async (req, res) => {
     try {
         console.log(req.body);
-        const {iin, pass} = req.body;
-        const newUser = await pool.query("INSERT INTO auth VALUES($1,$2) RETURNING *", [iin, pass])
+        const {login, pass} = req.body;
+        await pool.query("SELECT * FROM auth WHERE login = $1 and pass = $2", [login, pass], (err, result) => {
+            if (err) {
+                res.json({ err: err});
+            }
+            if (result.rowCount > 0) {
+                res.json({ message: "Login successful."});
+            } else {
+                res.json({ message: "Wrong username or password."});
+            }
+        })
+        // const newUser = await pool.query("INSERT INTO auth VALUES($1,$2) RETURNING *", [iin, pass])        
     } catch (error) {
         console.log(error.message);
     }
@@ -21,7 +32,9 @@ app.post("/login", async (req, res) => {
 
 app.post("/register-patient", async (req, res) => {
     try {
-        
+    console.log(req.body);
+    const {login, pass} = req.body;
+    
     } catch (error) {
         console.log(error.message)
     }
