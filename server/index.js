@@ -134,7 +134,58 @@ app.post("/login-patient", async (req, res) => {
     }
 })
 
-app.e
+app.get("/patient", async (req, res) => {
+    try {
+      const allInfo = await pool.query("SELECT * FROM patient");
+      res.json(allInfo.rows);
+    } catch (err) {
+      console.error(err.message);
+    }
+  });
+
+app.get("/doctor", async (req, res) => {
+try {
+    const allInfo = await pool.query("SELECT * FROM doctor");
+    res.json(allInfo.rows);
+} catch (err) {
+    console.error(err.message);
+}
+});
+
+app.get("/patient/:id", async (req, res) => {
+    try {
+        const IIN = req.params.id;
+        const allInfo = await pool.query("SELECT * FROM patient WHERE IIN = $1", [IIN]);
+        res.json(allInfo.rows);
+    } catch (err) {
+        console.error(err.message);
+    }
+});
+
+app.get("/doctor/:id", async (req, res) => {
+    try {
+        const IIN = req.params.id;
+        const allInfo = await pool.query("SELECT * FROM doctor WHERE IIN = $1", [IIN]);
+        res.json(allInfo.rows);
+    } catch (err) {
+        console.error(err.message);
+    }
+});
+
+app.put("/patient/:id", async (req, res) => {
+    try {
+      const { id } = req.params;
+      const { description } = req.body;
+      const updateTodo = await pool.query(
+        "UPDATE todo SET description = $1 WHERE todo_id = $2",
+        [description, id]
+      );
+  
+      res.json("Todo was updated!");
+    } catch (err) {
+      console.error(err.message);
+    }
+  });
 
 app.listen(5000, () => {
     console.log("started on port 5000")
