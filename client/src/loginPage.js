@@ -4,8 +4,10 @@ import "react-datepicker/dist/react-datepicker.css";
 
 export default function Form() {
 
-const current = new Date();
+const [iin, setiin] = useState('');
 const [password, setPassword] = useState('');
+const [submitted, setSubmitted] = useState(false);
+const [error, setError] = useState(false);
 
 const handleiin = (e) => {
 	setiin(e.target.value);
@@ -16,6 +18,39 @@ const handlePassword = (e) => {
 	setPassword(e.target.value);
 	setSubmitted(false);
 }
+const handleSubmit = (e) => {
+	e.preventDefault();
+	if (iin === '' || password === '' ) {
+	setError(true);
+	} else {
+	setSubmitted(true);
+	setError(false);
+	}
+};
+const successMessage = () => {
+	return (
+	<div
+		className="success"
+		style={{
+		display: submitted ? '' : 'none',
+		}}>
+		<h1>User {iin} Successfully registered!!</h1>
+	</div>
+	);
+};
+
+
+const errorMessage = () => {
+	return (
+	<div
+		className="error"
+		style={{
+		display: error ? '' : 'none',
+		}}>
+		<h1>Please enter all the fields (e-mail is optional)</h1>
+	</div>
+	);
+};
 return (
 	
 	<div>
