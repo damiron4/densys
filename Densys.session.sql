@@ -1,4 +1,4 @@
-SELECT * FROM patient;
+--SELECT * FROM patient;
 
  --SELECT * from doctor;
  --SELECT * from auth_doctor;
@@ -7,9 +7,9 @@ SELECT * FROM patient;
 --     VALUE ~ '^[7][0-9]{9}$');
 
 -- DROP TABLE PATIENT;
--- DROP DOMAIN EMAIL;
+--DROP DOMAIN EMAIL;
 
--- CREATE DOMAIN EMAIL VARCHAR(20);
+--CREATE DOMAIN EMAIL VARCHAR(20);
 -- CHECK(
 --     VALUE ~ '^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$'
 -- );
@@ -33,24 +33,24 @@ SELECT * FROM patient;
 
 -- -- INSERT INTO auth VALUES ('admin', 'admin');
 
--- drop table patient;
+ --drop table patient;
 
--- CREATE TABLE PATIENT (
---     Bdate DATE NOT NULL,
---     IIN VARCHAR(15) NOT NULL,
---     ID_number VARCHAR(15) NOT NULL,
---     Fname VARCHAR(15) NOT NULL,
---     Sname VARCHAR(15) NOT NULL,
---     Mname VARCHAR(15),
---     Bgroup INT CHECK (Bgroup >= 1 and Bgroup <= 4),
---     Econtact_number PHONENUMBER,
---     Contact_number PHONENUMBER NOT NULL,
---     Email EMAIL,
---     Address VARCHAR(30),
---     Mstatus VARCHAR(3) NOT NULL,
---     Rdate DATE NOT NULL,
---     PRIMARY KEY (IIN)
--- );
+CREATE TABLE PATIENT (
+    Bdate DATE NOT NULL,
+    IIN VARCHAR(15) NOT NULL,
+    ID_number VARCHAR(15) NOT NULL,
+    Fname VARCHAR(15) NOT NULL,
+    Sname VARCHAR(15) NOT NULL,
+    Mname VARCHAR(15),
+    Bgroup INT CHECK (Bgroup >= 1 and Bgroup <= 4),
+    Econtact_number PHONENUMBER,
+    Contact_number PHONENUMBER NOT NULL,
+    Email EMAIL,
+    Address VARCHAR(30),
+    Mstatus VARCHAR(3) NOT NULL,
+    Rdate DATE NOT NULL,
+    PRIMARY KEY (IIN)
+);
 
 --drop table DOCTOR
 

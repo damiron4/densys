@@ -182,7 +182,7 @@ app.put("/patient/:id", async (req, res) => {
         //add IIN
         const { date, id, name, surname, middlename, b_group, emer_contact, contact, email, address, marital_stat, reg_date } = req.body;
         const updatePatientInfo = await pool.query(
-            "UPDATE patient SET Bdate = $1, ID_number = $2, Fname = $3, Sname = $4, Mname = $5, Bgroup = $6, Econtact_number = $7, Contact_number = $8, Email = $9, Address = $10, Mstatus = $11, Rdate = $12, WHERE IIN = $18",
+            "UPDATE patient SET Bdate = $1, ID_number = $2, Fname = $3, Sname = $4, Mname = $5, Bgroup = $6, Econtact_number = $7, Contact_number = $8, Email = $9, Address = $10, Mstatus = $11, Rdate = $12 WHERE IIN = $13",
             [date, id, name, surname, middlename, b_group, emer_contact, contact, email, address, marital_stat, reg_date, IIN]
         );
 
