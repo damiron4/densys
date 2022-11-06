@@ -1,11 +1,16 @@
---SELECT * FROM auth
+SELECT * FROM auth_patient;
 
+-- SELECT * from patient;
 
 
 -- CREATE DOMAIN PHONENUMBER CHAR(10) CHECK (
 --     VALUE ~ '^[7][0-9]{9}$');
 
--- CREATE DOMAIN EMAIL AS VARCHAR(20) CHECK(
+-- DROP TABLE PATIENT;
+-- DROP DOMAIN EMAIL;
+
+-- CREATE DOMAIN EMAIL VARCHAR(20);
+-- CHECK(
 --     VALUE ~ '^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$'
 -- );
 
@@ -16,23 +21,23 @@
 -- --     Pass VARCHAR(20) NOT NULL
 -- -- )
 
-CREATE TABLE AUTH_PATIENT (
-    Login VARCHAR(15) NOT NULL,
-    Pass VARCHAR(20) NOT NULL
-);
+-- CREATE TABLE AUTH_PATIENT (
+--     Login VARCHAR(15) NOT NULL,
+--     Pass VARCHAR(20) NOT NULL
+-- );
 
-CREATE TABLE AUTH_DOCTOR (
-    Login VARCHAR(15) NOT NULL,
-    Pass VARCHAR(20) NOT NULL
-);
+-- CREATE TABLE AUTH_DOCTOR (
+--     Login VARCHAR(15) NOT NULL,
+--     Pass VARCHAR(20) NOT NULL
+-- );
 
 -- -- INSERT INTO auth VALUES ('admin', 'admin');
 
-
+-- drop table patient;
 
 -- CREATE TABLE PATIENT (
 --     Bdate DATE NOT NULL,
---     IIN INT NOT NULL,
+--     IIN VARCHAR(15) NOT NULL,
 --     ID_number INT NOT NULL,
 --     Fname VARCHAR(15) NOT NULL,
 --     Sname VARCHAR(15) NOT NULL,
