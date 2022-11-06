@@ -118,10 +118,20 @@ return (
 		onChange={handleiin} className="input" 
 		value={iin} type="number" />
 
-		<label className="label">Blood group</label>
-		<input maxLength={2}
-		onChange={handlebloodg} className="input" 
-		value={bloodg} type="text" />
+		<label className="label">Blood group</label>	
+		<select
+			onChange={handlebloodg} 
+			value={bloodg}
+		>
+			<option>A+</option>
+			<option>A-</option>
+			<option>B+</option>
+			<option>B-</option>
+			<option>AB+</option>
+			<option>AB-</option>
+			<option>O+</option>
+			<option>O-</option>
+		</select> 
 
 		<label className="label">Email</label>
 		<input onChange={handleEmail} className="input"
