@@ -6,9 +6,9 @@ import {
   Route,
   Link
 } from "react-router-dom"
-import Form from "./form"
-import LoginPage from "./loginPage"
-import RegistrationDoctor from "./registrationDoctor"
+import Form from "./Form"
+import LoginPage from "./LoginPage"
+import RegistrationDoctor from "./RegistrationDoctor"
 
 
 
@@ -30,23 +30,17 @@ export default class App extends Component{
                 <Link to="/">LoginPage</Link>
               </li>
               <li>
-                <Link to="/form">Form</Link>
+                <Link to="/Form">Form</Link>
               </li>
               <li>
-                <Link to="/registrationDoctor">RegistrationDoctor</Link>
+                <Link to="/RegistrationDoctor">RegistrationDoctor</Link>
               </li>
             </ul>
           </nav>
           <Switch>
-            <Route path="/">
-              <LoginPage />
-            </Route>
-            <Route path="/form">
-              <Form />
-            </Route>
-            <Route path="/registrationDoctor">
-              <RegistrationDoctor />
-            </Route>
+            <Route exact path="/" Component={LoginPage}/>
+            <Route exact path="/Form" Component={Form}/>
+            <Route exact path="/RegistrationDoctor" Component={RegistrationDoctor}/>
           </Switch>
         </div>
       </Router>
