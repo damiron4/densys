@@ -180,8 +180,8 @@ return (
 	</section>
 	<footer class="site-footer">
       <div class="con">
-        <p>© Кекс, 2020</p>
-        <p>Магазин товаров для дома</p>
+        <p>© A-Clinic</p>
+        <p>If you are not stupid, come and care about yourself</p>
       </div>
     </footer>
 	</div>
