@@ -9,6 +9,7 @@ const [name, setName] = useState('');
 const [surname, setSurName] = useState('');
 const [midname, setMidName] = useState('');
 const [iin, setiin] = useState('');
+const [id, setid] = useState('');
 const [email, setEmail] = useState('');
 const [password, setPassword] = useState('');
 const [bloodg, setBloodg] = useState('');
@@ -37,9 +38,13 @@ const handleiin = (e) => {
 	setSubmitted(false);
 }
 
+const handleid = (e) => {
+	setid(e.target.value);
+	setSubmitted(false);
+}
 
 const handlebloodg = (e) => {
-	setBloodg(e.target.value.toUpperCase());
+	setBloodg(e.target.value);
 	setSubmitted(false);
 }
 
@@ -140,6 +145,10 @@ return (
 		<input maxLength={12}
 		onChange={handleiin} className="input" 
 		value={iin} type="number" />
+
+		<label className="label">ID number</label>
+		<input onChange={handleid} className="input" 
+		value={id} type="number" />
 
 		<label className="label">Blood group</label>	
 		<select
