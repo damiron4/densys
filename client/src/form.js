@@ -81,10 +81,10 @@ return (
 	<div className="form">
 	<header className="site-header">
 		<div class="container">
-			<p><ht>A-Clinic</ht></p>
-      			<p>Мебель и фурнитура</p>
-      			<p>Лампы и торшеры</p>
-      			<p>Аксессуары и мелочи</p>
+			<p><ht class="back-ht">A-Clinic</ht></p>
+      		<p>About us</p>
+      		<p>Health Care Services</p>
+      		<p>Locations</p>
 		</div>
 	</header>
 	<div>
