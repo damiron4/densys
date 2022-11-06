@@ -48,10 +48,6 @@ ht{
   color: #ffffff;
   text-shadow: 2px 2px 4px #000000;
 }
-/*  .App {
-  text-align: center;
-  background-color:rgb(5, 109, 113);
-} */
  
 .label{
   display: block;
@@ -70,7 +66,7 @@ ht{
   width: 100%;
   padding: 0 20px;
   text-align: center;
-  margin: 0 auto 200px;
+  margin: 0 auto 100px;
   text-shadow: 0px 1px 0px #000000;
 }
 .site-footer {
@@ -79,7 +75,7 @@ ht{
   bottom: 0;
   width: 100%;
   text-align: center;
-  background-color: #81d2d1;
+  background-color: rgb(154, 209, 213);
   color: #ffffff;
 }
 
@@ -92,9 +88,9 @@ ht{
   vertical-align: middle;
   padding: 0 20px;
 }
-/*.btn{
+.btn{
   color: white;
-  background-color: rgb(77, 21, 21);
+  background-color: rgb(154, 209, 213);
   border-radius: 5px;
   font-size: larger;
   display: block;
@@ -104,18 +100,19 @@ ht{
  
 .messages{
   display: flex;
+  text-align: center;
   justify-content: center;
 }
  
 .error{
   display: block;
-  background-color: red;
-  color: white;
+  background-color: rgb(255, 255, 255);
+  color: rgb(255, 0, 0);
   width: fit-content;
   height: 50px;
   padding: 5px;
 }
- 
+
 .success{
   display: block;
   background-color: lightblue;
@@ -123,4 +120,4 @@ ht{
   width: fit-content;
   height: 50px;
   padding: 5px;
-} */ 
+} 
