@@ -97,7 +97,7 @@ const errorMessage = () => {
 
 return (
 	
-	<div className="form">
+	<div>
 	<header className="site-header">
 		<div class="container">
 			<p><ht class="back-ht">A-Clinic</ht></p>
@@ -107,13 +107,8 @@ return (
 		</div>
 	</header>
 
-	{/* Calling to the methods */}
-	<div className="messages">
-		{errorMessage()}
-		{successMessage()}
-	</div>
+	
 	<section class= "features">
-
 		<div>
 			<h1>Registration</h1>
 		</div>
@@ -164,6 +159,12 @@ return (
 		<label className="label">Password</label>
 		<input onChange={handlePassword} className="input"
 		value={password} type="password" />
+
+		{/* Calling to the methods */}
+		<div className="messages">
+			{errorMessage()}
+			{successMessage()}
+		</div>
 
 		<button onClick={handleSubmit} className="btn" type="submit">
 		Register
