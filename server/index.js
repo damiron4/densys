@@ -27,6 +27,6 @@ app.post("/register-patient", async (req, res) => {
     }
 })
 
-app.listen(5000, () => {
-    console.log("started on port 5000")
+app.listen(3000, () => {
+    console.log("started on port 3000")
 });

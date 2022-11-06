@@ -77,7 +77,16 @@ const errorMessage = () => {
 };
 
 return (
+	
 	<div className="form">
+	<header className="site-header">
+		<div class="container">
+			<p><ht>A-Clinic</ht></p>
+      			<p>Мебель и фурнитура</p>
+      			<p>Лампы и торшеры</p>
+      			<p>Аксессуары и мелочи</p>
+		</div>
+	</header>
 	<div>
 		<h1>Registration</h1>
 	</div>
