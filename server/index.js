@@ -14,30 +14,36 @@ app.post("/register-patient", async (req, res) => {
     try {
         check = true
         console.log(req.body);
-        const password = Math.random().toString(36).slice(2, 10);
         const {date, IIN, id, name, surname, middlename, b_group, emer_contact, contact, email, address, marital_stat, reg_date} = req.body;
-        await pool.query("INSERT INTO patient VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13); INSERT INTO auth_patient VALUES($2, $14)", [date, IIN, id, name, surname, middlename, b_group, emer_contact, contact, email, address, marital_stat, reg_date, password], (err, result) => {
+        await pool.query("INSERT INTO patient VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13)",
+        [date, IIN, id, name, surname, middlename, b_group, emer_contact, contact, email, address, marital_stat, reg_date],
+        (err, result) => {
             if (err) {
                 res.json({ err: err});
             }
-            if (result.rowCount > 0) {
-                
-                res.json({ message: "Registration successful."});
-            } else {
+            // console.log(result);
+            if (result.rowCount == 0) {
                 check = false
                 res.json({ message: "Incorrect values."});
             }
             
         })
-        // if (check) {
-        //     const password = Math.random().toString(36).slice(2, 10);
-        //     await pool.query("INSERT INTO auth_patient VALUES($1, $2)", [IIN, password]);
-        // }
-        // const newUser = await pool.query("INSERT INTO auth VALUES($1,$2) RETURNING *", [iin, pass])        
+        if (check) {
+            const password = Math.random().toString(36).slice(2, 10);
+            await pool.query("INSERT INTO auth_patient VALUES($1, $2)", [IIN, password], (err, result) => {
+                if (err) {
+                    res.json({ err: err});
+                }
+                // console.log(result);
+                if (result.rowCount > 0) {
+                    res.json({ message: "Registration successful", login: IIN, password: password});
+                }
+            });
+        } 
     } catch (error) {
         console.log(error.message);
     }
-})
+});
 
 app.post("/register-doctor", async (req, res) => {
     try {
