@@ -11,12 +11,15 @@ const [midname, setMidName] = useState('');
 const [iin, setiin] = useState('');
 const [id, setid] = useState('');
 const [email, setEmail] = useState('');
-const [password, setPassword] = useState('');
 const [bloodg, setBloodg] = useState('');
+const [mstatus, setMstatus] = useState('');
 const [adress, setAdress] = useState('');
+const [emerg, setEmerg] = useState('');
+const [contactn, setContactn] = useState('');
 const [dbirth, setDbirth] = useState(new Date());
-
-
+const current = new Date();
+const date = `${current.getDate()}/${current.getMonth()+1}/${current.getFullYear()}`;
+const [password, setPassword] = useState('');
 const [submitted, setSubmitted] = useState(false);
 const [error, setError] = useState(false);
 
@@ -57,7 +60,7 @@ const handleDbirth = (e) => {
 const handleEmail = (e) => {
 	setEmail(e.target.value);
 	setSubmitted(false);
-};
+}
 
 const handlePassword = (e) => {
 	setPassword(e.target.value);
@@ -66,12 +69,26 @@ const handlePassword = (e) => {
 const handleAdress = (e) => {
 	setAdress(e.target.value);
 	setSubmitted(false);	
-};
+}
 
-// Handling the form submission
+const handleEmerg = (e) => {
+	setEmerg(e.target.value);
+	setSubmitted(false);	
+}
+
+const handleContactn = (e) => {
+	setContactn(e.target.value);
+	setSubmitted(false);	
+}
+
+const handleMstatus = (e) => {
+	setMstatus(e.target.value);
+	setSubmitted(false);	
+}
+
 const handleSubmit = (e) => {
 	e.preventDefault();
-	if (name === '' || password === ''|| surname === '' || midname === '' || iin === '' || bloodg === '' || id === '' || bloodg === '...' ) {
+	if (name === '' || password === ''|| surname === '' || midname === '' || iin === '' || bloodg === '' || emerg === '' || id === '' || bloodg === '...' || mstatus === '...' ) {
 	setError(true);
 	} else {
 	setSubmitted(true);
@@ -79,7 +96,6 @@ const handleSubmit = (e) => {
 	}
 };
 
-// Showing success message
 const successMessage = () => {
 	return (
 	<div
@@ -87,12 +103,12 @@ const successMessage = () => {
 		style={{
 		display: submitted ? '' : 'none',
 		}}>
-		<h1>User {name} successfully registered!!</h1>
+		<h1>User {name} Successfully registered!!</h1>
 	</div>
 	);
 };
 
-// Showing error message if error is true
+
 const errorMessage = () => {
 	return (
 	<div
@@ -100,7 +116,7 @@ const errorMessage = () => {
 		style={{
 		display: error ? '' : 'none',
 		}}>
-		<h1>Please enter all the fields</h1>
+		<h1>Please enter all the fields (e-mail is optional)</h1>
 	</div>
 	);
 };
@@ -122,7 +138,7 @@ return (
 		<div>
 			<h1>Registration</h1>
 		</div>
-		{/* Labels and inputs for form data */}
+		{}
 		<label className="label">Name</label>
 		<input onChange={handleName} className="input"
 		value={name} type="text" />
@@ -166,6 +182,24 @@ return (
 			<option>O-</option>
 		</select> 
 
+		<label className="label">Contact number</label>
+		<input onChange={handleContactn} className="input"
+		value={contactn} type="number" />
+
+		<label className="label">Emergency contact number</label>
+		<input onChange={handleEmerg} className="input"
+		value={emerg} type="number" />
+
+		<label className="label">Maritial status</label>	
+		<select
+			onChange={handleMstatus} 
+			value={mstatus}
+		>	
+			<option>...</option>
+			<option>Single</option>
+			<option>Married</option>
+		</select>
+
 		<label className="label">Email</label>
 		<input onChange={handleEmail} className="input"
 		value={email} type="email" />
@@ -174,11 +208,14 @@ return (
 		<input onChange={handleAdress} className="input"
 		value={adress} type="text" />
 
+		<label className="label">Registration date: {date} </label>
+		
+
 		<label className="label">Password</label>
 		<input onChange={handlePassword} className="input"
 		value={password} type="password" />
 
-		{/* Calling to the methods */}
+		{}
 		<div className="messages">
 			{errorMessage()}
 			{successMessage()}
