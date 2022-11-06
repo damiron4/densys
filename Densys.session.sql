@@ -1,7 +1,7 @@
-SELECT * FROM auth_patient;
+SELECT * FROM patient;
 
--- SELECT * from patient;
-
+ --SELECT * from doctor;
+ --SELECT * from auth_doctor;
 
 -- CREATE DOMAIN PHONENUMBER CHAR(10) CHECK (
 --     VALUE ~ '^[7][0-9]{9}$');
@@ -38,7 +38,7 @@ SELECT * FROM auth_patient;
 -- CREATE TABLE PATIENT (
 --     Bdate DATE NOT NULL,
 --     IIN VARCHAR(15) NOT NULL,
---     ID_number INT NOT NULL,
+--     ID_number VARCHAR(15) NOT NULL,
 --     Fname VARCHAR(15) NOT NULL,
 --     Sname VARCHAR(15) NOT NULL,
 --     Mname VARCHAR(15),
@@ -52,24 +52,27 @@ SELECT * FROM auth_patient;
 --     PRIMARY KEY (IIN)
 -- );
 
+--drop table DOCTOR
+
 -- CREATE TABLE DOCTOR(
 --     Bdate DATE NOT NULL,
---     IIN INT NOT NULL PRIMARY KEY,
---     ID_number INT NOT NULL,
+--     IIN VARCHAR(15) NOT NULL PRIMARY KEY,
+--     ID_number VARCHAR(15) NOT NULL,
 --     Fname VARCHAR(15) NOT NULL,
 --     Sname VARCHAR(15) NOT NULL,
 --     Mname VARCHAR(15),
 --     Contact_number PHONENUMBER NOT NULL,
---     Department_ID INT NOT NULL,
---     Specialization_details_ID INT NOT NULL,
+--     Department_ID VARCHAR(15) NOT NULL,
+--     Specialization_details_ID VARCHAR(15) NOT NULL,
 --     Experience INT DEFAULT 0,
+--     Photo BYTEA,
 --     Category VARCHAR(10) NOT NULL,
 --     Price INT NOT NULL,
---     Schedule_details CHAR NOT NULL,
+--     Schedule_details VARCHAR(60) NOT NULL,
 --     Education VARCHAR(10),
---     Rating INT DEFAULT 0 CHECK(Rating >= 0 and Rating <= 10),
+--     Rating FLOAT DEFAULT 0 CHECK(Rating >= 0 and Rating <= 10),
 --     Address VARCHAR(30),
---     Homepage_URL CHAR
+--     Homepage_URL VARCHAR(60)
 -- );
 
 -- -- -- Mstatus: Divorced, Married, Separated, Single, Widowed, Rather not say

@@ -272,7 +272,7 @@ return (
 	<footer class="site-footer">
       <div class="con">
         <p>© A-Clinic</p>
-        <p>If you are not stupid, come and care about yourself</p>
+        <p>Welcome to A-Clinic, Health Care website</p>
       </div>
     </footer>
 	</div>
