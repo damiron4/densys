@@ -1,7 +1,7 @@
---SELECT * FROM auth_patient;
+SELECT * FROM patient;
 
  --SELECT * from doctor;
- SELECT * from auth_doctor;
+ --SELECT * from auth_doctor;
 
 -- CREATE DOMAIN PHONENUMBER CHAR(10) CHECK (
 --     VALUE ~ '^[7][0-9]{9}$');
