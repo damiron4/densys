@@ -44,7 +44,7 @@ const handlebloodg = (e) => {
 }
 
 const handleDbirth = (e) => {
-	setDbirth(e.target.value);
+	setDbirth(e.target.value.toUpperCase());
 	setSubmitted(false);
 }
 
@@ -61,7 +61,7 @@ const handlePassword = (e) => {
 // Handling the form submission
 const handleSubmit = (e) => {
 	e.preventDefault();
-	if (name === '' || email === '' || password === ''|| surname === '' || midname === '' || iin === '' || bloodg === '') {
+	if (name === '' || password === ''|| surname === '' || midname === '' || iin === '' || bloodg === '') {
 	setError(true);
 	} else {
 	setSubmitted(true);
