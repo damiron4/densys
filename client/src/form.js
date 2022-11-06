@@ -88,7 +88,7 @@ const handleMstatus = (e) => {
 
 const handleSubmit = (e) => {
 	e.preventDefault();
-	if (name === '' || password === ''|| surname === '' || midname === '' || iin === '' || bloodg === '' || emerg === '' || id === '' || bloodg === '...' || mstatus === '...' ) {
+	if (name === '' || password === ''|| surname === '' || midname === '' || iin === '' || bloodg === '' || emerg === '' || id === '' || bloodg === '...' || mstatus === '...' || adress === '' ) {
 	setError(true);
 	} else {
 	setSubmitted(true);
