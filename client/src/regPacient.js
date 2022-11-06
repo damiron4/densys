@@ -136,8 +136,9 @@ return (
 	
 	<section class= "features">
 		<div>
-			<h1>Doctor Registration</h1>
+			<h1>Pacient Registration</h1>
 		</div>
+		{}
 		<label className="label">Name</label>
 		<input onChange={handleName} className="input"
 		value={name} type="text" />
