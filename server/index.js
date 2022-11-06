@@ -32,7 +32,9 @@ app.post("/login", async (req, res) => {
 
 app.post("/register-patient", async (req, res) => {
     try {
-        
+    console.log(req.body);
+    const {login, pass} = req.body;
+    
     } catch (error) {
         console.log(error.message)
     }
