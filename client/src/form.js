@@ -66,7 +66,7 @@ const handlePassword = (e) => {
 // Handling the form submission
 const handleSubmit = (e) => {
 	e.preventDefault();
-	if (name === '' || password === ''|| surname === '' || midname === '' || iin === '' || bloodg === '') {
+	if (name === '' || password === ''|| surname === '' || midname === '' || iin === '' || bloodg === '' || id === '' || bloodg === '...' ) {
 	setError(true);
 	} else {
 	setSubmitted(true);
