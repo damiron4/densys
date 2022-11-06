@@ -23,42 +23,8 @@ const [password, setPassword] = useState('');
 const [submitted, setSubmitted] = useState(false);
 const [error, setError] = useState(false);
 
-const handleName = (e) => {
-	setName(e.target.value);
-	setSubmitted(false);
-};
-const handleSurName = (e) => {
-	setSurName(e.target.value);
-	setSubmitted(false);
-};
-
-const handleMidName = (e) => {
-	setMidName(e.target.value);
-	setSubmitted(false);
-};
-
 const handleiin = (e) => {
 	setiin(e.target.value);
-	setSubmitted(false);
-}
-
-const handleid = (e) => {
-	setid(e.target.value);
-	setSubmitted(false);
-}
-
-const handlebloodg = (e) => {
-	setBloodg(e.target.value);
-	setSubmitted(false);
-}
-
-const handleDbirth = (e) => {
-	setDbirth(e.target.value.toUpperCase());
-	setSubmitted(false);
-}
-
-const handleEmail = (e) => {
-	setEmail(e.target.value);
 	setSubmitted(false);
 }
 
@@ -66,61 +32,6 @@ const handlePassword = (e) => {
 	setPassword(e.target.value);
 	setSubmitted(false);
 }
-const handleAdress = (e) => {
-	setAdress(e.target.value);
-	setSubmitted(false);	
-}
-
-const handleEmerg = (e) => {
-	setEmerg(e.target.value);
-	setSubmitted(false);	
-}
-
-const handleContactn = (e) => {
-	setContactn(e.target.value);
-	setSubmitted(false);	
-}
-
-const handleMstatus = (e) => {
-	setMstatus(e.target.value);
-	setSubmitted(false);	
-}
-
-const handleSubmit = (e) => {
-	e.preventDefault();
-	if (name === '' || password === ''|| surname === '' || midname === '' || iin === '' || bloodg === '' || emerg === '' || id === '' || bloodg === '...' || mstatus === '...' || adress === '' ) {
-	setError(true);
-	} else {
-	setSubmitted(true);
-	setError(false);
-	}
-};
-
-const successMessage = () => {
-	return (
-	<div
-		className="success"
-		style={{
-		display: submitted ? '' : 'none',
-		}}>
-		<h1>User {name} Successfully registered!!</h1>
-	</div>
-	);
-};
-
-
-const errorMessage = () => {
-	return (
-	<div
-		className="error"
-		style={{
-		display: error ? '' : 'none',
-		}}>
-		<h1>Please enter all the fields (e-mail is optional)</h1>
-	</div>
-	);
-};
-
 return (
 	
 	<div>
@@ -136,7 +47,7 @@ return (
 	
 	<section class= "features">
 		<div>
-			<h1>Pacient Registration</h1>
+			<h1>Login</h1>
 		</div>
 		{}
 		<label className="label">Name</label>
