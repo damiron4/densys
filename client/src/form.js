@@ -133,10 +133,8 @@ return (
 		<label className="label">Date of birth</label>
 		<DatePicker
 			selected={dbirth}
-			onChange={handleDbirth}
-			className="input"
-			dateFormat="MM/dd/yyyy"
-			/>
+			onChange={(date:Date) => setDbirth(date)} />
+			
 
 		<label className="label">IIN number</label>
 		<input maxLength={12}
