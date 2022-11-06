@@ -136,7 +136,7 @@ return (
 	
 	<section class= "features">
 		<div>
-			<h1>Registration</h1>
+			<h1>Pacient Registration</h1>
 		</div>
 		{}
 		<label className="label">Name</label>
