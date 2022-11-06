@@ -1,4 +1,53 @@
-.App {
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Arial", sans-serif;
+  font-size: 14px;
+  line-height: 20px;
+  color: #444444;
+}
+.site-header {
+  min-width: 100px;
+  height: 300px;
+  margin-bottom: 150px;
+  padding-top: 38px;
+  background: #847462 no-repeat center url("https://img.freepik.com/free-photo/flat-lay-health-still-life-arrangement-with-copy-space_23-2148854064.jpg?w=2000");
+  background-size: cover;
+  color: #ffffff;
+}
+
+ht{
+  margin: 0;
+  padding: 0;
+  font-family: "Arial", sans-serif;
+  font-size: 45px;
+  line-height: 20px;
+  color: #ffffff;
+  background-repeat: no-repeat;
+  background-position: left;
+  }
+.back-ht{
+  padding-left: 40px;
+  background-size: 35px;
+  background-image: url("pngfind.com-band-aid-png-29393.png");
+}
+.container {
+  width: auto;
+  margin: 45px;
+  padding: 0px;
+}
+
+.container p {
+  display: inline-block;
+  vertical-align: top;
+  width: 24%;
+  margin: 0 5px;
+  text-transform: uppercase;
+  font-size: 18px;
+  color: #ffffff;
+  text-shadow: 2px 2px 4px #000000;
+}
+/* .App {
   text-align: center;
   background-color:rgb(5, 109, 113);
 }
@@ -47,4 +96,4 @@
   width: fit-content;
   height: 50px;
   padding: 5px;
-}
+} */
