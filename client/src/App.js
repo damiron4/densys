@@ -38,15 +38,9 @@ export default class App extends Component{
             </ul>
           </nav>
           <Switch>
-            <Route path="/">
-              <LoginPage />
-            </Route>
-            <Route path="/Form">
-              <Form />
-            </Route>
-            <Route path="/RegistrationDoctor">
-              <RegistrationDoctor />
-            </Route>
+            <Route exact path="/" Component={LoginPage}/>
+            <Route exact path="/Form" Component={Form}/>
+            <Route exact path="/RegistrationDoctor" Component={RegistrationDoctor}/>
           </Switch>
         </div>
       </Router>
