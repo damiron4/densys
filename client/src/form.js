@@ -43,10 +43,7 @@ const handlebloodg = (e) => {
 	setSubmitted(false);
 }
 
-const handleDbirth = (e) => {
-	setDbirth(e.target.value);
-	setSubmitted(false);
-}
+
 
 const handleEmail = (e) => {
 	setEmail(e.target.value);
@@ -61,7 +58,7 @@ const handlePassword = (e) => {
 // Handling the form submission
 const handleSubmit = (e) => {
 	e.preventDefault();
-	if (name === '' || email === '' || password === ''|| surname === '' || midname === '' || iin === '' || bloodg === '') {
+	if (name === '' || password === ''|| surname === '' || midname === '' || iin === '' || bloodg === '') {
 	setError(true);
 	} else {
 	setSubmitted(true);
