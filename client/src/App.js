@@ -1,11 +1,41 @@
 import './App.css';
-import Com from "./Com.js"
+import {
+  Route,
+  Link,
+  Routes
+} from "react-router-dom"
+import RegDoctor from "./RegDoctor"
+import LoginPage from "./LoginPage"
+import RegPatient from "./RegPatient"
+import DoctorMP from "./DoctorMP"
+
 function App() {
   return (
-    <div className="App">
-      <Com />
-    </div>
-     
+    <>
+          <nav>
+            <ul>
+              <li>
+                <Link to="/">LoginPage</Link>
+              </li>
+              <li>
+                <Link to="/RegDoctor">RegDoctor</Link>
+              </li>
+              <li>
+                <Link to="/RegPatient">RegPatient</Link>
+              </li>
+              <li>
+                <Link to="/DoctorMP">ViewUp</Link>
+              </li>
+            </ul>
+          </nav>
+          
+          <Routes>
+            <Route path="/" exact element={<LoginPage />} />
+            <Route path="/RegDoctor" exact element={<RegDoctor/>}/>
+            <Route path="/RegPatient" exact element={<RegPatient/>}/>
+            <Route path="/DoctorMP" exact element={<DoctorMP/>}/>
+          </Routes>
+    </>
   );
 }
  

@@ -1,8 +1,9 @@
 import { useState } from 'react';
+import { Link } from "react-router-dom";
 
 import "react-datepicker/dist/react-datepicker.css";
 
-export default function Form() {
+export default function LoginPage() {
 
 	const [name, setName] = useState('');
 	const [surname, setSurName] = useState('');

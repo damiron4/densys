@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
+import { Link } from "react-router-dom";
 
-export default function Form() {
+export default function RegDoctor() {
 
 const [name, setName] = useState('');
 const [surname, setSurName] = useState('');
@@ -159,10 +160,10 @@ return (
 	<div>
 	<header className="site-header">
 		<div class="container">
-			<p><ht class="back-ht">A-Clinic</ht></p>
-      		<p>Main Page</p>
-      		<p>Message</p>
-      		<p>Health Care Services</p>
+		<p><ht class="back-ht"><Link className="text-link" to="/">A-Clinic</Link></ht></p>
+      		<p><Link className="text-link" to="/DoctorMP">Main Page</Link></p>
+      		<p>Register Doctor</p>
+      		<p><Link className="text-link" to="/RegPatient">Register Patient</Link></p>
 		</div>
 	</header>
 
