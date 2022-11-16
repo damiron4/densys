@@ -7,7 +7,7 @@ import {
 import RegDoctor from "./RegDoctor"
 import LoginPage from "./LoginPage"
 import RegPatient from "./RegPatient"
-import AdministratorMP from "./AdministratorMP"
+// import AdministratorMP from "./AdministratorMP"
 import DoctorMP from "./DoctorMP"
 
 function App() {
@@ -24,9 +24,9 @@ function App() {
               <li>
                 <Link to="/register-patient">RegPatient</Link>
               </li>
-              <li>
+              {/* <li>
                 <Link to="/AdministratorMP">AdministratorMP</Link>
-              </li>
+              </li> */}
               <li>
                 <Link to="/DoctorMP">DoctorMP</Link>
               </li>
@@ -37,7 +37,7 @@ function App() {
             <Route path="/login-admin" exact element={<LoginPage />} />
             <Route path="/register-doctor" exact element={<RegDoctor/>}/>
             <Route path="/register-patient" exact element={<RegPatient/>}/>
-            <Route path="/AdministratorMP" exact element={<AdministratorMP/>}/>
+            {/* <Route path="/AdministratorMP" exact element={<AdministratorMP/>}/> */}
             <Route path="/DoctorMP" exact element={<DoctorMP/>}/>
 
           </Routes>

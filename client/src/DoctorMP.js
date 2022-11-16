@@ -4,10 +4,12 @@ import React, { useState, Fragment } from "react";
 import { nanoid } from "nanoid";
 import ReadOnlyRow from "./ReadOnlyRow";
 import EditableRow from "./EditableRow";
+import data from "./mock-data.json";
+
 
 
 export default function DoctorMP(){
-  const [contacts, setContacts] = useState(AAA);
+  const [contacts, setContacts] = useState(data);
   const [addFormData, setAddFormData] = useState({
     name: "",
     surname: "",
@@ -136,8 +138,8 @@ export default function DoctorMP(){
           <div class="container">
               <p><ht class="back-ht"><Link className="text-link" to="/">A-Clinic</Link></ht></p>
                 <p>Main Page</p>
-                <p><Link className="text-link" to="/RegDoctor">Register Doctor</Link></p>
-                <p><Link className="text-link" to="/RegPatient">Register Patient</Link></p>
+                <p><Link className="text-link" to="/register-doctor">Register Doctor</Link></p>
+                <p><Link className="text-link" to="/register-patient">Register Patient</Link></p>
           </div>
       </header>
     <div className= "features">
