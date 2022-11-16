@@ -5,8 +5,8 @@ import {
   Routes
 } from "react-router-dom"
 import RegDoctor from "./RegDoctor"
-import LoginPage from "./loginPage"
-import RegPatient from "./regPatient"
+import LoginPage from "./LoginPage"
+import RegPatient from "./RegPatient"
 import AdministratorMP from "./AdministratorMP"
 import DoctorMP from "./DoctorMP"
 
