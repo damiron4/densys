@@ -4,9 +4,9 @@ import {
   Link,
   Routes
 } from "react-router-dom"
-import RegDoctor from "./regDoctor"
+import RegDoctor from "./RegDoctor"
 import LoginPage from "./loginPage"
-import RegPatient from "./RegPatient"
+import RegPatient from "./regPatient"
 import AdministratorMP from "./AdministratorMP"
 import DoctorMP from "./DoctorMP"
 
