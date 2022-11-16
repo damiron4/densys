@@ -8,6 +8,7 @@ import RegDoctor from "./RegDoctor"
 import LoginPage from "./LoginPage"
 import RegPatient from "./RegPatient"
 import AdministratorMP from "./AdministratorMP"
+import DoctorMP from "./DoctorMP"
 
 function App() {
   return (
@@ -26,6 +27,9 @@ function App() {
               <li>
                 <Link to="/AdministratorMP">AdministratorMP</Link>
               </li>
+              <li>
+                <Link to="/DoctorMP">DoctorMP</Link>
+              </li>
             </ul>
           </nav>
           
@@ -34,6 +38,8 @@ function App() {
             <Route path="/register-doctor" exact element={<RegDoctor/>}/>
             <Route path="/register-patient" exact element={<RegPatient/>}/>
             <Route path="/AdministratorMP" exact element={<AdministratorMP/>}/>
+            <Route path="/DoctorMP" exact element={<DoctorMP/>}/>
+
           </Routes>
     </>
   );
