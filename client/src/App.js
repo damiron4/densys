@@ -7,7 +7,6 @@ import {
 import RegDoctor from "./RegDoctor"
 import LoginPage from "./LoginPage"
 import RegPatient from "./RegPatient"
-// import AdministratorMP from "./AdministratorMP"
 import DoctorMP from "./DoctorMP"
 
 function App() {
