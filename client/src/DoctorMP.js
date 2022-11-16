@@ -144,43 +144,7 @@ export default function DoctorMP(){
       </header>
     <div className= "features">
     <label className ="app-container">
-    <form onSubmit={handleEditFormSubmit}>
-      <table>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Surname</th>
-            <th>Middlename</th>
-            <th>Birth Date</th>
-            <th>IIN</th>
-            <th>Contact Number</th>
-            <th>Department ID</th>
-            <th>Specialization Details ID</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {contacts.map((contact)=>  (
-             <Fragment>
-             {editContactId === contact.id ? (
-               <EditableRow
-                 editFormData={editFormData}
-                 handleEditFormChange={handleEditFormChange}
-                 handleCancelClick={handleCancelClick}
-               />
-             ) : (
-               <ReadOnlyRow
-                 contact={contact}
-                 handleEditClick={handleEditClick}
-                 handleDeleteClick={handleDeleteClick}
-               />
-             )}
-           </Fragment>
-          ))}
-        </tbody>
-      </table>
-      </form>
-      <h2>Add a Contact</h2>
+    <h2>Add a Contact</h2>
       <form onSubmit={handleAddFormSubmit}>
         <input
           type="text"
@@ -241,6 +205,43 @@ export default function DoctorMP(){
       
         <button type="submit">Add</button>
       </form>
+    <form onSubmit={handleEditFormSubmit}>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Surname</th>
+            <th>Middlename</th>
+            <th>Birth Date</th>
+            <th>IIN</th>
+            <th>Contact Number</th>
+            <th>Department ID</th>
+            <th>Specialization Details ID</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {contacts.map((contact)=>  (
+             <Fragment>
+             {editContactId === contact.id ? (
+               <EditableRow
+                 editFormData={editFormData}
+                 handleEditFormChange={handleEditFormChange}
+                 handleCancelClick={handleCancelClick}
+               />
+             ) : (
+               <ReadOnlyRow
+                 contact={contact}
+                 handleEditClick={handleEditClick}
+                 handleDeleteClick={handleDeleteClick}
+               />
+             )}
+           </Fragment>
+          ))}
+        </tbody>
+      </table>
+      </form>
+      
       </label>
       
       </div>
