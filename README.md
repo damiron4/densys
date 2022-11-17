@@ -20,7 +20,7 @@ To run the server call:
 cd server
 node index
 ```
-or
+or (if you have nodemon installed)
 ```
 cd server
 nodemon index
