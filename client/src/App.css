@@ -75,6 +75,10 @@ ht{
 .features h1 {
   color: rgb(60, 81, 81);
 }
+.features select{
+  font-size: 14;
+  color:rgb(0, 0, 0);
+}
 .site-footer {
   position: fixed;
   left: 0;
