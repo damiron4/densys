@@ -6,7 +6,7 @@ import {
 } from "react-router-dom"
 import RegDoctor from "./RegDoctor"
 import LoginPage from "./loginPage"
-import RegPatient from "./RegPatient"
+import RegPatient from "./regPatient"
 import DoctorMP from "./DoctorMP"
 import Appointment from './Appointment';
 import Form from './Form';
