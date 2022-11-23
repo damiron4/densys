@@ -191,10 +191,10 @@ return (
 		<div>
 			<h1>Login</h1>
 		</div>
-		<label className="label">IIN number</label>
+		<label className="label">Username</label>
 		<input maxLength={12}
 		onChange={handleiin} className="input" 
-		value={iin} type="number" />
+		value={iin} type="text" />
 
 		<label className="label">Password</label>
 		<input onChange={handlePassword} className="input"

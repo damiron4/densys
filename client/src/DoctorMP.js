@@ -1,12 +1,10 @@
 import "react-datepicker/dist/react-datepicker.css";
 import { Link } from "react-router-dom";
-import React, { useState, Fragment } from "react";
+import React, { useState, Fragment, useEffect } from "react";
 import { nanoid } from "nanoid";
 import ReadOnlyRow from "./ReadOnlyRow";
 import EditableRow from "./EditableRow";
 import data from "./mock-data.json";
-
-
 
 export default function DoctorMP(){
   const [contacts, setContacts] = useState(data);
@@ -131,6 +129,23 @@ export default function DoctorMP(){
 
     setContacts(newContacts);
   };  
+
+  
+const getDoctors = async () => {
+  try {
+    const response = await fetch("http://localhost:5000/doctor");
+    const jsonData = await response.json();
+
+    setContacts(jsonData);
+    console.log(jsonData);
+  } catch (err) {
+    console.error(err.message);
+  }
+};
+
+useEffect(() => {
+  getDoctors();
+}, []);
 
   return(
     <div>

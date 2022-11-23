@@ -52,27 +52,38 @@ CREATE TABLE PATIENT (
     PRIMARY KEY (IIN)
 );
 
---drop table DOCTOR
+--@block
+drop table DOCTOR
 
--- CREATE TABLE DOCTOR(
---     Bdate DATE NOT NULL,
---     IIN VARCHAR(15) NOT NULL PRIMARY KEY,
---     ID_number VARCHAR(15) NOT NULL,
---     Fname VARCHAR(15) NOT NULL,
---     Sname VARCHAR(15) NOT NULL,
---     Mname VARCHAR(15),
---     Contact_number PHONENUMBER NOT NULL,
---     Department_ID VARCHAR(15) NOT NULL,
---     Specialization_details_ID VARCHAR(15) NOT NULL,
---     Experience INT DEFAULT 0,
---     Photo BYTEA,
---     Category VARCHAR(10) NOT NULL,
---     Price INT NOT NULL,
---     Schedule_details VARCHAR(60) NOT NULL,
---     Education VARCHAR(10),
---     Rating FLOAT DEFAULT 0 CHECK(Rating >= 0 and Rating <= 10),
---     Address VARCHAR(30),
---     Homepage_URL VARCHAR(60)
--- );
 
+--@block
+CREATE TABLE DOCTOR(
+    birthDate DATE NOT NULL,
+    IIN VARCHAR(15) NOT NULL PRIMARY KEY,
+    id VARCHAR(15) NOT NULL,
+    name VARCHAR(15) NOT NULL,
+    surname VARCHAR(15) NOT NULL,
+    middlename VARCHAR(15),
+    contactNumber PHONENUMBER NOT NULL,
+    departmentId VARCHAR(15) NOT NULL,
+    specializationDetailsId VARCHAR(15) NOT NULL,
+    exp INT DEFAULT 0,
+    photo BYTEA,
+    category VARCHAR(10) NOT NULL,
+    Price INT NOT NULL,
+    Schedule_details VARCHAR(60) NOT NULL,
+    degree VARCHAR(10),
+    rating FLOAT DEFAULT 0 CHECK(Rating >= 0 and Rating <= 10),
+    Address VARCHAR(30),
+    Homepage_URL VARCHAR(60)
+);
+
+--@block
 -- -- -- Mstatus: Divorced, Married, Separated, Single, Widowed, Rather not say
+
+
+--@block
+INSERT INTO auth VALUES (123456,'admin');
+
+--@block 
+SELECT * FROM auth

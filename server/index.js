@@ -197,7 +197,7 @@ app.put("/doctor/:id", async (req, res) => {
             "UPDATE doctor SET Bdate = $1, ID_number = $2, Fname = $3, Sname = $4, Mname = $5, Contact_number = $6, Department_ID = $7, Specialization_details_ID = $8, Experience = $9, Photo = $10, Category = $11, Price = $12, Schedule_details = $13, Education = $14, Rating = $15, Address = $16, Homepage_URL = $17 WHERE IIN = $18",
             [date, id, name, surname, middlename, contact, dep_id, special_id, exp, photo, ctg, price, schedule, degree, rating, address, homepage_url, IIN]
         );
-        res.json("Patient was updated!");
+        res.json("Doctor was updated!");
     } catch (err) {
         console.error(err.message);
     }
