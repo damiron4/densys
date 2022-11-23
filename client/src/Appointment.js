@@ -11,6 +11,7 @@ export default function Appointment() {
 	const [docch, setDocch] = useState('');
 	const [prefdate, setPrefdate] = useState(new Date());
 	const [contactd, setContacd] = useState('');
+	const [procedure, setProcedure] = useState('');
 	
 	
 	
@@ -40,6 +41,10 @@ export default function Appointment() {
 	}
 	const handleContactd = (e) => {
 		setContacd(e.target.value);
+		setSubmitted(false);
+	}
+	const handleProcedure = (e) => {
+		setProcedure(e.target.value);
 		setSubmitted(false);
 	}
 
@@ -93,30 +98,30 @@ return (
 		<div>
 			<h1>Appointment form</h1>
 		</div>
-		<label className="label">Name of patient</label>
-		<input onChange={handleName} className="input" 
-		value={name} type="text" />
-
-		<label className="label">Surname of patient</label>
-		<input onChange={handleSurName} className="input"
-		value={surname} type="text" />
-
-		<label className="label">Preffered date</label>
-		<DatePicker 
-			selected={prefdate}
-			onChange={(date:Date) => setPrefdate(date)} />
-
-		<label className="label">Doctor specialization</label>
-		<input onChange={handleDocspec} className="input" 
-		value={docspec} type="text" />
-
-		<label className="label">Doctor choice </label>
+		
+		<label className="label">Doctor name </label>
 		<input onChange={handleDocch} className="input" 
 		value={docch} type="text" />
 
-		<label className="label">Contact details (email or phone number) </label>
-		<input onChange={handleContactd} className="input" 
-		value={contactd} type="text" />
+		<label className="label"> Doctor specialization </label>
+		<select onChange={handleDocspec} value={docspec}>
+			<option>...</option>
+			<option>infectious diseases</option>
+			<option>physical diseases</option>
+			<option>mental diseases</option>
+			<option>non-infectious diseases</option>
+			<option>deficiency diseases</option>
+			<option>inherited diseases</option>
+			<option>degenerative diseases</option>
+			<option>social diseases</option>
+			<option>self-inflicted diseases</option>
+		</select>
+
+		<label className="label">Procedure</label>
+		<input onChange={handleProcedure} className="input" 
+		value={procedure} type="text" />
+
+		
 		{}
 		<div className="messages">
 			{errorMessage()}
