@@ -15,25 +15,30 @@ function App() {
           <nav>
             <ul>
               <li>
-                <Link to="/">LoginPage</Link>
+                <Link to="/login-admin">LoginPage</Link>
               </li>
               <li>
-                <Link to="/RegDoctor">RegDoctor</Link>
+                <Link to="/register-doctor">RegDoctor</Link>
               </li>
               <li>
-                <Link to="/RegPatient">RegPatient</Link>
+                <Link to="/register-patient">RegPatient</Link>
               </li>
+              {/* <li>
+                <Link to="/AdministratorMP">AdministratorMP</Link>
+              </li> */}
               <li>
-                <Link to="/DoctorMP">ViewUp</Link>
+                <Link to="/DoctorMP">DoctorMP</Link>
               </li>
             </ul>
           </nav>
           
           <Routes>
-            <Route path="/" exact element={<LoginPage />} />
-            <Route path="/RegDoctor" exact element={<RegDoctor/>}/>
-            <Route path="/RegPatient" exact element={<RegPatient/>}/>
+            <Route path="/login-admin" exact element={<LoginPage />} />
+            <Route path="/register-doctor" exact element={<RegDoctor/>}/>
+            <Route path="/register-patient" exact element={<RegPatient/>}/>
+            {/* <Route path="/AdministratorMP" exact element={<AdministratorMP/>}/> */}
             <Route path="/DoctorMP" exact element={<DoctorMP/>}/>
+
           </Routes>
     </>
   );

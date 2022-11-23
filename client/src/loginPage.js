@@ -30,6 +30,9 @@ export default function LoginPage() {
 	const [submitted, setSubmitted] = useState(false);
 	const [error, setError] = useState(false);
 	
+	const [loginSuccess, setLoginSuccess] = useState(false);
+	const [message, setMessage] = useState('');
+
 	const handleName = (e) => {
 		setName(e.target.value);
 		setSubmitted(false);
@@ -133,13 +136,32 @@ const successMessage = () => {
 	<div
 		className="success"
 		style={{
-		display: submitted ? '' : 'none',
+			display: !loginSuccess ? '' : 'none',
 		}}>
-		<h1>User {iin} Successfully registered!!</h1>
+		<h1>{message}</h1>
 	</div>
 	);
 };
 
+const handleLogin = async e => {
+	e.preventDefault();
+	try {
+		const body = {iin, password}
+		const response = await fetch("http://localhost:5000/login-admin", {
+			method: "POST",
+			headers: { "Content-Type": "application/json" },
+			body: JSON.stringify(body)
+		});
+		const jsonData = await response.json();
+		setMessage(jsonData.message);
+		setLoginSuccess(jsonData.status);
+		if(loginSuccess) {
+			window.location = "/DoctorMP";
+		}
+	} catch (error) {
+		console.error(error.message);
+	}
+};
 
 const errorMessage = () => {
 	return (
@@ -148,7 +170,7 @@ const errorMessage = () => {
 		style={{
 		display: error ? '' : 'none',
 		}}>
-		<h1>Please enter all the fields (e-mail is optional)</h1>
+		<h1>Please enter all the fields</h1>
 	</div>
 	);
 };
@@ -169,10 +191,10 @@ return (
 		<div>
 			<h1>Login</h1>
 		</div>
-		<label className="label">IIN number</label>
+		<label className="label">Username</label>
 		<input maxLength={12}
 		onChange={handleiin} className="input" 
-		value={iin} type="number" />
+		value={iin} type="text" />
 
 		<label className="label">Password</label>
 		<input onChange={handlePassword} className="input"
@@ -184,7 +206,7 @@ return (
 			{successMessage()}
 		</div>
 
-		<button onClick={handleSubmit} className="btn" type="submit">
+		<button onClick={handleLogin} className="btn" type="submit">
 		Login
 		</button>
 	</section>

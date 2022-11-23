@@ -1,0 +1,22 @@
+[
+    {
+      "id": 1,
+      "name": "Ya",
+      "surname": "Da",
+      "middlename": "Krasava",
+      "birthDate": "11-16-1986",
+      "IIN": "012345678910",
+      "contactNumber": "333-962-7516",
+      "departmentId": "3",
+      "specializationDetailsId": "002",
+      "exp": 2,
+      "category": "surgery",
+      "price": 5000,
+      "degree": "MD",
+      "email": "jenny.chan@email.com",
+      "address": "322 Lakenti",
+      "rating": 5,
+      "registrDate": "16-11-2022",
+      "password": "qwertyuiop"
+    }
+  ]
