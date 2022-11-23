@@ -1,30 +1,18 @@
 import { useState } from 'react';
 import { Link } from "react-router-dom";
-
+import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 export default function Appointment() {
 
 	const [name, setName] = useState('');
 	const [surname, setSurName] = useState('');
-	const [midname, setMidName] = useState('');
-	const [iin, setiin] = useState('');
-	const [id, setid] = useState('');
-	const [email, setEmail] = useState('');
-	const [adress, setAdress] = useState('');
-	const [contactn, setContactn] = useState('');
-	const [dbirth, setDbirth] = useState(new Date());
-	const current = new Date();
-	const date = `${current.getDate()}/${current.getMonth()+1}/${current.getFullYear()}`;
-	const [password, setPassword] = useState('');
-	const[depid, SetDepid] =  useState('');
-	const[specid, SetSpecid] =  useState('');
-	const[exper, SetExper] =  useState('');
-	const[price, SetPrice] =  useState('');
-	const[category, SetCategory] =  useState('');
-	const[degree, SetDegree] =  useState('');
-	const[rating, SetRating] =  useState('');
-	const[photo, SetPhoto] =  useState('');
+	const [docspec, setDocSpec] = useState('');
+	const [docch, setDocch] = useState('');
+	const [prefdate, setPrefdate] = useState(new Date());
+	const [contactd, setContacd] = useState('');
+	
+	
 	
 	
 	const [submitted, setSubmitted] = useState(false);
@@ -38,90 +26,26 @@ export default function Appointment() {
 		setSurName(e.target.value);
 		setSubmitted(false);
 	};
-	
-	const handleMidName = (e) => {
-		setMidName(e.target.value);
+	const handleDocspec = (e) => {
+		setDocSpec(e.target.value);
 		setSubmitted(false);
 	};
-	
-	const handleiin = (e) => {
-		setiin(e.target.value);
+	const handleDocch = (e) => {
+		setDocch(e.target.value);
+		setSubmitted(false);
+	};
+	const handlePrefdate = (e) => {
+		setPrefdate(e.target.value);
 		setSubmitted(false);
 	}
-	
-	const handleid = (e) => {
-		setid(e.target.value);
+	const handleContactd = (e) => {
+		setContacd(e.target.value);
 		setSubmitted(false);
 	}
-	
-	const handleDbirth = (e) => {
-		setDbirth(e.target.value.toUpperCase());
-		setSubmitted(false);
-	}
-	
-	const handleEmail = (e) => {
-		setEmail(e.target.value);
-		setSubmitted(false);
-	}
-	
-	const handlePassword = (e) => {
-		setPassword(e.target.value);
-		setSubmitted(false);
-	}
-	const handleAdress = (e) => {
-		setAdress(e.target.value);
-		setSubmitted(false);	
-	}
-	
-	const handleContactn = (e) => {
-		setContactn(e.target.value);
-		setSubmitted(false);	
-	}
-	
-	const handleDepid = (e) => {
-		SetDepid(e.target.value);
-		setSubmitted(false);	
-	}
-	
-	const handleSpecid = (e) => {
-		SetSpecid(e.target.value);
-		setSubmitted(false);	
-	}
-	
-	const handleExper = (e) => {
-		SetExper(e.target.value);
-		setSubmitted(false);	
-	}
-	
-	const handlePrice = (e) => {
-		SetPrice(e.target.value);
-		setSubmitted(false);	
-	}
-	
-	
-	const handleCategory = (e) => {
-		SetCategory(e.target.value);
-		setSubmitted(false);	
-	}
-	
-	const handleDegree = (e) => {
-		SetDegree(e.target.value);
-		setSubmitted(false);	
-	}
-	
-	const handleRating = (e) => {
-		SetRating(e.target.value);
-		setSubmitted(false);	
-	}
-	
-	const handlePhoto = (e) => {
-		console.log(e.target.files)
-		SetPhoto(e.target.files[0]);
-		setSubmitted(false);	
-	}
+
 const handleSubmit = (e) => {
 	e.preventDefault();
-	if (iin === '' || password === '' ) {
+	if (name === '' || surname === '' || docspec === ''|| docch === '' ) {
 	setError(true);
 	} else {
 	setSubmitted(true);
@@ -135,7 +59,7 @@ const successMessage = () => {
 		style={{
 		display: submitted ? '' : 'none',
 		}}>
-		<h1>User {iin} Successfully registered!!</h1>
+		<h1>The form has been sent for verification</h1>
 	</div>
 	);
 };
@@ -167,17 +91,32 @@ return (
 	
 	<section class= "features">
 		<div>
-			<h1>Login</h1>
+			<h1>Appointment form</h1>
 		</div>
-		<label className="label">IIN number</label>
-		<input maxLength={12}
-		onChange={handleiin} className="input" 
-		value={iin} type="number" />
+		<label className="label">Name of patient</label>
+		<input onChange={handleName} className="input" 
+		value={name} type="text" />
 
-		<label className="label">Password</label>
-		<input onChange={handlePassword} className="input"
-		value={password} type="password" />
+		<label className="label">Surname of patient</label>
+		<input onChange={handleSurName} className="input"
+		value={surname} type="text" />
 
+		<label className="label">Preffered date</label>
+		<DatePicker 
+			selected={prefdate}
+			onChange={(date:Date) => setPrefdate(date)} />
+
+		<label className="label">Doctor specialization</label>
+		<input onChange={handleDocspec} className="input" 
+		value={docspec} type="text" />
+
+		<label className="label">Doctor choice </label>
+		<input onChange={handleDocch} className="input" 
+		value={docch} type="text" />
+
+		<label className="label">Contact details (email or phone number) </label>
+		<input onChange={handleContactd} className="input" 
+		value={contactd} type="text" />
 		{}
 		<div className="messages">
 			{errorMessage()}
@@ -185,7 +124,7 @@ return (
 		</div>
 
 		<button onClick={handleSubmit} className="btn" type="submit">
-		Login
+		Make an appointment
 		</button>
 	</section>
 	<footer class="site-footer">
