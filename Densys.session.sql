@@ -55,27 +55,26 @@ CREATE TABLE PATIENT (
 --@block
 drop table DOCTOR
 
-
 --@block
 CREATE TABLE DOCTOR(
-    birthDate DATE NOT NULL,
-    IIN VARCHAR(15) NOT NULL PRIMARY KEY,
+    dbirth DATE NOT NULL,
+    iin VARCHAR(15) NOT NULL PRIMARY KEY,
     id VARCHAR(15) NOT NULL,
     name VARCHAR(15) NOT NULL,
     surname VARCHAR(15) NOT NULL,
-    middlename VARCHAR(15),
-    contactNumber PHONENUMBER NOT NULL,
-    departmentId VARCHAR(15) NOT NULL,
-    specializationDetailsId VARCHAR(15) NOT NULL,
-    exp INT DEFAULT 0,
+    midname VARCHAR(15),
+    contactn PHONENUMBER NOT NULL,
+    depid VARCHAR(15) NOT NULL,
+    specid VARCHAR(15) NOT NULL,
+    exper INT DEFAULT 0,
     photo BYTEA,
     category VARCHAR(10) NOT NULL,
-    Price INT NOT NULL,
-    Schedule_details VARCHAR(60) NOT NULL,
-    degree VARCHAR(10),
+    price INT NOT NULL,
+    scheduledetails VARCHAR(60),
+    degree VARCHAR(30),
     rating FLOAT DEFAULT 0 CHECK(Rating >= 0 and Rating <= 10),
-    Address VARCHAR(30),
-    Homepage_URL VARCHAR(60)
+    address VARCHAR(30),
+    hpurl VARCHAR(60)
 );
 
 --@block

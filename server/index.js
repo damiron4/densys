@@ -47,31 +47,24 @@ app.post("/register-patient", async (req, res) => {
 
 app.post("/register-doctor", async (req, res) => {
     try {
-        check = true
-        console.log(req.body);
-        const { date, IIN, id, name, surname, middlename, contact, dep_id, special_id, exp, photo, ctg, price, schedule, degree, rating, address, homepage_url } = req.body;
-        const result = await pool.query("INSERT INTO doctor VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18)",
-            [date, IIN, id, name, surname, middlename, contact, dep_id, special_id, exp, photo,ctg, price, schedule, degree, rating, address, homepage_url]);
-        
-        res.json("Registration Successful");
-        
-        // if (check) {
-        // const password = Math.random().toString(36).slice(2, 10);
-        // await pool.query("INSERT INTO auth_doctor VALUES($1, $2)", [IIN, password], (err, result) => {
-        //     if (err) {
-        //         res.json({ err: err });
-        //     }
-        //     // console.log(result);
-        //     if (result.rowCount > 0) {
-        //         res.json({ message: "Registration successful", login: IIN, password: password });
-        //     }
-        // });
-        // }
+        // console.log(req.body);
+        console.log("Data recieved")
+        const {dbirth, iin, id, name, surname, midname, contactn, depid, specid, exper, photo, category, price, scheduledetails, degree, rating, address, hpurl} = req.body;
+        await pool.query("INSERT INTO doctor VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18)",
+            [dbirth, iin, id, name, surname, midname, contactn, depid, specid, exper, photo, category, price, scheduledetails, degree, rating, address, hpurl],
+            (error) => {
+                if (!error) {
+                    res.send({status: 1 , message: "Doctor registration successful."});
+                } else {
+                    msg = error.message;
+                    res.send({status: 0, message: msg});
+                }
+            }
+        );
     } catch (error) {
-        console.log(error.message);
+        console.error(error.message)
     }
     
-    // const newUser = await pool.query("INSERT INTO auth VALUES($1,$2) RETURNING *", [iin, pass])        
 });
 
 

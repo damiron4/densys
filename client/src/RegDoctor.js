@@ -11,7 +11,7 @@ const [midname, setMidName] = useState('');
 const [iin, setiin] = useState('');
 const [id, setid] = useState('');
 const [email, setEmail] = useState('');
-const [adress, setAdress] = useState('');
+const [address, setAddress] = useState('');
 const [contactn, setContactn] = useState('');
 const [dbirth, setDbirth] = useState(new Date());
 const current = new Date();
@@ -25,6 +25,8 @@ const[category, SetCategory] =  useState('');
 const[degree, SetDegree] =  useState('');
 const[rating, SetRating] =  useState('');
 const[photo, SetPhoto] =  useState('');
+const[scheduledetails, setScheduledetails] =  useState('');
+const[hpurl, setHomepageURL] =  useState('');
 
 
 const [submitted, setSubmitted] = useState(false);
@@ -68,8 +70,8 @@ const handlePassword = (e) => {
 	setPassword(e.target.value);
 	setSubmitted(false);
 }
-const handleAdress = (e) => {
-	setAdress(e.target.value);
+const handleAddress = (e) => {
+	setAddress(e.target.value);
 	setSubmitted(false);	
 }
 
@@ -120,13 +122,26 @@ const handlePhoto = (e) => {
 	setSubmitted(false);	
 }
 
-const handleSubmit = (e) => {
+const handleSubmit = async e => {
 	e.preventDefault();
-	if (name === '' || password === ''|| surname === '' || midname === '' || iin === '' || id === '' || adress === '' || degree === '...' || photo === '') {
+	if (name === '' || password === ''|| surname === '' || midname === '' || iin === '' || id === '' || address === '' || degree === '...' || photo === '') {
 	setError(true);
 	} else {
-	setSubmitted(true);
-	setError(false);
+		setSubmitted(true);
+		setError(false);
+		try {
+			const body = {dbirth, iin, id, name, surname, midname, contactn, depid, specid, exper, photo, category, price, scheduledetails, degree, rating, address, hpurl}
+			const response = await fetch("http://localhost:5000/register-doctor", {
+				method: "POST",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify(body)
+			});
+			const jsonData = await response.json();
+			
+			console.log(jsonData)
+		} catch (error) {
+			console.error(error.message);
+		}
 	}
 };
 
@@ -153,6 +168,27 @@ const errorMessage = () => {
 		<h1>Please enter all the fields (e-mail is optional)</h1>
 	</div>
 	);
+};
+
+const handleDoctorRegister = async e => {
+	e.preventDefault();
+	try {
+		const body = {dbirth, iin, id, name, surname, midname, contactn, depid, specid, exper, photo, category, price, scheduledetails, degree, rating, address, hpurl}
+		const response = await fetch("http://localhost:5000/register-doctor", {
+			method: "POST",
+			headers: { "Content-Type": "application/json" },
+			body: JSON.stringify(body)
+		});
+		const jsonData = await response.json();
+		console.log(jsonData)
+		// setMessage(jsonData.message);
+		// setLoginSuccess(jsonData.status);
+		// if(loginSuccess) {
+		// 	window.location = "/DoctorMP";
+		// }
+	} catch (error) {
+		console.error(error.message);
+	}
 };
 
 return (
@@ -243,9 +279,9 @@ return (
 		<input onChange={handleEmail} className="input"
 		value={email} type="email" />
 
-		<label className="label">Adress</label>
-		<input onChange={handleAdress} className="input"
-		value={adress} type="text" />
+		<label className="label">Address</label>
+		<input onChange={handleAddress} className="input"
+		value={address} type="text" />
 
 		<label className="label">Rating (a number in range from 0 to 10)</label>
 		<input onChange={handleRating} className="input"
