@@ -1,9 +1,10 @@
 import { useState } from 'react';
-import { Link } from "react-router-dom";
+import { Link , useParams} from "react-router-dom";
 
 import "react-datepicker/dist/react-datepicker.css";
 
 export default function Form() {
+const {id} = useParams()
 
 	
 return (
@@ -20,8 +21,8 @@ return (
 
 	
 	<section class= "features">
-		
-		
+	<h1>Form for id: {id}</h1>
+
 	</section>
 	<footer class="site-footer">
       <div class="con">

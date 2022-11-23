@@ -33,9 +33,6 @@ function App() {
               <li>
                 <Link to="/appointment-form">Appointment</Link>
               </li>
-              <li>
-                <Link to="/form">Form</Link>
-              </li>
             </ul>
           </nav>
           
@@ -46,7 +43,7 @@ function App() {
             {/* <Route path="/AdministratorMP" exact element={<AdministratorMP/>}/> */}
             <Route path="/DoctorMP" exact element={<DoctorMP/>}/>
             <Route path="/appointment-form" exact element={<Appointment/>}/>
-            <Route path="/form" exact element={<Form/>}/>
+            <Route path="/doctorMP/:id" exact element={<Form/>}/>
           </Routes>
     </>
   );
