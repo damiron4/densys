@@ -70,6 +70,7 @@ ht{
   padding: 0 20px;
   text-align: center;
   margin: 0 auto 100px;
+
 }
 .features h1 {
   color: rgb(60, 81, 81);
@@ -182,3 +183,6 @@ form * {
   font-size: 15px;
 }
 
+.DatePicker{
+  justify-content: center;
+}

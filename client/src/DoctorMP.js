@@ -144,7 +144,7 @@ export default function DoctorMP(){
       </header>
     <div className= "features">
     <label className ="app-container">
-    <h2>Add a Contact</h2>
+    <h2>Register Doctor</h2>
       <form onSubmit={handleAddFormSubmit}>
         <input
           type="text"

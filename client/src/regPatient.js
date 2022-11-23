@@ -139,7 +139,6 @@ return (
 		<div>
 			<h1>Patient Registration</h1>
 		</div>
-		{}
 		<label className="label">Name</label>
 		<input onChange={handleName} className="input"
 		value={name} type="text" />
@@ -153,7 +152,7 @@ return (
 		value={midname} type="text" />
 
 		<label className="label">Date of birth</label>
-		<DatePicker
+		<DatePicker 
 			selected={dbirth}
 			onChange={(date:Date) => setDbirth(date)} />
 			
