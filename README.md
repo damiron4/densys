@@ -9,6 +9,9 @@ For this project, we worked with PERN stack: PostgreSQL, Express, React.js and N
 To run the client-side of the project:
 ```
 cd client
+npm install react-scripts --save
+npm install react-datepicker --save
+npm install react-router-dom@6
 npm start 
 ```
 
@@ -17,7 +20,7 @@ To run the server call:
 cd server
 node index
 ```
-or
+or (if you have nodemon installed)
 ```
 cd server
 nodemon index
