@@ -54,7 +54,7 @@ const handlebloodg = (e) => {
 }
 
 const handleDbirth = (e) => {
-	setDbirth(e.target.value.toUpperCase());
+	setDbirth(e.target.value);
 	setSubmitted(false);
 }
 
