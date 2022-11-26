@@ -285,8 +285,6 @@ return (
 		<input onChange={handleRating} className="input"
 		min={1} max={10}
 		value={rating} type="number" />
-
-		<label className="label">Registration date: {dreg} </label>
 		
 
 		<label className="label">Password</label>
