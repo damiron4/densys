@@ -6,37 +6,35 @@
 DROP SCHEMA public;
 CREATE SCHEMA public;
 --@block
- CREATE DOMAIN PHONENUMBER CHAR(10) CONSTRAINT phone CHECK (VALUE ~ '^[7][0-9]{9}$');
+CREATE DOMAIN PHONENUMBER CHAR(10) CONSTRAINT phone CHECK (VALUE ~ '^[7][0-9]{9}$');
 --@block
 -- DROP TABLE PATIENT;
 --DROP DOMAIN EMAIL;
 DROP DOMAIN PHONENUMBER
 --@block
+CREATE DOMAIN ROLE VARCHAR(20) CONSTRAINT role CHECK (VALUE = 'admin' OR VALUE = 'doctor' OR VALUE = 'patient');
 
+--@block
 CREATE DOMAIN EMAIL VARCHAR(20)
 CONSTRAINT email CHECK(
     VALUE ~ '^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$'
 );
 --@block
--- -- DRop TABLE auth;
+DROP TABLE auth;
 
+--@block
 CREATE TABLE AUTH (
-    Login VARCHAR(15) NOT NULL,
-    Pass VARCHAR(20) NOT NULL
+    id SERIAL PRIMARY KEY,
+    username VARCHAR(30) NOT NULL,
+    password VARCHAR(30) NOT NULL,
+    role ROLE NOT NULL
 );
 
-CREATE TABLE AUTH_PATIENT (
-    Login VARCHAR(15) NOT NULL,
-    Pass VARCHAR(20) NOT NULL
-);
+--@block
+INSERT INTO auth (username, password, role) VALUES ('admin', 'admin', 'admin');
 
-CREATE TABLE AUTH_DOCTOR (
-    Login VARCHAR(15) NOT NULL,
-    Pass VARCHAR(20) NOT NULL
-);
 
-INSERT INTO auth VALUES ('admin', 'admin');
-
+--@block
  --drop table patient;
 
 

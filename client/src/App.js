@@ -14,13 +14,13 @@ function App() {
           <nav>
             <ul>
               <li>
-                <Link to="/login-admin">LoginPage</Link>
+                <Link to="/login">Login Page</Link>
               </li>
               <li>
-                <Link to="/register-doctor">RegDoctor</Link>
+                <Link to="/register/doctor">RegDoctor</Link>
               </li>
               <li>
-                <Link to="/register-patient">RegPatient</Link>
+                <Link to="/register/patient">RegPatient</Link>
               </li>
               {/* <li>
                 <Link to="/AdministratorMP">AdministratorMP</Link>
@@ -35,7 +35,7 @@ function App() {
           </nav>
           
           <Routes>
-            <Route path="/login/admin" exact element={<LoginPage />} />
+            <Route path="/login" exact element={<LoginPage />} />
             <Route path="/register/doctor" exact element={<RegDoctor/>}/>
             <Route path="/register/patient" exact element={<RegPatient/>}/>
             {/* <Route path="/AdministratorMP" exact element={<AdministratorMP/>}/> */}
