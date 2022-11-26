@@ -5,19 +5,17 @@ import "react-datepicker/dist/react-datepicker.css";
 
 export default function LoginPage() {
 
-	const [iin, setiin] = useState('');
+	const [username, setUsername] = useState('');
 	const [password, setPassword] = useState('');
-
-	
 	
 	const [submitted, setSubmitted] = useState(false);
 	const [error, setError] = useState(false);
 	
-	const [loginSuccess, setLoginSuccess] = useState(false);
-	const [message, setMessage] = useState('');
+	const [loginStatus, setLoginStatus] = useState('');
+	// const [message, setMessage] = useState('');
 	
-	const handleiin = (e) => {
-		setiin(e.target.value);
+	const handleUsername = (e) => {
+		setUsername(e.target.value);
 		setSubmitted(false);
 	}
 	
@@ -28,40 +26,50 @@ export default function LoginPage() {
 	
 const handleSubmit = (e) => {
 	e.preventDefault();
-	if (iin === '' || password === '' ) {
-	setError(true);
+	if (username === '' || password === '' ) {
+		setError(true);
 	} else {
-	setSubmitted(true);
-	setError(false);
+		setSubmitted(true);
+		setError(false);
 	}
 };
-const successMessage = () => {
-	return (
-	<div
-		className="success"
-		style={{
-			display: !loginSuccess ? '' : 'none',
-		}}>
-		<h1>{message}</h1>
-	</div>
-	);
-};
+// const successMessage = () => {
+// 	return (
+// 	<div
+// 		className="success"
+// 		style={{
+// 			display: !loginSuccess ? '' : 'none',
+// 		}}>
+// 		<h1>{message}</h1>
+// 	</div>
+// 	);
+// };
 
 const handleLogin = async e => {
 	e.preventDefault();
+	if (username === '' || password === '' ) {
+		setError(true);
+	}
 	try {
-		const body = {iin, password}
-		const response = await fetch("http://localhost:5000/login-admin", {
+		const body = {username, password}
+		const response = await fetch("http://localhost:5000/login/admin", {
 			method: "POST",
 			headers: { "Content-Type": "application/json" },
 			body: JSON.stringify(body)
 		});
 		const jsonData = await response.json();
-		setMessage(jsonData.message);
-		setLoginSuccess(jsonData.status);
-		if(loginSuccess) {
+		console.log(jsonData.message);
+		if (jsonData.message) {
+			
+			setLoginStatus(jsonData.message);
+		} else {
+			// setLoginStatus(jsonData.message);
 			window.location = "/DoctorMP";
 		}
+		// setMessage(jsonData.message);
+		// setLoginSuccess(jsonData.status);
+		// if(loginSuccess) {
+		// }
 	} catch (error) {
 		console.error(error.message);
 	}
@@ -82,8 +90,8 @@ return (
 	
 	<div>
 	<header className="site-header">
-		<div class="container">
-			<p><ht class="back-ht">A-Clinic</ht></p>
+		<div className="container">
+			{/* <p><ht class="back-ht">A-Clinic</ht></p> */}
       		<p>Main Page</p>
       		<p>Message</p>
       		<p>Health Care Services</p>
@@ -91,14 +99,14 @@ return (
 	</header>
 
 	
-	<section class= "features">
+	<section className= "features">
 		<div>
 			<h1>Login</h1>
 		</div>
 		<label className="label">Username</label>
 		<input maxLength={12}
-		onChange={handleiin} className="input" 
-		value={iin} type="text" />
+		onChange={handleUsername} className="input" 
+		value={username} type="text" />
 
 		<label className="label">Password</label>
 		<input onChange={handlePassword} className="input"
@@ -107,15 +115,14 @@ return (
 		{}
 		<div className="messages">
 			{errorMessage()}
-			{successMessage()}
+			{loginStatus}
+			{/* {successMessage()} */}
 		</div>
 
-		<button onClick={handleLogin} className="btn" type="submit">
-		Login
-		</button>
+		<button onClick={handleLogin} className="btn" type="submit">Login</button>
 	</section>
-	<footer class="site-footer">
-      <div class="con">
+	<footer className="site-footer">
+      <div className="con">
         <p>© A-Clinic</p>
         <p>Welcome to A-Clinic, Health Care website</p>
       </div>
