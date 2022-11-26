@@ -87,14 +87,26 @@ const handleMstatus = (e) => {
 	setSubmitted(false);	
 }
 
-const handleSubmit = (e) => {
+const handleSubmit = async (e) => {
 	e.preventDefault();
-	if (name === '' || password === ''|| surname === '' || midname === '' || iin === '' || н === '' || emerg === '' || id === '' || bloodg === '...' || mstatus === '...' || address === '' ) {
+	if (name === '' || password === ''|| surname === '' || midname === '' || dbirth === '' || iin === '' || contactn === '' || emerg === '' || id === '' || bloodg === '...' || mstatus === '...' || address === '' ) {
 	setError(true);
 	} else {
-
-	setSubmitted(true);
-	setError(false);
+		setSubmitted(true);
+		setError(false);
+		try{
+			dreg = date
+			const body = {dbirth, iin, id, name, surname, midname, bloodg, emerg, contactn, email, address, mstatus, dreg}
+			const response = await fetch("http://localhost:5000/register/patient", {
+				method: "POST",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify(body)
+			});
+			const jsonData = await response.json();
+			console.log(jsonData)
+		} catch(error){
+			console.error(error.message)
+		}
 	}
 };
 
