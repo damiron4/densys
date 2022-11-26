@@ -12,9 +12,9 @@ export default function Appointment() {
 	const [prefdate, setPrefdate] = useState(new Date());
 	const [contactd, setContacd] = useState('');
 	const [procedure, setProcedure] = useState('');
-	
-	
-	
+	const [inputText, setInputText] = useState("");
+	const [searchby, setSearchBy] = useState();
+
 	
 	const [submitted, setSubmitted] = useState(false);
 	const [error, setError] = useState(false);
@@ -47,27 +47,21 @@ export default function Appointment() {
 		setProcedure(e.target.value);
 		setSubmitted(false);
 	}
+	const handleInputText= (e) => {
+		setInputText(e.target.value);
+		setSubmitted(false);
+	}
 
 const handleSubmit = (e) => {
 	e.preventDefault();
-	if (name === '' || surname === '' || docspec === ''|| docch === '' ) {
+	if (inputText === '' ) {
 	setError(true);
 	} else {
 	setSubmitted(true);
 	setError(false);
 	}
 };
-const successMessage = () => {
-	return (
-	<div
-		className="success"
-		style={{
-		display: submitted ? '' : 'none',
-		}}>
-		<h1>The form has been sent for verification</h1>
-	</div>
-	);
-};
+
 
 
 const errorMessage = () => {
@@ -77,7 +71,7 @@ const errorMessage = () => {
 		style={{
 		display: error ? '' : 'none',
 		}}>
-		<h1>Please enter all the fields</h1>
+		<h1>Please enter the required data</h1>
 	</div>
 	);
 };
@@ -98,38 +92,22 @@ return (
 		<div>
 			<h1>Appointment form</h1>
 		</div>
+		<input type="radio" name="searchby" value="Doctor" onChange={e=>setSearchBy(e.target.value)}/> Doctor's name
+		<input type="radio" name="searchby" value="Spec" onChange={e=>setSearchBy(e.target.value)} /> Specialization 
+		<input type="radio" name="searchby" value="Procedure" onChange={e=>setSearchBy(e.target.value)}/> Procedure
 		
-		<label className="label">Doctor name </label>
-		<input onChange={handleDocch} className="input" 
-		value={docch} type="text" />
-
-		<label className="label"> Doctor specialization </label>
-		<select onChange={handleDocspec} value={docspec}>
-			<option>...</option>
-			<option>infectious diseases</option>
-			<option>physical diseases</option>
-			<option>mental diseases</option>
-			<option>non-infectious diseases</option>
-			<option>deficiency diseases</option>
-			<option>inherited diseases</option>
-			<option>degenerative diseases</option>
-			<option>social diseases</option>
-			<option>self-inflicted diseases</option>
-		</select>
-
-		<label className="label">Procedure</label>
-		<input onChange={handleProcedure} className="input" 
-		value={procedure} type="text" />
-
+		<label className="label">Search by</label>
+		<input placeholder = "Search ..."  onChange = {handleInputText}
+		 type="text" />
 		
 		{}
 		<div className="messages">
 			{errorMessage()}
-			{successMessage()}
+		
 		</div>
 
 		<button onClick={handleSubmit} className="btn" type="submit">
-		Make an appointment
+		Find
 		</button>
 	</section>
 	<footer class="site-footer">
