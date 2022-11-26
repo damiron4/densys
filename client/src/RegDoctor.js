@@ -221,7 +221,7 @@ return (
 		<label className="label">Date of birth</label>
 		<DatePicker
 			selected={dbirth}
-			onChange={(date:Date) => setDbirth(date)} />
+			onChange={(dbirth:Date) => setDbirth(dbirth)} />
 			
 
 		<label className="label">IIN number</label>
@@ -286,7 +286,7 @@ return (
 		min={1} max={10}
 		value={rating} type="number" />
 
-		<label className="label">Registration date: {date} </label>
+		<label className="label">Registration date: {dreg} </label>
 		
 
 		<label className="label">Password</label>
