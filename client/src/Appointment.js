@@ -61,17 +61,7 @@ const handleSubmit = (e) => {
 	setError(false);
 	}
 };
-const successMessage = () => {
-	return (
-	<div
-		className="success"
-		style={{
-		display: submitted ? '' : 'none',
-		}}>
-		<h1>The form has been sent for verification</h1>
-	</div>
-	);
-};
+
 
 
 const errorMessage = () => {
@@ -81,7 +71,7 @@ const errorMessage = () => {
 		style={{
 		display: error ? '' : 'none',
 		}}>
-		<h1>Please enter all the fields</h1>
+		<h1>Please enter the required data</h1>
 	</div>
 	);
 };
@@ -113,7 +103,7 @@ return (
 		{}
 		<div className="messages">
 			{errorMessage()}
-			{successMessage()}
+		
 		</div>
 
 		<button onClick={handleSubmit} className="btn" type="submit">
