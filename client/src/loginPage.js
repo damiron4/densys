@@ -1,5 +1,7 @@
-import { useState } from 'react';
-import { Link } from "react-router-dom";
+import { useEffect, useState } from 'react';
+import Axios from "axios";
+import Header from "../components/header";
+import Footer from "../components/footer";
 
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -7,9 +9,23 @@ export default function LoginPage() {
 
 	const [username, setUsername] = useState('');
 	const [password, setPassword] = useState('');
+	// TODO: ROLE SELECTION
+	const [role, setRole] = useState('admin');
 	const [error, setError] = useState(false);
 	const [loginStatus, setLoginStatus] = useState('');
-	
+
+	// Copy this to other pages to be logged in
+	Axios.defaults.withCredentials = true;
+	useEffect(()=> {
+		Axios.get("http://localhost:5000/login").then((response) => {
+			if (response.data.loggedIn) {
+				setLoginStatus("User " + response.data.user.username + " logged in as " + response.data.user.role);
+				setRole(response.data.user.role);
+			}
+		});
+	}, [])
+
+
 	const handleUsername = (e) => {
 		setUsername(e.target.value);
 	}
@@ -18,7 +34,7 @@ export default function LoginPage() {
 		setPassword(e.target.value);
 	}
 
-	const successMessage = () => {
+	const statusMessage = () => {
 		return (
 		<div
 			className="success"
@@ -38,10 +54,11 @@ export default function LoginPage() {
 			return
 		}
 		try {
-			const body = {username, password}
-			const response = await fetch("http://localhost:5000/login/admin", {
+			const body = {username, password, role}
+			const response = await fetch("http://localhost:5000/login", {
 				method: "POST",
 				headers: { "Content-Type": "application/json" },
+				credentials: "include",
 				body: JSON.stringify(body)
 			});
 			const jsonData = await response.json();
@@ -67,44 +84,27 @@ export default function LoginPage() {
 	return (
 		
 		<div>
-		<header className="site-header">
-			<div className="container">
-				<p><ht class="back-ht">A-Clinic</ht></p>
-				<p>Main Page</p>
-				<p>Message</p>
-				<p>Health Care Services</p>
-			</div>
-		</header>
+			<section className= "features">
+				<div>
+					<h1>Login</h1>
+				</div>
+				<label className="label">Username</label>
+				<input maxLength={12}
+				onChange={handleUsername} className="input" 
+				value={username} type="text" />
 
-		
-		<section className= "features">
-			<div>
-				<h1>Login</h1>
-			</div>
-			<label className="label">Username</label>
-			<input maxLength={12}
-			onChange={handleUsername} className="input" 
-			value={username} type="text" />
+				<label className="label">Password</label>
+				<input onChange={handlePassword} className="input"
+				value={password} type="password" />
 
-			<label className="label">Password</label>
-			<input onChange={handlePassword} className="input"
-			value={password} type="password" />
+				{}
+				<div className="messages">
+					{errorMessage()}
+					{statusMessage()}
+				</div>
 
-			{}
-			<div className="messages">
-				{errorMessage()}
-				{/* {loginStatus} */}
-				{successMessage()}
-			</div>
-
-			<button onClick={handleLogin} className="btn" type="submit">Login</button>
-		</section>
-		<footer className="site-footer">
-		<div className="con">
-			<p>© A-Clinic</p>
-			<p>Welcome to A-Clinic, Health Care website</p>
-		</div>
-		</footer>
+				<button onClick={handleLogin} className="btn" type="submit">Login</button>
+			</section>
 		</div>
 	);
 }

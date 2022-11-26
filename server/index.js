@@ -1,15 +1,32 @@
 const express = require("express");
-const app = express();
 const cors = require("cors");
 const pool = require("./db");
-const e = require("express");
+const bodyParser = require("body-parser")
+const cookieParser = require("cookie-parser")
+const session = require("express-session")
 
-app.use(cors());
-app.use(express.urlencoded({ extended: false }));
+
+const app = express();
 app.use(express.json());
+app.use(cors({
+    origin: ["http://localhost:3000"],
+    methods: ["GET", "POST"],
+    credentials: true
+    })
+);
+app.use(cookieParser());
+app.use(bodyParser.urlencoded({ extended:true }));
 
-// ROUTES
-// TODO: Write Get/Post/update routes
+app.use(
+    session({
+        key: "userID",
+        secret: "secretlol",
+        resave: false,
+        saveUninitialized: false,
+        cookie: {
+            expires: 60*60*24,
+        }})
+)
 
 app.post("/register/patient", async (req, res) => {
     try {
@@ -20,7 +37,7 @@ app.post("/register/patient", async (req, res) => {
             async (error) => {
                 if (!error) {
                     const password = Math.random().toString(36).slice(2, 10);
-                    pool.query("INSERT INTO auth_patient VALUES($1, $2)", [iin, password], (err, result) => {
+                    pool.query("INSERT INTO auth (username, password, patient) VALUES($1, $2, 'patient')", [iin, password], (err, result) => {
                         if (err) {
                             res.json({ err: err });
                         }
@@ -52,7 +69,7 @@ app.post("/register/doctor", async (req, res) => {
             async (error) => {
                 if (!error) {
                     const password = Math.random().toString(36).slice(2, 10);
-                    pool.query("INSERT INTO auth_doctor VALUES($1, $2)", [iin, password], (err, result) => {
+                    pool.query("INSERT INTO auth (username, password, role) VALUES($1, $2, 'doctor')", [iin, password], (err, result) => {
                         if (err) {
                             res.json({ err: err });
                         }
@@ -75,78 +92,26 @@ app.post("/register/doctor", async (req, res) => {
 
 });
 
+app.get("/login", (req, res) => {
+    if (req.session.user) {
+        res.send({loggedIn: true, user: req.session.user})
+    } else {
+        res.send({loggedIn: false})
+    }
+});
 
-
-app.post("/login/admin", async (req, res) => {
+app.post("/login", async (req, res) => {
     // const { username, password } = req.body;
     try {
-        console.log("Admin login received");
-        const { username, password } = req.body;
-        const result = await pool.query("SELECT * FROM auth WHERE login = $1 and pass = $2", [username, password])
+        console.log("Login info received");
+        const { username, password, role } = req.body;
+        const result = await pool.query("SELECT * FROM auth WHERE username = $1 and password = $2 and role = $3;", [username, password, role])
         if (result.rowCount != 0) {
-            res.send({ message: "Login successful." });
+            req.session.user = result.rows[0];
+            res.send({message: "Login successful"});
         } else {
             res.send({ message: "Wrong username or password." });
         }
-    } catch (error) {
-        console.log(error.message);
-    }
-
-    // console.log(req.body);
-    // const result = await pool.query("SELECT * FROM auth WHERE login = $1 and pass = $2",
-    // [username, password]),
-    // (error, result) => {
-    //     console.log("AA");
-    //     if (error) {
-    //         console.log(error);
-    //         res.send({error: error})
-    //     }
-    //     console.log(result);
-    //     if (result.rowCount > 0) {
-
-    //         res.send({message: "Login successful"})
-    //         // res.send({status: 1 , message: "Login successful."});
-    //     } else {
-    //         res.send({message: "Wrong username or password"});
-    //     }}
-}
-)
-
-app.post("/login/doctor", async (req, res) => {
-    try {
-        console.log(req.body);
-        const { login, pass } = req.body;
-        await pool.query("SELECT * FROM auth_doctor WHERE login = $1 and pass = $2", [login, pass], (err, result) => {
-            if (err) {
-                res.json({ err: err });
-            }
-            if (result.rowCount > 0) {
-                res.json({ message: "Login successful." });
-            } else {
-                res.json({ message: "Wrong username or password." });
-            }
-        })
-        // const newUser = await pool.query("INSERT INTO auth VALUES($1,$2) RETURNING *", [iin, pass])        
-    } catch (error) {
-        console.log(error.message);
-    }
-})
-
-app.post("/login/patient", async (req, res) => {
-    try {
-        console.log(req.body);
-        const { login, pass } = req.body;
-        await pool.query("SELECT * FROM auth_patient WHERE login = $1 and pass = $2", [login, pass], (err, result) => {
-            if (err) {
-                res.json({ err: err });
-            }
-            if (result.rowCount > 0) {
-                res.json({ message: "Login successful." });
-            } else {
-                res.json({ message: "Wrong username or password." });
-            }
-        })
-        // const newUser = await pool.query("INSERT INTO auth VALUES($1,$2) RETURNING *", [iin, pass])        
     } catch (error) {
         console.log(error.message);
     }
