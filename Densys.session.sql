@@ -1,16 +1,12 @@
---SELECT * FROM patient;
-
- --SELECT * from doctor;
- --SELECT * from auth_doctor;
 --@block
 DROP SCHEMA public;
 CREATE SCHEMA public;
 --@block
 CREATE DOMAIN PHONENUMBER CHAR(10) CONSTRAINT phone CHECK (VALUE ~ '^[7][0-9]{9}$');
+
 --@block
--- DROP TABLE PATIENT;
---DROP DOMAIN EMAIL;
 DROP DOMAIN PHONENUMBER
+
 --@block
 CREATE DOMAIN ROLE VARCHAR(20) CONSTRAINT role CHECK (VALUE = 'admin' OR VALUE = 'doctor' OR VALUE = 'patient');
 

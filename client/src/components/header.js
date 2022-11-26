@@ -1,14 +1,15 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function accessDenied() {
     return (
     <header className="site-header">
-        <div className="container">
-            <p><ht className="back-ht">A-Clinic</ht></p>
-            <p>Main Page</p>
-            <p>Message</p>
-            <p>Health Care Services</p>
-        </div>
-    </header>
+		<div class="container">
+		<p><ht class="back-ht"><Link className="text-link" to="/login-admin">A-Clinic</Link></ht></p>
+      		<p><Link className="text-link" to="/AdministratorMP">Main Page</Link></p>
+      		<p>Register Doctor</p>
+      		<p><Link className="text-link" to="/register-patient">Register Patient</Link></p>
+		</div>
+	</header>
     )
 };

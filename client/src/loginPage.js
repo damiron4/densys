@@ -2,19 +2,19 @@ import { useEffect, useState } from 'react';
 import Axios from "axios";
 import Header from "./components/header";
 import Footer from "./components/footer";
-
-import "react-datepicker/dist/react-datepicker.css";
+import { useNavigate } from 'react-router-dom';
 
 export default function LoginPage() {
-
 	const [username, setUsername] = useState('');
 	const [password, setPassword] = useState('');
-	// TODO: ROLE SELECTION
+	// TODO: ROLE SELECTION BUTTONS (FRONT)
 	const [role, setRole] = useState('admin');
 	const [error, setError] = useState(false);
 	const [loginStatus, setLoginStatus] = useState('');
+	const navigate = useNavigate();
+	// const shouldRedirect = true;
 
-	// Copy this to other pages to be logged in
+	// Copy this to other pages if you need roles
 	Axios.defaults.withCredentials = true;
 	useEffect(()=> {
 		Axios.get("http://localhost:5000/login").then((response) => {
@@ -25,6 +25,9 @@ export default function LoginPage() {
 		});
 	}, [])
 
+	// if(shouldRedirect){
+    //     navigate("/register/doctor");  
+    // }
 
 	const handleUsername = (e) => {
 		setUsername(e.target.value);
@@ -64,6 +67,7 @@ export default function LoginPage() {
 			const jsonData = await response.json();
 			if (jsonData.message) {
 				setLoginStatus(jsonData.message);
+				navigate("/register/doctor");	  
 			}
 		} catch (error) {
 			console.error(error.message);
@@ -85,7 +89,6 @@ export default function LoginPage() {
 
 		<div>
 			<Header/>
-			{}
 			<section className= "features">
 				<div>
 					<h1>Login</h1>
