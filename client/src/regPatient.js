@@ -14,12 +14,12 @@ const [id, setid] = useState('');
 const [email, setEmail] = useState('');
 const [bloodg, setBloodg] = useState('');
 const [mstatus, setMstatus] = useState('');
-const [adress, setAdress] = useState('');
+const [address, setAddress] = useState('');
 const [emerg, setEmerg] = useState('');
 const [contactn, setContactn] = useState('');
 const [dbirth, setDbirth] = useState(new Date());
 const current = new Date();
-const date = `${current.getDate()}/${current.getMonth()+1}/${current.getFullYear()}`;
+const dreg = `${current.getDate()}/${current.getMonth()+1}/${current.getFullYear()}`;
 const [password, setPassword] = useState('');
 const [submitted, setSubmitted] = useState(false);
 const [error, setError] = useState(false);
@@ -67,8 +67,8 @@ const handlePassword = (e) => {
 	setPassword(e.target.value);
 	setSubmitted(false);
 }
-const handleAdress = (e) => {
-	setAdress(e.target.value);
+const handleAddress = (e) => {
+	setAddress(e.target.value);
 	setSubmitted(false);	
 }
 
@@ -87,13 +87,25 @@ const handleMstatus = (e) => {
 	setSubmitted(false);	
 }
 
-const handleSubmit = (e) => {
+const handleSubmit = async (e) => {
 	e.preventDefault();
-	if (name === '' || password === ''|| surname === '' || midname === '' || iin === '' || bloodg === '' || emerg === '' || id === '' || bloodg === '...' || mstatus === '...' || adress === '' ) {
+	if (name === '' || password === ''|| surname === '' || midname === '' || dbirth === '' || iin === '' || contactn === '' || emerg === '' || id === '' || bloodg === '...' || mstatus === '...' || address === '' ) {
 	setError(true);
 	} else {
-	setSubmitted(true);
-	setError(false);
+		setSubmitted(true);
+		setError(false);
+		try{
+			const body = {dbirth, iin, id, name, surname, midname, bloodg, emerg, contactn, email, address, mstatus, dreg}
+			const response = await fetch("http://localhost:5000/register/patient", {
+				method: "POST",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify(body)
+			});
+			const jsonData = await response.json();
+			console.log(jsonData)
+		} catch(error){
+			console.error(error.message)
+		}
 	}
 };
 
@@ -204,12 +216,11 @@ return (
 		<input onChange={handleEmail} className="input"
 		value={email} type="email" />
 
-		<label className="label">Adress</label>
-		<input onChange={handleAdress} className="input"
-		value={adress} type="text" />
+		<label className="label">Address</label>
+		<input onChange={handleAddress} className="input"
+		value={address} type="text" />
 
-		<label className="label">Registration date: {date} </label>
-		
+		<label className="label">Registration date: {dreg} </label>
 
 		<label className="label">Password</label>
 		<input onChange={handlePassword} className="input"

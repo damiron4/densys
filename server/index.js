@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const pool = require("./db");
+const e = require("express");
 
 app.use(cors());
 app.use(express.urlencoded({ extended: false }));
@@ -10,7 +11,7 @@ app.use(express.json());
 // ROUTES
 // TODO: Write Get/Post/Update routes
 
-app.post("/register-patient", async (req, res) => {
+app.post("/register/patient", async (req, res) => {
     try {
         check = true
         console.log(req.body);
@@ -45,7 +46,7 @@ app.post("/register-patient", async (req, res) => {
     }
 });
 
-app.post("/register-doctor", async (req, res) => {
+app.post("/register/doctor", async (req, res) => {
     try {
         console.log("Doctor info recieved")
         const {dbirth, iin, id, name, surname, midname, contactn, depid, specid, exper, photo, category, price, scheduledetails, degree, rating, address, hpurl} = req.body;
@@ -68,24 +69,42 @@ app.post("/register-doctor", async (req, res) => {
 
 
 
-app.post("/login-admin", async (req, res) => {
+app.post("/login/admin", async (req, res) => {
+    // const { username, password } = req.body;
     try {
-        console.log(req.body);
-        const { iin, password } = req.body;
-        const result = await pool.query("SELECT * FROM auth WHERE login = $1 and pass = $2", [iin, password])
+        console.log("Admin login received");
+        const { username, password } = req.body;
+        const result = await pool.query("SELECT * FROM auth WHERE login = $1 and pass = $2", [username, password])
         if (result.rowCount != 0) {
-            res.send({status: 1 , message: "Login successful."});
+            res.send({message: "Login successful."});
         } else {
-            res.send({status: 0 , message: "Wrong username or password."});
+            res.send({message: "Wrong username or password."});
         }
-        // console.log(res);
-        // const newUser = await pool.query("INSERT INTO auth VALUES($1,$2) RETURNING *", [iin, pass])        
     } catch (error) {
         console.log(error.message);
     }
-})
+    
+    // console.log(req.body);
+    // const result = await pool.query("SELECT * FROM auth WHERE login = $1 and pass = $2",
+    // [username, password]),
+    // (error, result) => {
+    //     console.log("AA");
+    //     if (error) {
+    //         console.log(error);
+    //         res.send({error: error})
+    //     }
+    //     console.log(result);
+    //     if (result.rowCount > 0) {
+            
+    //         res.send({message: "Login successful"})
+    //         // res.send({status: 1 , message: "Login successful."});
+    //     } else {
+    //         res.send({message: "Wrong username or password"});
+    //     }}
+    }
+)
 
-app.post("/login-doctor", async (req, res) => {
+app.post("/login/doctor", async (req, res) => {
     try {
         console.log(req.body);
         const { login, pass } = req.body;
@@ -105,7 +124,7 @@ app.post("/login-doctor", async (req, res) => {
     }
 })
 
-app.post("/login-patient", async (req, res) => {
+app.post("/login/patient", async (req, res) => {
     try {
         console.log(req.body);
         const { login, pass } = req.body;

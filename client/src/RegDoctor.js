@@ -131,7 +131,7 @@ const handleSubmit = async e => {
 		setError(false);
 		try {
 			const body = {dbirth, iin, id, name, surname, midname, contactn, depid, specid, exper, photo, category, price, scheduledetails, degree, rating, address, hpurl}
-			const response = await fetch("http://localhost:5000/register-doctor", {
+			const response = await fetch("http://localhost:5000/register/doctor", {
 				method: "POST",
 				headers: { "Content-Type": "application/json" },
 				body: JSON.stringify(body)
@@ -152,7 +152,7 @@ const successMessage = () => {
 		style={{
 		display: submitted ? '' : 'none',
 		}}>
-		<h1>User {name} Successfully registered!!</h1>
+		<h1>User {name} successfully registered!!</h1>
 	</div>
 	);
 };
