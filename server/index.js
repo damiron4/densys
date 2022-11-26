@@ -70,27 +70,37 @@ app.post("/register/doctor", async (req, res) => {
 
 
 app.post("/login/admin", async (req, res) => {
-    const { iin, password } = req.body;
-    console.log("Admin login received");
-    // console.log(req.body);
-    await pool.query("SELECT * FROM auth WHERE login = $1 and pass = $2",
-    [iin, password]),
-    (error, result) => {
-        if (error) {
-            console.log(error);
-            res.send({error: error})
-        }
-        if (result.length > 0) {
-            res.send({message: "Login successful"})
-            // res.send({status: 1 , message: "Login successful."});
+    // const { username, password } = req.body;
+    try {
+        console.log("Admin login received");
+        const { username, password } = req.body;
+        const result = await pool.query("SELECT * FROM auth WHERE login = $1 and pass = $2", [username, password])
+        if (result.rowCount != 0) {
+            res.send({message: "Login successful."});
         } else {
-            res.send({message: "Wrong username or password"});
+            res.send({message: "Wrong username or password."});
         }
+    } catch (error) {
+        console.log(error.message);
     }
     
-        
-        // console.log(res);
-        // const newUser = await pool.query("INSERT INTO auth VALUES($1,$2) RETURNING *", [iin, pass])        
+    // console.log(req.body);
+    // const result = await pool.query("SELECT * FROM auth WHERE login = $1 and pass = $2",
+    // [username, password]),
+    // (error, result) => {
+    //     console.log("AA");
+    //     if (error) {
+    //         console.log(error);
+    //         res.send({error: error})
+    //     }
+    //     console.log(result);
+    //     if (result.rowCount > 0) {
+            
+    //         res.send({message: "Login successful"})
+    //         // res.send({status: 1 , message: "Login successful."});
+    //     } else {
+    //         res.send({message: "Wrong username or password"});
+    //     }}
     }
 )
 

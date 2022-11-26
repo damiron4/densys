@@ -19,7 +19,7 @@ const [emerg, setEmerg] = useState('');
 const [contactn, setContactn] = useState('');
 const [dbirth, setDbirth] = useState(new Date());
 const current = new Date();
-const date = `${current.getDate()}/${current.getMonth()+1}/${current.getFullYear()}`;
+const dreg = `${current.getDate()}/${current.getMonth()+1}/${current.getFullYear()}`;
 const [password, setPassword] = useState('');
 const [submitted, setSubmitted] = useState(false);
 const [error, setError] = useState(false);
@@ -95,7 +95,6 @@ const handleSubmit = async (e) => {
 		setSubmitted(true);
 		setError(false);
 		try{
-			dreg = date
 			const body = {dbirth, iin, id, name, surname, midname, bloodg, emerg, contactn, email, address, mstatus, dreg}
 			const response = await fetch("http://localhost:5000/register/patient", {
 				method: "POST",
@@ -221,7 +220,7 @@ return (
 		<input onChange={handleAddress} className="input"
 		value={address} type="text" />
 
-		<label className="label">Registration date: {date} </label>
+		<label className="label">Registration date: {dreg} </label>
 
 		<label className="label">Password</label>
 		<input onChange={handlePassword} className="input"
