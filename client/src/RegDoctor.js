@@ -25,8 +25,7 @@ const[degree, SetDegree] =  useState('');
 const[rating, SetRating] =  useState('');
 const[photo, SetPhoto] =  useState('');
 const[scheduledetails, setScheduledetails] =  useState('');
-const[hpurl, setHomepageURL] =  useState('');
-//const id 
+const[hpurl, setHomepageURL] =  useState(''); 
 
 const [submitted, setSubmitted] = useState(false);
 const [error, setError] = useState(false);
@@ -129,7 +128,7 @@ const handleSubmit = async e => {
 		setSubmitted(true);
 		setError(false);
 		try {
-			const body = {dbirth, iin, govid, name, surname, midname, contactn, depid, specid, exper, photo, category, price, scheduledetails, degree, rating, address, hpurl, id}
+			const body = {dbirth, iin, govid, name, surname, midname, contactn, depid, specid, exper, photo, category, price, scheduledetails, degree, rating, address, hpurl}
 			const response = await fetch("http://localhost:5000/register/doctor", {
 				method: "POST",
 				headers: { "Content-Type": "application/json" },
@@ -172,7 +171,7 @@ const errorMessage = () => {
 const handleDoctorRegister = async e => {
 	e.preventDefault();
 	try {
-		const body = {dbirth, iin, id, name, surname, midname, contactn, depid, specid, exper, photo, category, price, scheduledetails, degree, rating, address, hpurl}
+		const body = {dbirth, iin, govid, name, surname, midname, contactn, depid, specid, exper, photo, category, price, scheduledetails, degree, rating, address, hpurl}
 		const response = await fetch("http://localhost:5000/register-doctor", {
 			method: "POST",
 			headers: { "Content-Type": "application/json" },
@@ -230,9 +229,9 @@ return (
 		onChange={handleiin} className="input" 
 		value={iin} type="number" />
 
-		<label className="label">ID number</label>
+		<label className="label">Governmental ID number</label>
 		<input onChange={handleGovId} className="input" 
-		value={id} type="number" />
+		value={govid} type="number" />
 
 		<label className="label">Contact number</label>
 		<input onChange={handleContactn} className="input"

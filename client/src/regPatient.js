@@ -23,7 +23,7 @@ const dreg = `${current.getDate()}/${current.getMonth()+1}/${current.getFullYear
 const [password, setPassword] = useState('');
 const [submitted, setSubmitted] = useState(false);
 const [error, setError] = useState(false);
-//const id; 
+
 const handleName = (e) => {
 	setName(e.target.value);
 	setSubmitted(false);
@@ -96,7 +96,7 @@ const handleSubmit = async (e) => {
 		setError(false);
 		try {
 			
-			const body = {dbirth, iin, govid, name, surname, midname, bloodg, emerg, contactn, email, address, mstatus, dreg, id}
+			const body = {dbirth, iin, govid, name, surname, midname, bloodg, emerg, contactn, email, address, mstatus, dreg}
 			const response = await fetch("http://localhost:5000/register/patient", {
 				method: "POST",
 				headers: { "Content-Type": "application/json" },
@@ -177,7 +177,7 @@ return (
 
 		<label className="label">Governmental ID number</label>
 		<input onChange={handleGovId} className="input" 
-		value={id} type="number" />
+		value={govid} type="number" />
 
 		<label className="label">Blood group</label>	
 		<select
