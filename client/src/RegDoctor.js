@@ -9,13 +9,12 @@ const [name, setName] = useState('');
 const [surname, setSurName] = useState('');
 const [midname, setMidName] = useState('');
 const [iin, setiin] = useState('');
-const [id, setid] = useState('');
+const [govid, setGovId] = useState('');
 const [email, setEmail] = useState('');
 const [address, setAddress] = useState('');
 const [contactn, setContactn] = useState('');
 const [dbirth, setDbirth] = useState(new Date());
 const current = new Date();
-const date = `${current.getDate()}/${current.getMonth()+1}/${current.getFullYear()}`;
 const [password, setPassword] = useState('');
 const[depid, SetDepid] =  useState('');
 const[specid, SetSpecid] =  useState('');
@@ -27,7 +26,7 @@ const[rating, SetRating] =  useState('');
 const[photo, SetPhoto] =  useState('');
 const[scheduledetails, setScheduledetails] =  useState('');
 const[hpurl, setHomepageURL] =  useState('');
-
+//const id 
 
 const [submitted, setSubmitted] = useState(false);
 const [error, setError] = useState(false);
@@ -51,8 +50,8 @@ const handleiin = (e) => {
 	setSubmitted(false);
 }
 
-const handleid = (e) => {
-	setid(e.target.value);
+const handleGovId = (e) => {
+	setGovId(e.target.value);
 	setSubmitted(false);
 }
 
@@ -124,13 +123,13 @@ const handlePhoto = (e) => {
 
 const handleSubmit = async e => {
 	e.preventDefault();
-	if (name === '' || password === ''|| surname === '' || midname === '' || iin === '' || id === '' || address === '' || degree === '...' || photo === '') {
+	if (name === '' || password === ''|| surname === '' || midname === '' || iin === '' || govid === '' || address === '' || degree === '...' || photo === '') {
 	setError(true);
 	} else {
 		setSubmitted(true);
 		setError(false);
 		try {
-			const body = {dbirth, iin, id, name, surname, midname, contactn, depid, specid, exper, photo, category, price, scheduledetails, degree, rating, address, hpurl}
+			const body = {dbirth, iin, govid, name, surname, midname, contactn, depid, specid, exper, photo, category, price, scheduledetails, degree, rating, address, hpurl, id}
 			const response = await fetch("http://localhost:5000/register/doctor", {
 				method: "POST",
 				headers: { "Content-Type": "application/json" },
@@ -232,7 +231,7 @@ return (
 		value={iin} type="number" />
 
 		<label className="label">ID number</label>
-		<input onChange={handleid} className="input" 
+		<input onChange={handleGovId} className="input" 
 		value={id} type="number" />
 
 		<label className="label">Contact number</label>

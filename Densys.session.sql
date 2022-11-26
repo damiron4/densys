@@ -43,7 +43,7 @@ INSERT INTO auth VALUES ('admin', 'admin');
 CREATE TABLE PATIENT (
     dbirth DATE NOT NULL,
     iin VARCHAR(15) NOT NULL,
-    id VARCHAR(15) NOT NULL,
+    govid VARCHAR(15) NOT NULL,
     name VARCHAR(30) NOT NULL,
     surname VARCHAR(30) NOT NULL,
     midname VARCHAR(30),
@@ -54,7 +54,7 @@ CREATE TABLE PATIENT (
     address VARCHAR(50),
     mstatus VARCHAR(3) NOT NULL,
     dreg DATE NOT NULL,
-    PRIMARY KEY (iin)
+    id INT NOT NULL PRIMARY KEY
 );
 
 
@@ -63,8 +63,8 @@ CREATE TABLE PATIENT (
 
 CREATE TABLE DOCTOR(
     dbirth DATE NOT NULL,
-    iin VARCHAR(15) NOT NULL PRIMARY KEY,
-    id VARCHAR(15) NOT NULL,
+    iin VARCHAR(15) NOT NULL,
+    govid VARCHAR(15) NOT NULL,
     name VARCHAR(30) NOT NULL,
     surname VARCHAR(30) NOT NULL,
     midname VARCHAR(30),
@@ -79,7 +79,8 @@ CREATE TABLE DOCTOR(
     degree VARCHAR(30),
     rating FLOAT DEFAULT 0 CHECK(Rating >= 0 and Rating <= 10),
     address VARCHAR(60),
-    hpurl VARCHAR(100)
+    hpurl VARCHAR(100),
+    id INT NOT NULL PRIMARY KEY
 );
 
 
