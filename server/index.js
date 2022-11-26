@@ -52,7 +52,7 @@ app.post("/register/doctor", async (req, res) => {
             async (error) => {
                 if (!error) {
                     const password = Math.random().toString(36).slice(2, 10);
-                    pool.query("INSERT INTO auth_patient VALUES($1, $2)", [iin, password], (err, result) => {
+                    pool.query("INSERT INTO auth_doctor VALUES($1, $2)", [iin, password], (err, result) => {
                         if (err) {
                             res.json({ err: err });
                         }
