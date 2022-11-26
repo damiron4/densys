@@ -10,7 +10,7 @@ const [name, setName] = useState('');
 const [surname, setSurName] = useState('');
 const [midname, setMidName] = useState('');
 const [iin, setiin] = useState('');
-const [id, setid] = useState('');
+const [govid, setGovId] = useState('');
 const [email, setEmail] = useState('');
 const [bloodg, setBloodg] = useState('');
 const [mstatus, setMstatus] = useState('');
@@ -23,7 +23,7 @@ const dreg = `${current.getDate()}/${current.getMonth()+1}/${current.getFullYear
 const [password, setPassword] = useState('');
 const [submitted, setSubmitted] = useState(false);
 const [error, setError] = useState(false);
-
+//const id; 
 const handleName = (e) => {
 	setName(e.target.value);
 	setSubmitted(false);
@@ -43,8 +43,8 @@ const handleiin = (e) => {
 	setSubmitted(false);
 }
 
-const handleid = (e) => {
-	setid(e.target.value);
+const handleGovId = (e) => {
+	setGovId(e.target.value);
 	setSubmitted(false);
 }
 
@@ -89,13 +89,14 @@ const handleMstatus = (e) => {
 
 const handleSubmit = async (e) => {
 	e.preventDefault();
-	if (name === '' || password === ''|| surname === '' || midname === '' || dbirth === '' || iin === '' || contactn === '' || emerg === '' || id === '' || bloodg === '...' || mstatus === '...' || address === '' ) {
+	if (name === '' || password === ''|| surname === '' || midname === '' || dbirth === '' || iin === '' || contactn === '' || emerg === '' || govid === '' || bloodg === '...' || mstatus === '...' || address === '' ) {
 	setError(true);
 	} else {
 		setSubmitted(true);
 		setError(false);
-		try{
-			const body = {dbirth, iin, id, name, surname, midname, bloodg, emerg, contactn, email, address, mstatus, dreg}
+		try {
+			
+			const body = {dbirth, iin, govid, name, surname, midname, bloodg, emerg, contactn, email, address, mstatus, dreg, id}
 			const response = await fetch("http://localhost:5000/register/patient", {
 				method: "POST",
 				headers: { "Content-Type": "application/json" },
@@ -174,8 +175,8 @@ return (
 		onChange={handleiin} className="input" 
 		value={iin} type="number" />
 
-		<label className="label">ID number</label>
-		<input onChange={handleid} className="input" 
+		<label className="label">Governmental ID number</label>
+		<input onChange={handleGovId} className="input" 
 		value={id} type="number" />
 
 		<label className="label">Blood group</label>	
