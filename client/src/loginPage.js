@@ -82,7 +82,7 @@ export default function LoginPage() {
 		);
 	};
 	return (
-		{<Header />}
+		
 		<div>
 			<section className= "features">
 				<div>
