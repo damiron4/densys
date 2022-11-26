@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import Axios from "axios";
-import Header from "../components/header";
-import Footer from "../components/footer";
+import Header from "./components/header";
+import Footer from "./components/footer";
 
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -82,8 +82,10 @@ export default function LoginPage() {
 		);
 	};
 	return (
-		
+
 		<div>
+			<Header/>
+			{}
 			<section className= "features">
 				<div>
 					<h1>Login</h1>
@@ -105,6 +107,7 @@ export default function LoginPage() {
 
 				<button onClick={handleLogin} className="btn" type="submit">Login</button>
 			</section>
+			<Footer/>
 		</div>
 	);
 }
