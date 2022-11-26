@@ -1,15 +1,32 @@
 const express = require("express");
-const app = express();
 const cors = require("cors");
 const pool = require("./db");
-const e = require("express");
+const bodyParser = require("body-parser")
+const cookieParser = require("cookie-parser")
+const session = require("express-session")
 
-app.use(cors());
-app.use(express.urlencoded({ extended: false }));
+
+const app = express();
 app.use(express.json());
+app.use(cors({
+    origin: ["http://localhost:3000"],
+    methods: ["GET", "POST"],
+    credentials: true
+    })
+);
+app.use(cookieParser());
+app.use(bodyParser.urlencoded({ extended:true }));
 
-// ROUTES
-// TODO: Write Get/Post/Update routes
+app.use(
+    session({
+        key: "userID",
+        secret: "secretlol",
+        resave: false,
+        saveUninitialized: false,
+        cookie: {
+            expires: 60*60*24,
+        }})
+)
 
 app.post("/register/patient", async (req, res) => {
     try {
@@ -67,42 +84,31 @@ app.post("/register/doctor", async (req, res) => {
     
 });
 
-
+app.get("/login/admin", (req, res) => {
+    if (req.session.user) {
+        res.send({loggedIn: true, user: req.session.user})
+    } else {
+        res.send({loggedIn: false})
+    }
+});
 
 app.post("/login/admin", async (req, res) => {
     // const { username, password } = req.body;
     try {
         console.log("Admin login received");
         const { username, password } = req.body;
-        const result = await pool.query("SELECT * FROM auth WHERE login = $1 and pass = $2", [username, password])
+        const result = await pool.query("SELECT * FROM auth WHERE login = $1 and pass = $2;", [username, password])
         if (result.rowCount != 0) {
-            res.send({message: "Login successful."});
+            req.session.user = result.rows[0];
+            console.log(req.session.user);
+            res.send({message: "Login successful"});
         } else {
             res.send({message: "Wrong username or password."});
         }
     } catch (error) {
         console.log(error.message);
     }
-    
-    // console.log(req.body);
-    // const result = await pool.query("SELECT * FROM auth WHERE login = $1 and pass = $2",
-    // [username, password]),
-    // (error, result) => {
-    //     console.log("AA");
-    //     if (error) {
-    //         console.log(error);
-    //         res.send({error: error})
-    //     }
-    //     console.log(result);
-    //     if (result.rowCount > 0) {
-            
-    //         res.send({message: "Login successful"})
-    //         // res.send({status: 1 , message: "Login successful."});
-    //     } else {
-    //         res.send({message: "Wrong username or password"});
-    //     }}
-    }
-)
+})
 
 app.post("/login/doctor", async (req, res) => {
     try {

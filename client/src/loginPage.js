@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { Link } from "react-router-dom";
+import { useEffect, useState } from 'react';
+import Axios from "axios";
 
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -9,7 +9,18 @@ export default function LoginPage() {
 	const [password, setPassword] = useState('');
 	const [error, setError] = useState(false);
 	const [loginStatus, setLoginStatus] = useState('');
-	
+
+	Axios.defaults.withCredentials = true;
+
+	useEffect(()=> {
+		Axios.get("http://localhost:5000/login/admin").then((response) => {
+			if (response.data.loggedIn) {
+				setLoginStatus("Logged in as " + response.data.user.login);
+			}
+		});
+	}, [])
+
+
 	const handleUsername = (e) => {
 		setUsername(e.target.value);
 	}
@@ -18,7 +29,7 @@ export default function LoginPage() {
 		setPassword(e.target.value);
 	}
 
-	const successMessage = () => {
+	const statusMessage = () => {
 		return (
 		<div
 			className="success"
@@ -42,6 +53,7 @@ export default function LoginPage() {
 			const response = await fetch("http://localhost:5000/login/admin", {
 				method: "POST",
 				headers: { "Content-Type": "application/json" },
+				credentials: "include",
 				body: JSON.stringify(body)
 			});
 			const jsonData = await response.json();
@@ -69,7 +81,7 @@ export default function LoginPage() {
 		<div>
 		<header className="site-header">
 			<div className="container">
-				<p><ht class="back-ht">A-Clinic</ht></p>
+				{/* <p><ht className="back-ht">A-Clinic</ht></p> */}
 				<p>Main Page</p>
 				<p>Message</p>
 				<p>Health Care Services</p>
@@ -93,8 +105,7 @@ export default function LoginPage() {
 			{}
 			<div className="messages">
 				{errorMessage()}
-				{/* {loginStatus} */}
-				{successMessage()}
+				{statusMessage()}
 			</div>
 
 			<button onClick={handleLogin} className="btn" type="submit">Login</button>

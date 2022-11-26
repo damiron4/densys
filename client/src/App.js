@@ -1,15 +1,13 @@
 import './App.css';
-import {
-  Route,
-  Link,
-  Routes
-} from "react-router-dom"
+import { Route, Link, Routes } from "react-router-dom"
+
 import RegDoctor from "./RegDoctor"
 import LoginPage from "./loginPage"
 import RegPatient from "./regPatient"
 import DoctorMP from "./DoctorMP"
 import Appointment from './Appointment';
 import Form from './Form';
+
 function App() {
   return (
     <>
@@ -37,9 +35,9 @@ function App() {
           </nav>
           
           <Routes>
-            <Route path="/login-admin" exact element={<LoginPage />} />
-            <Route path="/register-doctor" exact element={<RegDoctor/>}/>
-            <Route path="/register-patient" exact element={<RegPatient/>}/>
+            <Route path="/login/admin" exact element={<LoginPage />} />
+            <Route path="/register/doctor" exact element={<RegDoctor/>}/>
+            <Route path="/register/patient" exact element={<RegPatient/>}/>
             {/* <Route path="/AdministratorMP" exact element={<AdministratorMP/>}/> */}
             <Route path="/DoctorMP" exact element={<DoctorMP/>}/>
             <Route path="/appointment-form" exact element={<Appointment/>}/>
