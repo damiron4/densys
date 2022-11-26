@@ -14,7 +14,7 @@ const [id, setid] = useState('');
 const [email, setEmail] = useState('');
 const [bloodg, setBloodg] = useState('');
 const [mstatus, setMstatus] = useState('');
-const [adress, setAdress] = useState('');
+const [address, setAddress] = useState('');
 const [emerg, setEmerg] = useState('');
 const [contactn, setContactn] = useState('');
 const [dbirth, setDbirth] = useState(new Date());
@@ -67,8 +67,8 @@ const handlePassword = (e) => {
 	setPassword(e.target.value);
 	setSubmitted(false);
 }
-const handleAdress = (e) => {
-	setAdress(e.target.value);
+const handleAddress = (e) => {
+	setAddress(e.target.value);
 	setSubmitted(false);	
 }
 
@@ -89,9 +89,10 @@ const handleMstatus = (e) => {
 
 const handleSubmit = (e) => {
 	e.preventDefault();
-	if (name === '' || password === ''|| surname === '' || midname === '' || iin === '' || bloodg === '' || emerg === '' || id === '' || bloodg === '...' || mstatus === '...' || adress === '' ) {
+	if (name === '' || password === ''|| surname === '' || midname === '' || iin === '' || н === '' || emerg === '' || id === '' || bloodg === '...' || mstatus === '...' || address === '' ) {
 	setError(true);
 	} else {
+
 	setSubmitted(true);
 	setError(false);
 	}
@@ -204,12 +205,11 @@ return (
 		<input onChange={handleEmail} className="input"
 		value={email} type="email" />
 
-		<label className="label">Adress</label>
-		<input onChange={handleAdress} className="input"
-		value={adress} type="text" />
+		<label className="label">Address</label>
+		<input onChange={handleAddress} className="input"
+		value={address} type="text" />
 
 		<label className="label">Registration date: {date} </label>
-		
 
 		<label className="label">Password</label>
 		<input onChange={handlePassword} className="input"
