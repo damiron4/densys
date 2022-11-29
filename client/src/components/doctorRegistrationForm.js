@@ -122,9 +122,7 @@ export default function DoctorRegistrationForm() {
 		e.preventDefault();
 		if (name === '' || password === ''|| surname === '' || midname === '' || iin === '' || govid === '' || address === '' || degree === '...' || photo === '') {
 		setError(true);
-		} else {
-			setSubmitted(true);
-			setError(false);
+		} else {		
 			try {
 				const body = {dbirth, iin, govid, name, surname, midname, contactn, depid, specid, exper, photo, category, price, scheduledetails, degree, rating, address, hpurl}
 				const response = await fetch("http://localhost:5000/register/doctor", {
@@ -133,8 +131,12 @@ export default function DoctorRegistrationForm() {
 					body: JSON.stringify(body)
 				});
 				const jsonData = await response.json();
-				
-				console.log(jsonData)
+				if (!jsonData.err) {
+					setError(true);
+				} else {
+					setSubmitted(true);
+				}
+				// console.log(jsonData)
 			} catch (error) {
 				console.error(error.message);
 			}
@@ -164,27 +166,6 @@ export default function DoctorRegistrationForm() {
 			<h1>Please enter all the fields (e-mail is optional)</h1>
 		</div>
 		);
-	};
-
-	const handleDoctorRegister = async e => {
-		e.preventDefault();
-		try {
-			const body = {dbirth, iin, govid, name, surname, midname, contactn, depid, specid, exper, photo, category, price, scheduledetails, degree, rating, address, hpurl}
-			const response = await fetch("http://localhost:5000/register-doctor", {
-				method: "POST",
-				headers: { "Content-Type": "application/json" },
-				body: JSON.stringify(body)
-			});
-			const jsonData = await response.json();
-			console.log(jsonData)
-			// setMessage(jsonData.message);
-			// setLoginSuccess(jsonData.status);
-			// if(loginSuccess) {
-			// 	window.location = "/DoctorMP";
-			// }
-		} catch (error) {
-			console.error(error.message);
-		}
 	};
 
 	return (
