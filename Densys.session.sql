@@ -1,16 +1,12 @@
---SELECT * FROM patient;
-
- --SELECT * from doctor;
- --SELECT * from auth_doctor;
 --@block
 DROP SCHEMA public;
 CREATE SCHEMA public;
 --@block
 CREATE DOMAIN PHONENUMBER CHAR(10) CONSTRAINT phone CHECK (VALUE ~ '^[7][0-9]{9}$');
+
 --@block
--- DROP TABLE PATIENT;
---DROP DOMAIN EMAIL;
 DROP DOMAIN PHONENUMBER
+
 --@block
 CREATE DOMAIN ROLE VARCHAR(20) CONSTRAINT role CHECK (VALUE = 'admin' OR VALUE = 'doctor' OR VALUE = 'patient');
 
@@ -40,40 +36,38 @@ INSERT INTO auth (username, password, role) VALUES ('admin', 'admin', 'admin');
 
 CREATE TABLE PATIENT (
     dbirth DATE NOT NULL,
-    iin VARCHAR(15) NOT NULL,
-    govid VARCHAR(15) NOT NULL,
+    iin VARCHAR(20) NOT NULL,
+    govid VARCHAR(20) NOT NULL,
     name VARCHAR(30) NOT NULL,
     surname VARCHAR(30) NOT NULL,
     midname VARCHAR(30),
-    bloodg INT CHECK (bloodg >= 1 and bloodg <= 4),
+    bloodg VARCHAR(5) NOT NULL,
     emerg PHONENUMBER,
     contactn PHONENUMBER NOT NULL,
     email EMAIL,
     address VARCHAR(50),
-    mstatus VARCHAR(3) NOT NULL,
+    mstatus VARCHAR(15) NOT NULL,
     dreg DATE NOT NULL,
     id SERIAL PRIMARY KEY
 );
 
 
 --drop table DOCTOR
-
-
 CREATE TABLE DOCTOR(
     dbirth DATE NOT NULL,
-    iin VARCHAR(15) NOT NULL,
-    govid VARCHAR(15) NOT NULL,
+    iin VARCHAR(20) NOT NULL,
+    govid VARCHAR(20) NOT NULL,
     name VARCHAR(30) NOT NULL,
     surname VARCHAR(30) NOT NULL,
     midname VARCHAR(30),
     contactn PHONENUMBER NOT NULL,
-    depid VARCHAR(15) NOT NULL,
-    specid VARCHAR(30) NOT NULL,
-    exper INT DEFAULT 0,
+    depid INT NOT NULL,
+    specid INT NOT NULL,
+    exper INT,
     photo BYTEA,
-    category VARCHAR(10) NOT NULL,
+    category VARCHAR(20) NOT NULL,
     price INT NOT NULL,
-    scheduledetails VARCHAR(60),
+    scheduledetails INT NOT NULL,
     degree VARCHAR(30),
     rating FLOAT DEFAULT 0 CHECK(Rating >= 0 and Rating <= 10),
     address VARCHAR(60),
