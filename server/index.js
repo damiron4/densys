@@ -31,13 +31,13 @@ app.use(
 app.post("/register/patient", async (req, res) => {
     try {
         console.log("Patient info received");
-        const { dbirth, iin, id, name, surname, midname, bloodg, emerg, contactn, email, address, mstatus, dreg} = req.body;
-        pool.query("INSERT INTO patient VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13)",
-            [dbirth, iin, id, name, surname, midname, bloodg, emerg, contactn, email, address, mstatus, dreg],
+        const {dbirth, iin, govid, name, surname, midname, bloodg, emerg, contactn, email, address, mstatus, dreg} = req.body;
+        pool.query("INSERT INTO patient (dbirth, iin, govid, name, surname, midname, bloodg, emerg, contactn, email, address, mstatus, dreg) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13)",
+            [dbirth, iin, govid, name, surname, midname, bloodg, emerg, contactn, email, address, mstatus, dreg],
             async (error) => {
                 if (!error) {
                     const password = Math.random().toString(36).slice(2, 10);
-                    pool.query("INSERT INTO auth (username, password, patient) VALUES($1, $2, 'patient')", [iin, password], (err, result) => {
+                    pool.query("INSERT INTO AUTH (username, password, patient) VALUES($1, $2, 'patient')", [iin, password], (err, result) => {
                         if (err) {
                             res.json({ err: err });
                         }

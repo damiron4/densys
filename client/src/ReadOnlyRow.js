@@ -5,12 +5,12 @@ const ReadOnlyRow = ({ contact, handleEditClick, handleDeleteClick }) => {
     <tr>
       <td>{contact.name}</td>
                 <td>{contact.surname}</td>
-                <td>{contact.middlename}</td>
-                <td>{contact.birthDate}</td>
-                <td>{contact.IIN}</td>
-                <td>{contact.contactNumber}</td>
-                <td>{contact.departmentId}</td>
-                <td>{contact.specializationDetailsId}</td>
+                <td>{contact.midname}</td>
+                <td>{contact.dbirth}</td>
+                <td>{contact.iin}</td>
+                <td>{contact.contactn}</td>
+                <td>{contact.depid}</td>
+                <td>{contact.specid}</td>
       <td>
         <button
           type="button"

@@ -22,8 +22,8 @@ export default function RegDoctor() {
 	return (
 		<div>
 			<Header/>
-			{ role == "admin" && <DoctorRegistrationForm />}
-			{ role != "admin" && <AccessDenied />}
+			{ role === "admin" && <DoctorRegistrationForm />}
+			{ role !== "admin" && <AccessDenied />}
 			<Footer/>
 		</div>
 	);
