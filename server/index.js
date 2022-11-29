@@ -63,9 +63,9 @@ app.post("/register/patient", async (req, res) => {
 app.post("/register/doctor", async (req, res) => {
     try {
         console.log("Doctor info received");
-        const {dbirth, iin, govid, name, surname, midname, contactn, depid, specid, exper, photo, category, price, scheduledetailsdetails, degree, rating, address, hpurl } = req.body;
-        pool.query("INSERT INTO doctor VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18)",
-            [dbirth, iin, govid, name, surname, midname, contactn, depid, specid, exper, photo, category, price, scheduledetailsdetails, degree, rating, address, hpurl],
+        const {dbirth, iin, govid, name, surname, midname, contactn, depid, specid, exper, photo, category, price, scheduledetails, degree, rating, address, hpurl } = req.body;
+        pool.query("INSERT INTO doctor (dbirth, iin, govid, name, surname, midname, contactn, depid, specid, exper, photo, category, price, scheduledetails, degree, rating, address, hpurl) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18)",
+            [dbirth, iin, govid, name, surname, midname, contactn, depid, specid, exper, photo, category, price, scheduledetails, degree, rating, address, hpurl],
             async (error) => {
                 if (!error) {
                     const password = Math.random().toString(36).slice(2, 10);
@@ -177,7 +177,7 @@ app.put("/doctor/:id", async (req, res) => {
         const {dbirth, iin, govid, name, surname, midname, contactn, depid, specid, exper, photo, category, price, scheduledetails, degree, rating, address, hpurl}
             = req.body;
         await pool.query(
-            "UPDATE doctor SET dbirth = $1, iin = $2, govid = $3, name = $4, surname = $5, midname = $6, contactnn = $7, depid = $8, specid = $9, exper = $10, photo = $11, category = $12, price = $13, scheduledetailsdetails = $14, degree = $15, rating = $16, address = $17, hpurl = 18$ WHERE id = $19",
+            "UPDATE doctor SET dbirth = $1, iin = $2, govid = $3, name = $4, surname = $5, midname = $6, contactnn = $7, depid = $8, specid = $9, exper = $10, photo = $11, category = $12, price = $13, scheduledetails = $14, degree = $15, rating = $16, address = $17, hpurl = 18$ WHERE id = $19",
             [dbirth, iin, govid, name, surname, midname, contactn, depid, specid, exper, photo, category, price, scheduledetails, degree, rating, address, hpurl, id]
         );
         res.json("Doctor was updated!");
