@@ -32,8 +32,8 @@ const EditableRow = ({
           type="text"
           required="required"
           placeholder="Enter a middlename..."
-          name="middlename"
-          value={editFormData.middlename}
+          name="midname"
+          value={editFormData.midname}
           onChange={handleEditFormChange}
         ></input>
       </td>
@@ -42,8 +42,8 @@ const EditableRow = ({
           type="text"
           required="required"
           placeholder="Enter a birth date..."
-          name="birthDate"
-          value={editFormData.birthDate}
+          name="dbirth"
+          value={editFormData.dbirth}
           onChange={handleEditFormChange}
         ></input>
       </td>
@@ -52,8 +52,8 @@ const EditableRow = ({
           type="text"
           required="required"
           placeholder="Enter an IIN..."
-          name="IIN"
-          value={editFormData.IIN}
+          name="iin"
+          value={editFormData.iin}
           onChange={handleEditFormChange}
         ></input>
       </td>
@@ -62,8 +62,8 @@ const EditableRow = ({
           type="text"
           required="required"
           placeholder="Enter a contact number.."
-          name="contactNumber"
-          value={editFormData.contactNumber}
+          name="contactn"
+          value={editFormData.contactn}
           onChange={handleEditFormChange}
         ></input>
       </td>
@@ -72,8 +72,8 @@ const EditableRow = ({
           type="text"
           required="required"
           placeholder="Enter a department ID..."
-          name="departmentId"
-          value={editFormData.departmentId}
+          name="depid"
+          value={editFormData.depid}
           onChange={handleEditFormChange}
         ></input>
       </td>
@@ -82,8 +82,8 @@ const EditableRow = ({
           type="text"
           required="required"
           placeholder="Enter a specialization details id..."
-          name="specializationDetailsId"
-          value={editFormData.specializationDetailsId}
+          name="specid"
+          value={editFormData.specid}
           onChange={handleEditFormChange}
         ></input>
       </td>
