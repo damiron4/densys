@@ -1,126 +1,116 @@
-import { useState } from 'react';
-import { Link } from "react-router-dom";
-
-import "react-datepicker/dist/react-datepicker.css";
+import { useEffect, useState } from 'react';
+import Axios from "axios";
+import Header from "./components/header";
+import Footer from "./components/footer";
+import { useNavigate } from 'react-router-dom';
 
 export default function LoginPage() {
-
-	const [iin, setiin] = useState('');
+	const [username, setUsername] = useState('');
 	const [password, setPassword] = useState('');
-
-	
-	
-	const [submitted, setSubmitted] = useState(false);
+	// TODO: ROLE SELECTION BUTTONS (FRONT)
+	const [role, setRole] = useState('admin');
 	const [error, setError] = useState(false);
-	
-	const [loginSuccess, setLoginSuccess] = useState(false);
-	const [message, setMessage] = useState('');
-	
-	const handleiin = (e) => {
-		setiin(e.target.value);
-		setSubmitted(false);
+	const [loginStatus, setLoginStatus] = useState('');
+	const navigate = useNavigate();
+	// const shouldRedirect = true;
+
+	// Copy this to other pages if you need roles
+	Axios.defaults.withCredentials = true;
+	useEffect(()=> {
+		Axios.get("http://localhost:5000/login").then((response) => {
+			if (response.data.loggedIn) {
+				setLoginStatus("User " + response.data.user.username + " logged in as " + response.data.user.role);
+				setRole(response.data.user.role);
+			}
+		});
+	}, [])
+
+	// if(shouldRedirect){
+    //     navigate("/register/doctor");  
+    // }
+
+	const handleUsername = (e) => {
+		setUsername(e.target.value);
 	}
 	
 	const handlePassword = (e) => {
 		setPassword(e.target.value);
-		setSubmitted(false);
 	}
-	
-const handleSubmit = (e) => {
-	e.preventDefault();
-	if (iin === '' || password === '' ) {
-	setError(true);
-	} else {
-	setSubmitted(true);
-	setError(false);
-	}
-};
-const successMessage = () => {
-	return (
-	<div
-		className="success"
-		style={{
-			display: !loginSuccess ? '' : 'none',
-		}}>
-		<h1>{message}</h1>
-	</div>
-	);
-};
 
-const handleLogin = async e => {
-	e.preventDefault();
-	try {
-		const body = {iin, password}
-		const response = await fetch("http://localhost:5000/login-admin", {
-			method: "POST",
-			headers: { "Content-Type": "application/json" },
-			body: JSON.stringify(body)
-		});
-		const jsonData = await response.json();
-		setMessage(jsonData.message);
-		setLoginSuccess(jsonData.status);
-		if(loginSuccess) {
-			window.location = "/DoctorMP";
+	const statusMessage = () => {
+		return (
+		<div
+			className="success"
+			style={{
+				display: loginStatus ? '' : 'none',
+			}}>
+			<h1>{loginStatus}</h1>
+		</div>
+		);
+	};
+
+	const handleLogin = async e => {
+		e.preventDefault();
+		if (username === '' || password === '' ) {
+			setError(true);
+			setLoginStatus('');
+			return
 		}
-	} catch (error) {
-		console.error(error.message);
-	}
-};
+		try {
+			const body = {username, password, role}
+			const response = await fetch("http://localhost:5000/login", {
+				method: "POST",
+				headers: { "Content-Type": "application/json" },
+				credentials: "include",
+				body: JSON.stringify(body)
+			});
+			const jsonData = await response.json();
+			if (jsonData.message) {
+				setLoginStatus(jsonData.message);
+				navigate("/register/doctor");	  
+			}
+		} catch (error) {
+			console.error(error.message);
+		}
+	};
 
-const errorMessage = () => {
+	const errorMessage = () => {
+		return (
+		<div
+			className="error"
+			style={{
+			display: error ? '' : 'none',
+			}}>
+			<h1>Please enter all the fields</h1>
+		</div>
+		);
+	};
 	return (
-	<div
-		className="error"
-		style={{
-		display: error ? '' : 'none',
-		}}>
-		<h1>Please enter all the fields</h1>
-	</div>
-	);
-};
-return (
-	
-	<div>
-	<header className="site-header">
-		<div class="container">
-			<p><ht class="back-ht">A-Clinic</ht></p>
-      		<p>Main Page</p>
-      		<p>Message</p>
-      		<p>Health Care Services</p>
-		</div>
-	</header>
 
-	
-	<section class= "body">
 		<div>
-			<h1>Login</h1>
+			<Header/>
+			<section className= "features">
+				<div>
+					<h1>Login</h1>
+				</div>
+				<label className="label">Username</label>
+				<input maxLength={12}
+				onChange={handleUsername} className="input" 
+				value={username} type="text" />
+
+		<label className="label">Password</label>
+		<input onChange={handlePassword} className="input"
+		value={password} type="password" />
+
+				{}
+				<div className="messages">
+					{errorMessage()}
+					{statusMessage()}
+				</div>
+
+				<button onClick={handleLogin} className="btn" type="submit">Login</button>
+			</section>
+			<Footer/>
 		</div>
-		
-		<label className="label-l">Username</label>
-		<input maxLength={12}
-		onChange={handleiin} className="input-l" 
-		value={iin} type="l" />
-
-		<label className="label-l">Password</label>
-		<input onChange={handlePassword} className="input-l"
-		value={password} type="l" />
-
-		{}
-		<div className="messages">
-			{errorMessage()}
-			{successMessage()}
-		</div>
-
-		<button onClick={handleLogin} className="btn" type="submit">
-		Login
-		</button>
-	</section>
-	<footer class="site-footer">
-      <div class="con">
-        <p>© A-Clinic</p>
-        <p>Welcome to A-Clinic, Health Care website</p>
-      </div>
-    </footer>
-	</div>
-);
+	);
 }

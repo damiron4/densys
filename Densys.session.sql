@@ -1,87 +1,85 @@
---SELECT * FROM patient;
+--@block
+DROP SCHEMA public;
+CREATE SCHEMA public;
+--@block
+CREATE DOMAIN PHONENUMBER CHAR(10) CONSTRAINT phone CHECK (VALUE ~ '^[7][0-9]{9}$');
 
- --SELECT * from doctor;
- --SELECT * from auth_doctor;
+--@block
+DROP DOMAIN PHONENUMBER
 
--- CREATE DOMAIN PHONENUMBER CHAR(10) CHECK (
---     VALUE ~ '^[7][0-9]{9}$');
+--@block
+CREATE DOMAIN ROLE VARCHAR(20) CONSTRAINT role CHECK (VALUE = 'admin' OR VALUE = 'doctor' OR VALUE = 'patient');
 
--- DROP TABLE PATIENT;
---DROP DOMAIN EMAIL;
+--@block
+CREATE DOMAIN EMAIL VARCHAR(20)
+CONSTRAINT email CHECK(
+    VALUE ~ '^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$'
+);
+--@block
+DROP TABLE auth;
 
---CREATE DOMAIN EMAIL VARCHAR(20);
--- CHECK(
---     VALUE ~ '^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$'
--- );
+--@block
+CREATE TABLE AUTH (
+    id SERIAL PRIMARY KEY,
+    username VARCHAR(30) NOT NULL,
+    password VARCHAR(30) NOT NULL,
+    role ROLE NOT NULL
+);
 
--- -- DRop TABLE auth;
+--@block
+INSERT INTO auth (username, password, role) VALUES ('admin', 'admin', 'admin');
 
--- -- CREATE TABLE AUTH (
--- --     Login VARCHAR(15) NOT NULL,
--- --     Pass VARCHAR(20) NOT NULL
--- -- )
 
--- CREATE TABLE AUTH_PATIENT (
---     Login VARCHAR(15) NOT NULL,
---     Pass VARCHAR(20) NOT NULL
--- );
-
--- CREATE TABLE AUTH_DOCTOR (
---     Login VARCHAR(15) NOT NULL,
---     Pass VARCHAR(20) NOT NULL
--- );
-
--- -- INSERT INTO auth VALUES ('admin', 'admin');
-
+--@block
  --drop table patient;
 
+
 CREATE TABLE PATIENT (
-    Bdate DATE NOT NULL,
-    IIN VARCHAR(15) NOT NULL,
-    ID_number VARCHAR(15) NOT NULL,
-    Fname VARCHAR(15) NOT NULL,
-    Sname VARCHAR(15) NOT NULL,
-    Mname VARCHAR(15),
-    Bgroup INT CHECK (Bgroup >= 1 and Bgroup <= 4),
-    Econtact_number PHONENUMBER,
-    Contact_number PHONENUMBER NOT NULL,
-    Email EMAIL,
-    Address VARCHAR(30),
-    Mstatus VARCHAR(3) NOT NULL,
-    Rdate DATE NOT NULL,
-    PRIMARY KEY (IIN)
+    dbirth DATE NOT NULL,
+    iin VARCHAR(20) NOT NULL,
+    govid VARCHAR(20) NOT NULL,
+    name VARCHAR(30) NOT NULL,
+    surname VARCHAR(30) NOT NULL,
+    midname VARCHAR(30),
+    bloodg VARCHAR(5) NOT NULL,
+    emerg PHONENUMBER,
+    contactn PHONENUMBER NOT NULL,
+    email EMAIL,
+    address VARCHAR(50),
+    mstatus VARCHAR(15) NOT NULL,
+    dreg DATE NOT NULL,
+    id SERIAL PRIMARY KEY
 );
 
---@block
-drop table DOCTOR
 
---@block
+--drop table DOCTOR
 CREATE TABLE DOCTOR(
     dbirth DATE NOT NULL,
-    iin VARCHAR(15) NOT NULL PRIMARY KEY,
-    id VARCHAR(15) NOT NULL,
-    name VARCHAR(15) NOT NULL,
-    surname VARCHAR(15) NOT NULL,
-    midname VARCHAR(15),
+    iin VARCHAR(20) NOT NULL,
+    govid VARCHAR(20) NOT NULL,
+    name VARCHAR(30) NOT NULL,
+    surname VARCHAR(30) NOT NULL,
+    midname VARCHAR(30),
     contactn PHONENUMBER NOT NULL,
-    depid VARCHAR(15) NOT NULL,
-    specid VARCHAR(15) NOT NULL,
-    exper INT DEFAULT 0,
+    depid INT NOT NULL,
+    specid INT NOT NULL,
+    exper INT,
     photo BYTEA,
-    category VARCHAR(10) NOT NULL,
+    category VARCHAR(20) NOT NULL,
     price INT NOT NULL,
-    scheduledetails VARCHAR(60),
+    scheduledetails INT NOT NULL,
     degree VARCHAR(30),
     rating FLOAT DEFAULT 0 CHECK(Rating >= 0 and Rating <= 10),
-    address VARCHAR(30),
-    hpurl VARCHAR(60)
+    address VARCHAR(60),
+    hpurl VARCHAR(100),
+    id SERIAL PRIMARY KEY
 );
 
---@block
+
 -- -- -- Mstatus: Divorced, Married, Separated, Single, Widowed, Rather not say
 
 
---@block
+
 INSERT INTO auth VALUES (123456,'admin');
 
 --@block 

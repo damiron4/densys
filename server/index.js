@@ -1,126 +1,117 @@
 const express = require("express");
-const app = express();
 const cors = require("cors");
 const pool = require("./db");
+const bodyParser = require("body-parser")
+const cookieParser = require("cookie-parser")
+const session = require("express-session")
 
-app.use(cors());
-app.use(express.urlencoded({ extended: false }));
+
+const app = express();
 app.use(express.json());
+app.use(cors({
+    origin: ["http://localhost:3000"],
+    methods: ["GET", "POST"],
+    credentials: true
+    })
+);
+app.use(cookieParser());
+app.use(bodyParser.urlencoded({ extended:true }));
 
-// ROUTES
-// TODO: Write Get/Post/Update routes
+app.use(
+    session({
+        key: "userID",
+        secret: "secretlol",
+        resave: false,
+        saveUninitialized: false,
+        cookie: {
+            expires: 60*60*24,
+        }})
+)
 
-app.post("/register-patient", async (req, res) => {
+app.post("/register/patient", async (req, res) => {
     try {
-        check = true
-        console.log(req.body);
-        const { date, IIN, id, name, surname, middlename, b_group, emer_contact, contact, email, address, marital_stat, reg_date } = req.body;
-        await pool.query("INSERT INTO patient VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13)",
-            [date, IIN, id, name, surname, middlename, b_group, emer_contact, contact, email, address, marital_stat, reg_date],
-            (err, result) => {
-                if (err) {
-                    res.json({ err: err });
+        console.log("Patient info received");
+        const {dbirth, iin, govid, name, surname, midname, bloodg, emerg, contactn, email, address, mstatus, dreg} = req.body;
+        pool.query("INSERT INTO patient (dbirth, iin, govid, name, surname, midname, bloodg, emerg, contactn, email, address, mstatus, dreg) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13)",
+            [dbirth, iin, govid, name, surname, midname, bloodg, emerg, contactn, email, address, mstatus, dreg],
+            async (error) => {
+                if (!error) {
+                    const password = Math.random().toString(36).slice(2, 10);
+                    pool.query("INSERT INTO AUTH (username, password, patient) VALUES($1, $2, 'patient')", [iin, password], (err, result) => {
+                        if (err) {
+                            res.json({ err: err });
+                        }
+                        if (result.rowCount > 0) {
+                            res.send({
+                                message: "Patient registration is successful.",
+                                username: iin,
+                                password: password
+                            });
+                        }
+                    });
                 }
-                // console.log(result);
-                if (result.rowCount == 0) {
-                    check = false
-                    res.json({ message: "Incorrect values." });
+                else {
+                    res.send({ message: error.message });
                 }
-
-            })
-        if (check) {
-            const password = Math.random().toString(36).slice(2, 10);
-            await pool.query("INSERT INTO auth_patient VALUES($1, $2)", [IIN, password], (err, result) => {
-                if (err) {
-                    res.json({ err: err });
-                }
-                // console.log(result);
-                if (result.rowCount > 0) {
-                    res.json({ message: "Registration successful", login: IIN, password: password });
-                }
-            });
-        }
-    } catch (err) {
-        console.error(err.message);
+            }
+        );
+    } catch (error) {
+        console.error(error.message);
     }
 });
 
-app.post("/register-doctor", async (req, res) => {
+app.post("/register/doctor", async (req, res) => {
     try {
-        // console.log(req.body);
-        console.log("Data recieved")
-        const {dbirth, iin, id, name, surname, midname, contactn, depid, specid, exper, photo, category, price, scheduledetails, degree, rating, address, hpurl} = req.body;
-        await pool.query("INSERT INTO doctor VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18)",
-            [dbirth, iin, id, name, surname, midname, contactn, depid, specid, exper, photo, category, price, scheduledetails, degree, rating, address, hpurl],
-            (error) => {
+        console.log("Doctor info received");
+        const {dbirth, iin, govid, name, surname, midname, contactn, depid, specid, exper, photo, category, price, scheduledetails, degree, rating, address, hpurl } = req.body;
+        pool.query("INSERT INTO doctor (dbirth, iin, govid, name, surname, midname, contactn, depid, specid, exper, photo, category, price, scheduledetails, degree, rating, address, hpurl) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18)",
+            [dbirth, iin, govid, name, surname, midname, contactn, depid, specid, exper, photo, category, price, scheduledetails, degree, rating, address, hpurl],
+            async (error) => {
                 if (!error) {
-                    res.send({status: 1 , message: "Doctor registration successful."});
+                    const password = Math.random().toString(36).slice(2, 10);
+                    pool.query("INSERT INTO auth (username, password, role) VALUES($1, $2, 'doctor')", [iin, password], (err, result) => {
+                        if (err) {
+                            res.json({ err: err });
+                        }
+                        if (result.rowCount > 0) {
+                            res.send({
+                                message: "Doctor registration is successful.",
+                                username: iin,
+                                password: password
+                            });
+                        }
+                    });
                 } else {
-                    msg = error.message;
-                    res.send({status: 0, message: msg});
+                    res.send({ message: error.message });
                 }
             }
         );
     } catch (error) {
         console.error(error.message)
     }
-    
+
 });
 
+app.get("/login", (req, res) => {
+    if (req.session.user) {
+        res.send({loggedIn: true, user: req.session.user})
+    } else {
+        res.send({loggedIn: false})
+    }
+});
 
-
-app.post("/login-admin", async (req, res) => {
+app.post("/login", async (req, res) => {
+    // const { username, password } = req.body;
     try {
-        console.log(req.body);
-        const { iin, password } = req.body;
-        const result = await pool.query("SELECT * FROM auth WHERE login = $1 and pass = $2", [iin, password])
+        console.log("Login info received");
+        const { username, password, role } = req.body;
+        const result = await pool.query("SELECT * FROM auth WHERE username = $1 and password = $2 and role = $3;", [username, password, role])
         if (result.rowCount != 0) {
-            res.send({status: 1 , message: "Login successful."});
+            req.session.user = result.rows[0];
+            res.send({message: "Login successful"});
         } else {
-            res.send({status: 0 , message: "Wrong username or password."});
+            res.send({ message: "Wrong username or password." });
         }
-        // console.log(res);
-        // const newUser = await pool.query("INSERT INTO auth VALUES($1,$2) RETURNING *", [iin, pass])        
-    } catch (error) {
-        console.log(error.message);
-    }
-})
-
-app.post("/login-doctor", async (req, res) => {
-    try {
-        console.log(req.body);
-        const { login, pass } = req.body;
-        await pool.query("SELECT * FROM auth_doctor WHERE login = $1 and pass = $2", [login, pass], (err, result) => {
-            if (err) {
-                res.json({ err: err });
-            }
-            if (result.rowCount > 0) {
-                res.json({ message: "Login successful." });
-            } else {
-                res.json({ message: "Wrong username or password." });
-            }
-        })
-        // const newUser = await pool.query("INSERT INTO auth VALUES($1,$2) RETURNING *", [iin, pass])        
-    } catch (error) {
-        console.log(error.message);
-    }
-})
-
-app.post("/login-patient", async (req, res) => {
-    try {
-        console.log(req.body);
-        const { login, pass } = req.body;
-        await pool.query("SELECT * FROM auth_patient WHERE login = $1 and pass = $2", [login, pass], (err, result) => {
-            if (err) {
-                res.json({ err: err });
-            }
-            if (result.rowCount > 0) {
-                res.json({ message: "Login successful." });
-            } else {
-                res.json({ message: "Wrong username or password." });
-            }
-        })
-        // const newUser = await pool.query("INSERT INTO auth VALUES($1,$2) RETURNING *", [iin, pass])        
     } catch (error) {
         console.log(error.message);
     }
@@ -146,8 +137,8 @@ app.get("/doctor", async (req, res) => {
 
 app.get("/patient/:id", async (req, res) => {
     try {
-        const IIN = req.params.id;
-        const allInfo = await pool.query("SELECT * FROM patient WHERE IIN = $1", [IIN]);
+        const id = req.params.id;
+        const allInfo = await pool.query("SELECT * FROM patient WHERE id = $1", [id]);
         res.json(allInfo.rows);
     } catch (err) {
         console.error(err.message);
@@ -156,8 +147,8 @@ app.get("/patient/:id", async (req, res) => {
 
 app.get("/doctor/:id", async (req, res) => {
     try {
-        const IIN = req.params.id;
-        const allInfo = await pool.query("SELECT * FROM doctor WHERE IIN = $1", [IIN]);
+        const id = req.params.id;
+        const allInfo = await pool.query("SELECT * FROM doctor WHERE id = $1", [id]);
         res.json(allInfo.rows);
     } catch (err) {
         console.error(err.message);
@@ -166,12 +157,11 @@ app.get("/doctor/:id", async (req, res) => {
 
 app.put("/patient/:id", async (req, res) => {
     try {
-        const IIN = req.params.id;
-        //add IIN
-        const { date, id, name, surname, middlename, b_group, emer_contact, contact, email, address, marital_stat, reg_date } = req.body;
-        const updatePatientInfo = await pool.query(
-            "UPDATE patient SET Bdate = $1, ID_number = $2, Fname = $3, Sname = $4, Mname = $5, Bgroup = $6, Econtact_number = $7, Contact_number = $8, Email = $9, Address = $10, Mstatus = $11, Rdate = $12 WHERE IIN = $13",
-            [date, id, name, surname, middlename, b_group, emer_contact, contact, email, address, marital_stat, reg_date, IIN]
+        const id = req.params.id;
+        const { dbirth, iin, govid, name, surname, midname, bloodg, emerg, contactn, email, address, mstatus} = req.body;
+        await pool.query(
+            "UPDATE patient SET Bdbirth = $1, iin = $2, govid = $3, name = $4, surname = $5, midname = $6, bloodg = $7, emerg = $8, contactn = $9, email = $10, address = $11, mstatus = $12 WHERE id = $13",
+            [dbirth, iin, govid, name, surname, midname, bloodg, emerg, contactn, email, address, mstatus, id]
         );
 
         res.json("Patient was updated!");
@@ -182,13 +172,13 @@ app.put("/patient/:id", async (req, res) => {
 
 app.put("/doctor/:id", async (req, res) => {
     try {
-        const IIN = req.params.id;
-        //add IIN
-        const { date, id, name, surname, middlename, contact, dep_id, special_id, exp, photo, ctg, price, schedule, degree, rating, address, homepage_url }
+        const id = req.params.id;
+        //add iin
+        const {dbirth, iin, govid, name, surname, midname, contactn, depid, specid, exper, photo, category, price, scheduledetails, degree, rating, address, hpurl}
             = req.body;
-        const updatePatientInfo = await pool.query(
-            "UPDATE doctor SET Bdate = $1, ID_number = $2, Fname = $3, Sname = $4, Mname = $5, Contact_number = $6, Department_ID = $7, Specialization_details_ID = $8, Experience = $9, Photo = $10, Category = $11, Price = $12, Schedule_details = $13, Education = $14, Rating = $15, Address = $16, Homepage_URL = $17 WHERE IIN = $18",
-            [date, id, name, surname, middlename, contact, dep_id, special_id, exp, photo, ctg, price, schedule, degree, rating, address, homepage_url, IIN]
+        await pool.query(
+            "UPDATE doctor SET dbirth = $1, iin = $2, govid = $3, name = $4, surname = $5, midname = $6, contactnn = $7, depid = $8, specid = $9, exper = $10, photo = $11, category = $12, price = $13, scheduledetails = $14, degree = $15, rating = $16, address = $17, hpurl = 18$ WHERE id = $19",
+            [dbirth, iin, govid, name, surname, midname, contactn, depid, specid, exper, photo, category, price, scheduledetails, degree, rating, address, hpurl, id]
         );
         res.json("Doctor was updated!");
     } catch (err) {

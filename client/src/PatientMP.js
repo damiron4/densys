@@ -1,6 +1,7 @@
 import "react-datepicker/dist/react-datepicker.css";
 import { Link } from "react-router-dom";
 import React, { useState, Fragment, useEffect } from "react";
+import { nanoid } from "nanoid";
 import ReadOnlyRow from "./ReadOnlyRow";
 import EditableRow from "./EditableRow";
 import data from "./mock-data.json";
@@ -31,7 +32,17 @@ export default function DoctorMP(){
 
   const [editContactId, setEditContactId] = useState(null);
 
- 
+  const handleAddFormChange = (event) => {
+    event.preventDefault();
+
+    const fieldName = event.target.getAttribute("name");
+    const fieldValue = event.target.value;
+
+    const newFormData = { ...addFormData };
+    newFormData[fieldName] = fieldValue;
+
+    setAddFormData(newFormData);
+  };
 
   const handleEditFormChange = (event) => {
     event.preventDefault();
@@ -51,14 +62,17 @@ export default function DoctorMP(){
       id: nanoid(),
       name: addFormData.name,
       surname: addFormData.surname,
-      middlename: addFormData.middlename,
-      birthDate: addFormData.birthDate,
-      IIN: addFormData.IIN,
-      contactNumber: addFormData.contactNumber,
-      departmentId: addFormData.departmentId,
-      specializationDetailsId: addFormData.specializationDetailsId,
+      midname: addFormData.midname,
+      dbirth: addFormData.dbirth,
+      iin: addFormData.iin,
+      contactn: addFormData.contactn,
+      depid: addFormData.depid,
+      specid: addFormData.specid,
     };
 
+    const newContacts = [...contacts, newContact];
+    setContacts(newContacts);
+  };
 
   const handleEditFormSubmit = (event) => {
     event.preventDefault();
@@ -143,7 +157,7 @@ useEffect(() => {
                 <p><Link className="text-link" to="/register-patient">Register Patient</Link></p>
           </div>
       </header>
-    <div className= "body">
+    <div className= "features">
     <label className ="app-container">
     <h2>Register Doctor</h2>
       <form onSubmit={handleAddFormSubmit}>
