@@ -135,96 +135,119 @@ return (
 	</header>
 
 	
-	<section class= "features">
-		<div>
-			<h1>Patient Registration</h1>
-		</div>
-		<label className="label">Name</label>
-		<input onChange={handleName} className="input"
-		value={name} type="text" />
+	<section class= "body">
+		<section class="con-body">
+			<div>
+				<h1>Patient Registration</h1>
+			</div>
 
-		<label className="label">Surname</label>
-		<input onChange={handleSurName} className="input"
-		value={surname} type="text" />
+			<div class="container">
+				<div>
+					<label className="label">Name</label>
+					<input onChange={handleName} className="input"
+					value={name} type="text" />
+				</div>
+				<div>
+					<label className="label">Surname</label>
+					<input onChange={handleSurName} className="input"
+					value={surname} type="text" />
+					
+				</div>
+			</div>
+			<div class='container'>
+				<div>
+					<label className="label">Middlename</label>
+					<input onChange={handleMidName} className="input"
+					value={midname} type="text" />
+				</div>
+				<div>
+					<label className="label">Date of birth</label>
+					<DatePicker 
+						selected={dbirth}
+						onChange={(date:Date) => setDbirth(date)} />
+				</div>
+				
+			</div>
+			<div class="container">
+				<div>
+					<label className="label">Email</label>
+					<input onChange={handleEmail} className="input"
+					value={email} type="email" />
+				</div>
+				<div>
+					<label className="label">Address</label>
+					<input onChange={handleAdress} className="input"
+					value={adress} type="text" />
+				</div>
+			</div>
+			<div class="container">
+				<div>
+					<label className="label">IIN number</label>
+					<input maxLength={12}
+					onChange={handleiin} className="input" 
+					value={iin} type="number" />
+				</div>
+				<div>
+					<label className="label">ID number</label>
+					<input onChange={handleid} className="input" 
+					value={id} type="number" />
+				</div>
+			</div>
+			<div class="container">
+				<div>
+					<label className="label">Contact number</label>
+					<input onChange={handleContactn} className="input"
+					value={contactn} type="number" />
+				</div>
+				<div>
+					<label className="label">Emergency contact number</label>
+					<input onChange={handleEmerg} className="input"
+					value={emerg} type="number" />
+				</div>
+			</div>
+			<div class="container">
+				<div>
+					<label className="label">Blood group</label>	
+					<select
+						onChange={handlebloodg} 
+						value={bloodg}
+					>	
+						<option>...</option>
+						<option>A+</option>
+						<option>A-</option>
+						<option>B+</option>
+						<option>B-</option>
+						<option>AB+</option>
+						<option>AB-</option>
+						<option>O+</option>
+						<option>O-</option>
+					</select> 
+				</div>
+				<div>
+					<label className="label">Maritial status</label>	
+					<select
+						onChange={handleMstatus} 
+						value={mstatus}
+					>	
+						<option>...</option>
+						<option>Single</option>
+						<option>Married</option>
+					</select>
+					
+				</div>
+			</div>
+			{}
+			<div className="messages">
+				{errorMessage()}
+				{successMessage()}
+			</div>
 
-		<label className="label">Middlename</label>
-		<input onChange={handleMidName} className="input"
-		value={midname} type="text" />
-
-		<label className="label">Date of birth</label>
-		<DatePicker 
-			selected={dbirth}
-			onChange={(date:Date) => setDbirth(date)} />
-			
-
-		<label className="label">IIN number</label>
-		<input maxLength={12}
-		onChange={handleiin} className="input" 
-		value={iin} type="number" />
-
-		<label className="label">ID number</label>
-		<input onChange={handleid} className="input" 
-		value={id} type="number" />
-
-		<label className="label">Blood group</label>	
-		<select
-			onChange={handlebloodg} 
-			value={bloodg}
-		>	
-			<option>...</option>
-			<option>A+</option>
-			<option>A-</option>
-			<option>B+</option>
-			<option>B-</option>
-			<option>AB+</option>
-			<option>AB-</option>
-			<option>O+</option>
-			<option>O-</option>
-		</select> 
-
-		<label className="label">Contact number</label>
-		<input onChange={handleContactn} className="input"
-		value={contactn} type="number" />
-
-		<label className="label">Emergency contact number</label>
-		<input onChange={handleEmerg} className="input"
-		value={emerg} type="number" />
-
-		<label className="label">Maritial status</label>	
-		<select
-			onChange={handleMstatus} 
-			value={mstatus}
-		>	
-			<option>...</option>
-			<option>Single</option>
-			<option>Married</option>
-		</select>
-
-		<label className="label">Email</label>
-		<input onChange={handleEmail} className="input"
-		value={email} type="email" />
-
-		<label className="label">Adress</label>
-		<input onChange={handleAdress} className="input"
-		value={adress} type="text" />
-
-		<label className="label">Registration date: {date} </label>
-		
-
-		<label className="label">Password</label>
-		<input onChange={handlePassword} className="input"
-		value={password} type="password" />
-
-		{}
-		<div className="messages">
-			{errorMessage()}
-			{successMessage()}
-		</div>
-
-		<button onClick={handleSubmit} className="btn" type="submit">
-		Register
-		</button>
+			<button onClick={handleSubmit} className="btn" type="submit">
+			Register
+			</button>
+		</section>
 	</section>
+
 	<footer class="site-footer">
       <div class="con">
         <p>© A-Clinic</p>

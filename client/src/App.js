@@ -41,7 +41,7 @@ function App() {
             <Route path="/register-doctor" exact element={<RegDoctor/>}/>
             <Route path="/register-patient" exact element={<RegPatient/>}/>
             {/* <Route path="/AdministratorMP" exact element={<AdministratorMP/>}/> */}
-            <Route path="/DoctorMP" exact element={<DoctorMP/>}/>
+            <Route path="/doctorMP" exact element={<DoctorMP/>}/>
             <Route path="/appointment-form" exact element={<Appointment/>}/>
             <Route path="/doctorMP/:id" exact element={<Form/>}/>
           </Routes>

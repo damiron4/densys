@@ -91,18 +91,19 @@ return (
 	</header>
 
 	
-	<section class= "features">
+	<section class= "body">
 		<div>
 			<h1>Login</h1>
 		</div>
-		<label className="label">Username</label>
+		
+		<label className="label-l">Username</label>
 		<input maxLength={12}
-		onChange={handleiin} className="input" 
-		value={iin} type="text" />
+		onChange={handleiin} className="input-l" 
+		value={iin} type="l" />
 
-		<label className="label">Password</label>
-		<input onChange={handlePassword} className="input"
-		value={password} type="password" />
+		<label className="label-l">Password</label>
+		<input onChange={handlePassword} className="input-l"
+		value={password} type="l" />
 
 		{}
 		<div className="messages">
