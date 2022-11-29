@@ -94,7 +94,19 @@ return (
 			<label className="label">Search by</label>
 			<input placeholder = "Search ..."  onChange = {handleInputText}
 			type="text" />
-			
+
+
+			<div className="appointment">
+				<table>
+					<thead>
+						<tr>
+							<th>Doctor's name</th>
+							<th>Specialization</th>
+							<th>Procedure</th>
+						</tr>
+					</thead>
+				</table>
+			</div>	
 			{}
 			<div className="messages">
 				{errorMessage()}
