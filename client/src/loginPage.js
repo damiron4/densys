@@ -89,27 +89,30 @@ export default function LoginPage() {
 
 		<div>
 			<Header/>
-			<section className= "features">
-				<div>
-					<h1>Login</h1>
-				</div>
-				<label className="label">Username</label>
-				<input maxLength={12}
-				onChange={handleUsername} className="input" 
-				value={username} type="text" />
+				<section class= "body">
+					<div>
+						<h1>Login</h1>
+					</div>
+					
+					<label className="label-l">Username</label>
+					<input maxLength={12}
+					onChange={handleUsername} className="input-l" 
+					value={username} type="text" />
 
-		<label className="label">Password</label>
-		<input onChange={handlePassword} className="input"
-		value={password} type="password" />
+					<label className="label-l">Password</label>
+					<input onChange={handlePassword} className="input-l"
+					value={password} type="password" />
 
-				{}
-				<div className="messages">
-					{errorMessage()}
-					{statusMessage()}
-				</div>
+					{}
+					<div className="messages">
+						{errorMessage()}
+						{statusMessage()}
+					</div>
 
-				<button onClick={handleLogin} className="btn" type="submit">Login</button>
-			</section>
+					<button onClick={handleLogin} className="button" type="submit">
+					Login
+					</button>
+				</section>
 			<Footer/>
 		</div>
 	);

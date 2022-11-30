@@ -113,7 +113,7 @@ return (
 			
 			</div>
 
-			<button onClick={handleSubmit} className="btn" type="submit">
+			<button onClick={handleSubmit} className="button" type="submit">
 			Find
 			</button>
 		</section>

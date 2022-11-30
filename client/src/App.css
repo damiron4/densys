@@ -28,10 +28,10 @@ ht{
 } 
 .container p {
   width: max-content;
-    margin: 0 5px;
-    text-transform: uppercase;
-    font-size: 18px;
-    text-shadow: 2px 2px 4px #000000;
+  margin: 0 5px;
+  text-transform: uppercase;
+  font-size: 18px;
+  text-shadow: 2px 2px 4px #000000;
 }
 .label{
   width: 80%;
@@ -65,7 +65,7 @@ img{
   border: 3px solid;
   border-radius: 4px;
 }
-input:not([type="file"]){
+.input:not([type="file"]){
   width: 74%;
   font-size: large;
   padding: 5px 15px;
@@ -73,10 +73,14 @@ input:not([type="file"]){
   border: 2px solid;
   border-radius: 4px;
 }
-input[type="l"]{
+.input-l{
   width:15%;
   display: flex;
   margin: auto;
+  font-size: large;
+  padding: 5px 15px;
+  border: 2px solid;
+  border-radius: 4px;
 }
 .body{
   width: 100%;
@@ -192,7 +196,7 @@ form * {
   padding: 0 20px;
 }
 
-.btn{
+.button{
   color: white;
   background-color: rgb(135, 169, 249);
   border-radius: 5px;
@@ -201,3 +205,5 @@ form * {
   padding: 5px;
   margin: 30px auto;
 }
+
+

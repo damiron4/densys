@@ -1,8 +1,11 @@
-import { useState } from 'react';
-import DatePicker from 'react-datepicker';
-import "react-datepicker/dist/react-datepicker.css";
-import { Link } from "react-router-dom";
+import React from "react";
+import { useEffect, useState } from "react";
+import Axios from "axios";
 
+import Header from "./components/header";
+import Footer from "./components/footer";
+import AccessDenied from "./components/accessDenied";
+import DoctorRegistrationForm from "./components/doctorRegistrationForm";
 export default function RegDoctor() {
 	const [role, setRole] = useState('');
 
