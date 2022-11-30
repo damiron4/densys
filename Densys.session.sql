@@ -11,10 +11,7 @@ DROP DOMAIN PHONENUMBER
 CREATE DOMAIN ROLE VARCHAR(20) CONSTRAINT role CHECK (VALUE = 'admin' OR VALUE = 'doctor' OR VALUE = 'patient');
 
 --@block
-CREATE DOMAIN EMAIL VARCHAR(20)
-CONSTRAINT email CHECK(
-    VALUE ~ '^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$'
-);
+CREATE DOMAIN EMAIL VARCHAR(20) CONSTRAINT email CHECK(VALUE ~ '^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
 --@block
 DROP TABLE auth;
 
