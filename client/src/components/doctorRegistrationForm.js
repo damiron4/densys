@@ -22,9 +22,9 @@ export default function DoctorRegistrationForm() {
 	const [price, SetPrice] =  useState('');
 	const [category, SetCategory] =  useState('');
 	const [degree, SetDegree] =  useState('');
-	const [rating, SetRating] =  useState('');
+	const [rating, SetRating] =  useState(0);
 	const [photo, SetPhoto] =  useState('');
-	const [scheduledetails, setScheduledetails] =  useState('');
+	const [scheduledetails, setScheduledetails] =  useState(0);
 	const [hpurl, setHomepageURL] =  useState(''); 
 	const [submitted, setSubmitted] = useState(false);
 	const [error, setError] = useState(false);
@@ -125,15 +125,17 @@ export default function DoctorRegistrationForm() {
 		setError(true);
 		} else {		
 			try {
-				const body = {dbirth, iin, govid, name, surname, midname, contactn, depid, specid, exper, photo, category, price, scheduledetails, degree, rating, address, hpurl}
+				const body = {dbirth, iin, govid, name, surname, midname, contactn, depid, specid, exper, photo, category, price, degree, rating, address, hpurl}
 				const response = await fetch("http://localhost:5000/register/doctor", {
 					method: "POST",
 					headers: { "Content-Type": "application/json" },
 					body: JSON.stringify(body)
 				});
 				const jsonData = await response.json();
+				console.log(jsonData);
 				if (!jsonData.err) {
-					setError(true);
+					// setError(true);
+					console.log(jsonData.err);
 				} else {
 					setSubmitted(true);
 				}
