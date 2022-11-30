@@ -45,7 +45,7 @@ export default function Appointment() {
 		  name: 'Java'
 		}
 	  ]
-
+	
 	const handleName = (e) => {
 		setName(e.target.value);
 		setSubmitted(false);
@@ -112,8 +112,9 @@ const handleOnSearch = (string, results) => {
   const formatResult = (item) => {
     return (
       <>
-        <span style={{ display: 'block', textAlign: 'left' }}>id: {item.id}</span>
-        <span style={{ display: 'block', textAlign: 'left' }}>name: {item.name}</span>
+        {/* <span style={{ display: 'block', textAlign: 'left' }}>id: {item.id}</span> */}
+        {/* <span style={{ display: 'block', textAlign: 'left' }}>name: {item.name}</span> */}
+		{item.name}
       </>
     )
   }
@@ -140,25 +141,10 @@ return (
 			</div>
 			
 			<label className="label">Search by</label>
-			<input type="radio" name="searchby" value="Doctor" onChange={e=>setSearchBy(e.target.value)}/> Doctor's name
+			<input type="radio" name="searchby" value="Doctor" checked onChange={e=>setSearchBy(e.target.value)}/> Doctor's name
 			<input type="radio" name="searchby" value="Spec" onChange={e=>setSearchBy(e.target.value)} /> Specialization 
 			<input type="radio" name="searchby" value="Procedure" onChange={e=>setSearchBy(e.target.value)}/> Procedure
 			
-
-
-
-			<div className="appointment">
-				<table>
-					<thead>
-						<tr>
-							<th>Doctor's name</th>
-							<th>Specialization</th>
-							<th>Procedure</th>
-						</tr>
-					</thead>
-				</table>
-			</div>	
-			{/* <input placeholder = "Search ..."  onChange = {handleInputText} type="text" /> */}
 			<div style={{ width: 400 , margin: "auto"}}>
 				<ReactSearchAutocomplete
 					items={items}
@@ -170,6 +156,19 @@ return (
 					formatResult={formatResult}
 				/>
 			</div>
+
+			<div className="appointment">
+				<table>
+					<thead>
+						<tr>
+							<th>Doctor's name</th>
+							<th>Specialization</th>
+							<th>Procedure</th>
+						</tr>
+					</thead>
+				</table>
+			</div>
+
 			<div className="messages">
 				{errorMessage()}
 			
