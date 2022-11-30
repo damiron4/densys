@@ -18,7 +18,7 @@ export default function Appointment() {
 	const [prefdate, setPrefdate] = useState(new Date());
 	const [contactd, setContacd] = useState('');
 	const [procedure, setProcedure] = useState('');
-	const [inputText, setInputText] = useState("");
+	const [inputText, setInputText] = useState('');
 	const [searchby, setSearchBy] = useState();
 
 	
@@ -82,8 +82,7 @@ export default function Appointment() {
 	}
 
 	useEffect(()=> {
-		Axios.get("http://localhost:5000/doctors/search").then((response) => {
-		});
+		// Axios.get("http://localhost:5000/doctors/search").then((response) => {});
 		
 	})
 
@@ -113,7 +112,7 @@ const handleOnSearch = (string, results) => {
       <>
         {/* <span style={{ display: 'block', textAlign: 'left' }}>id: {item.id}</span> */}
         {/* <span style={{ display: 'block', textAlign: 'left' }}>name: {item.name}</span> */}
-		{item.name}
+		{item.name + item.surname}
       </>
     )
   }
