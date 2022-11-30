@@ -145,6 +145,20 @@ app.get("/doctor", async (req, res) => {
     }
 });
 
+app.get("/doctor/search", async (req, res) => {
+    try {
+        const doctorNames = await pool.query("SELECT (name, surname) FROM doctor");
+        res.json(allInfo.rows);
+        let i = 0;
+        for (doctor of doctorNames) {
+            doctorNames.id = i;
+        }
+    } catch (error) {
+        console.error(err.message);        
+    }
+})
+
+
 app.get("/patient/:id", async (req, res) => {
     try {
         const id = req.params.id;

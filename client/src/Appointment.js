@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { Axios } from 'axios';
 import { ReactSearchAutocomplete } from 'react-search-autocomplete'
 
 import Header from "./components/header";
@@ -17,7 +18,7 @@ export default function Appointment() {
 	const [prefdate, setPrefdate] = useState(new Date());
 	const [contactd, setContacd] = useState('');
 	const [procedure, setProcedure] = useState('');
-	const [inputText, setInputText] = useState("");
+	const [inputText, setInputText] = useState('');
 	const [searchby, setSearchBy] = useState();
 
 	
@@ -81,12 +82,7 @@ export default function Appointment() {
 	}
 
 	useEffect(()=> {
-		Axios.get("http://localhost:5000/doctors/search").then((response) => {
-			if (response.data.loggedIn) {
-				setLoginStatus("User " + response.data.user.username + " logged in as " + response.data.user.role);
-				setRole(response.data.user.role);
-			}
-		});
+		// Axios.get("http://localhost:5000/doctors/search").then((response) => {});
 		
 	})
 
@@ -116,7 +112,7 @@ const handleOnSearch = (string, results) => {
       <>
         {/* <span style={{ display: 'block', textAlign: 'left' }}>id: {item.id}</span> */}
         {/* <span style={{ display: 'block', textAlign: 'left' }}>name: {item.name}</span> */}
-		{item.name}
+		{item.name + item.surname}
       </>
     )
   }
