@@ -145,7 +145,19 @@ return (
 			<input type="radio" name="searchby" value="Procedure" onChange={e=>setSearchBy(e.target.value)}/> Procedure
 			
 
-			
+
+
+			<div className="appointment">
+				<table>
+					<thead>
+						<tr>
+							<th>Doctor's name</th>
+							<th>Specialization</th>
+							<th>Procedure</th>
+						</tr>
+					</thead>
+				</table>
+			</div>	
 			{/* <input placeholder = "Search ..."  onChange = {handleInputText} type="text" /> */}
 			<div style={{ width: 400 , margin: "auto"}}>
 				<ReactSearchAutocomplete
