@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { Axios } from 'axios';
 import { ReactSearchAutocomplete } from 'react-search-autocomplete'
 
 import Header from "./components/header";
@@ -82,10 +83,6 @@ export default function Appointment() {
 
 	useEffect(()=> {
 		Axios.get("http://localhost:5000/doctors/search").then((response) => {
-			if (response.data.loggedIn) {
-				setLoginStatus("User " + response.data.user.username + " logged in as " + response.data.user.role);
-				setRole(response.data.user.role);
-			}
 		});
 		
 	})
