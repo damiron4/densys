@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function accessDenied() {
+export default function footer() {
     return (
     <footer className="site-footer">
         <div className="con">
