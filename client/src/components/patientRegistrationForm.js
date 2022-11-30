@@ -93,7 +93,6 @@ export default function PatientRegistrationForm() {
             setSubmitted(true);
             setError(false);
             try {
-                
                 const body = {dbirth, iin, govid, name, surname, midname, bloodg, emerg, contactn, email, address, mstatus, dreg}
                 const response = await fetch("http://localhost:5000/register/patient", {
                     method: "POST",

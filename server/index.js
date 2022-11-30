@@ -63,7 +63,11 @@ app.post("/register/patient", async (req, res) => {
 app.post("/register/doctor", async (req, res) => {
     try {
         console.log("Doctor info received");
-        const {dbirth, iin, govid, name, surname, midname, contactn, depid, specid, exper, photo, category, price, scheduledetails, degree, rating, address, hpurl } = req.body;
+        const {dbirth, iin, govid, name, surname, midname, contactn, depid, specid, exper, photo, category, price, degree, rating, address, hpurl } = req.body;
+        
+        // pool.query(" ")
+        hpurl = "/doctor/";
+        // scheduledetails;
         pool.query("INSERT INTO doctor (dbirth, iin, govid, name, surname, midname, contactn, depid, specid, exper, photo, category, price, scheduledetails, degree, rating, address, hpurl) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18)",
             [dbirth, iin, govid, name, surname, midname, contactn, depid, specid, exper, photo, category, price, scheduledetails, degree, rating, address, hpurl],
             async (error) => {
