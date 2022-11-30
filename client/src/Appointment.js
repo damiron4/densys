@@ -6,6 +6,7 @@ import { ReactSearchAutocomplete } from 'react-search-autocomplete'
 
 import Header from "./components/header";
 import Footer from "./components/footer";
+import { useEffect } from 'react';
 
 export default function Appointment() {
 
@@ -79,15 +80,16 @@ export default function Appointment() {
 		setSubmitted(false);
 	}
 
-// const handleSubmit = (e) => {
-// 	e.preventDefault();
-// 	if (inputText === '' ) {
-// 	setError(true);
-// 	} else {
-// 	setSubmitted(true);
-// 	setError(false);
-// 	}
-// };
+	useEffect(()=> {
+		Axios.get("http://localhost:5000/doctors/search").then((response) => {
+			if (response.data.loggedIn) {
+				setLoginStatus("User " + response.data.user.username + " logged in as " + response.data.user.role);
+				setRole(response.data.user.role);
+			}
+		});
+		
+	})
+
 
 const handleOnSearch = (string, results) => {
     // onSearch will have as the first callback parameter
