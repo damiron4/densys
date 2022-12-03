@@ -132,18 +132,25 @@ return (
 	
 	<div>
 		<Header/>
-		<section class= "features">
+		<section class= "body">
 			
 			<div>
 				<h1>Appointment form</h1>
 			</div>
 			
-			<label className="label">Search by</label>
-			<input type="radio" name="searchby" value="Doctor" checked onChange={e=>setSearchBy(e.target.value)}/> Doctor's name
-			<input type="radio" name="searchby" value="Spec" onChange={e=>setSearchBy(e.target.value)} /> Specialization 
-			<input type="radio" name="searchby" value="Procedure" onChange={e=>setSearchBy(e.target.value)}/> Procedure
-			
-			<div style={{ width: 400 , margin: "auto"}}>
+			<label className="label-c">Search by</label>
+			<div className='messages'>
+			<div class="l">
+			<input className='input-t' type="radio" name="searchby" value="Doctor"  onChange={e=>setSearchBy(e.target.value)}/> Doctor's name
+			</div>
+			<div class="l">
+			<input className='input-t' type="radio" name="searchby" value="Spec" onChange={e=>setSearchBy(e.target.value)} /> Specialization 
+			</div>
+			<div class="l">
+			<input className='input-t' type="radio" name="searchby" value="Procedure" onChange={e=>setSearchBy(e.target.value)}/> Procedure
+			</div>
+			</div>
+			<div style={{ width: 400 , margin: "auto",marginBottom:10}}>
 				<ReactSearchAutocomplete
 					items={items}
 					onSearch={handleOnSearch}
@@ -164,6 +171,9 @@ return (
 							<th>Procedure</th>
 						</tr>
 					</thead>
+					<tbody>
+						
+					</tbody>
 				</table>
 			</div>
 

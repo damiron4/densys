@@ -2,7 +2,7 @@ import { useState } from 'react';
 import React from "react";
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
-import CrazyFrog from '/Users/ali/SWE/Densys/client/src/dof1.jpeg';
+import BackFon from '../image/BackFon.png';
 
 // TODO: Delete rating from form
 export default function DoctorRegistrationForm() {
@@ -198,7 +198,7 @@ export default function DoctorRegistrationForm() {
 					onChange={(date:Date) => setDbirth(date)} />
 				</div>
 				<div>
-					<img src={CrazyFrog} />
+					<img src={BackFon} />
 				</div>
 			</div>
 			
