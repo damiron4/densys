@@ -143,7 +143,7 @@ useEffect(() => {
 }, []);
 
   return(
-    <div>
+    <div className="background">
       <header className="site-header">
           <div class="container">
               <p><ht class="back-ht"><Link className="text-link" to="/">A-Clinic</Link></ht></p>

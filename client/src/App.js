@@ -35,7 +35,7 @@ function App() {
                 <Link to="/appointment-form">Appointment</Link>
               </li>
               <li>
-                <Link to="/box-list">box</Link>
+                <Link to="/appointment-form/1">box 1</Link>
               </li>
             </ul>
           </nav>
@@ -49,7 +49,7 @@ function App() {
             <Route path="/appointment-form" exact element={<Appointment/>}/>
             <Route path="/doctorMP/:id" exact element={<Form/>}/>
             <Route path="/patientMP/:id" exact element={<Form/>}/>
-            <Route path="/box-list/:id" exact element={<Boxlist/>}/>
+            <Route path="/appointment-form/:id" exact element={<Boxlist/>}/>
           </Routes>
     </>
   );

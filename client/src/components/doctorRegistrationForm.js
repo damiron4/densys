@@ -2,7 +2,7 @@ import { useState } from 'react';
 import React from "react";
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
-import BackFon from '../image/anon3x4.jpg';
+import BackFon from '../image/BackFon.jpg';
 
 // TODO: Delete rating from form
 export default function DoctorRegistrationForm() {
@@ -172,8 +172,8 @@ export default function DoctorRegistrationForm() {
 	};
 
 	return (
-		<div>
-			<section class= "body">
+		<div >
+		<section class= "body">
 		<section class="con-body">
 			<div>
 				<h1>Doctor Registration</h1>
@@ -198,7 +198,7 @@ export default function DoctorRegistrationForm() {
 					onChange={(date:Date) => setDbirth(date)} />
 				</div>
 				<div>
-					<img src={BackFon} />
+					<img src={BackFon} class="img-r" />
 				</div>
 			</div>
 			
