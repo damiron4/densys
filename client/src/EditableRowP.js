@@ -58,6 +58,26 @@ const EditableRowP = ({
         ></input>
       </td>
       <td>
+        <select
+          type="text"
+          required="required"
+          placeholder="Enter a blood group..."
+          name="bloodg"
+          value={editFormData.bloodg}
+          onChange={handleEditFormChange}
+        >	
+						<option>...</option>
+						<option>A+</option>
+						<option>A-</option>
+						<option>B+</option>
+						<option>B-</option>
+						<option>AB+</option>
+						<option>AB-</option>
+						<option>O+</option>
+						<option>O-</option>
+					</select>
+      </td>
+      <td>
         <input
           type="text"
           required="required"
@@ -71,9 +91,9 @@ const EditableRowP = ({
         <input
           type="text"
           required="required"
-          placeholder="Enter a department ID..."
-          name="depid"
-          value={editFormData.depid}
+          placeholder="Enter an emergency contact number.."
+          name="emerg"
+          value={editFormData.emerg}
           onChange={handleEditFormChange}
         ></input>
       </td>
@@ -81,11 +101,24 @@ const EditableRowP = ({
         <input
           type="text"
           required="required"
-          placeholder="Enter a specialization details id..."
-          name="specid"
-          value={editFormData.specid}
+          placeholder="Enter an address.."
+          name="address"
+          value={editFormData.address}
           onChange={handleEditFormChange}
         ></input>
+      </td>
+      <td>
+        <select
+          type="text"
+          required="required"
+          name="mstatus"
+          value={editFormData.mstatus}
+          onChange={handleEditFormChange}
+          >	
+						<option>...</option>
+						<option>Single</option>
+						<option>Married</option>
+        </select>
       </td>
       <td>
         <button type="submit">Save</button>
