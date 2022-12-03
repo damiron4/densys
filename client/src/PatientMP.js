@@ -15,8 +15,7 @@ export default function DoctorMP(){
     dbirth: "",
     iin:"",
     contactn:"",
-    depid:"",
-    specid:"",
+    emerg:"",
   });
 
   const [editFormData, setEditFormData] = useState({
@@ -26,8 +25,7 @@ export default function DoctorMP(){
     dbirth: "",
     iin:"",
     contactn:"",
-    depid:"",
-    specid:"",
+    emerg:"",
   });
 
   const [editContactId, setEditContactId] = useState(null);
@@ -72,8 +70,7 @@ export default function DoctorMP(){
       dbirth: editFormData.dbirth,
       iin: editFormData.iin,
       contactn: editFormData.contactn,
-      depid: editFormData.depid,
-      specid: editFormData.specid,
+      emerg:editFormData.emerg,
     };
 
     const newContacts = [...contacts];
@@ -96,8 +93,7 @@ export default function DoctorMP(){
       dbirth: contact.dbirth,
       iin: contact.iin,
       contactn: contact.contactn,
-      depid: contact.depid,
-      specid: contact.specid,
+      emerg:contact.emerg,
     };
 
     setEditFormData(formValues);
@@ -158,8 +154,7 @@ useEffect(() => {
             <th>Birth Date</th>
             <th>IIN</th>
             <th>Contact Number</th>
-            <th>Department ID</th>
-            <th>Specialization Details ID</th>
+            <th>Emergency contact Number</th>
             <th>Actions</th>
           </tr>
         </thead>
