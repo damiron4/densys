@@ -134,21 +134,36 @@ app.get("/doctor", async (req, res) => {
     try {
         const allInfo = await pool.query("SELECT * FROM doctor");
         res.json(allInfo.rows);
-    } catch (err) {
-        console.error(err.message);
+    } catch (error) {
+        console.error(error.message);
     }
 });
 
 app.get("/doctor/search", async (req, res) => {
     try {
-        const doctorNames = await pool.query("SELECT (name, surname) FROM doctor");
-        res.json(allInfo.rows);
-        let i = 0;
-        for (doctor of doctorNames) {
-            doctorNames.id = i;
-        }
+        pool.query("SELECT (name, surname) FROM doctor", (err, result) => {
+            // res.json(result.rows);
+            // console.log(result.rows);
+            var doctorNames = [];
+            // var names= JSON.stringify(obj);
+            let i = 0;
+            for (x of result.rows){
+                doctorNames.push({
+                    id: i,
+                    name: x.row.replace(","," ").replace("(","").replace(")","")
+                })
+                i++;
+            }
+            res.send(doctorNames);
+        });
+        // console.log(doctorNames.rows);
+        // let i = 0;
+        // for (doctor of doctorNames.rows) {
+        //     doctorNames.id = i;
+        // }
+        
     } catch (error) {
-        console.error(err.message);        
+        console.error(error.message);        
     }
 })
 
