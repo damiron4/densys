@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, Fragment } from 'react';
 import { Link, useParams } from "react-router-dom";
 
 import "react-datepicker/dist/react-datepicker.css";
@@ -11,7 +11,7 @@ import Dropdown from 'react-bootstrap/Dropdown';
 
 import Header from "./components/header";
 import Footer from "./components/footer";
-import BackFon from './image/BackFon.png';
+import BackFon from './image/BackFon.jpg';
 
 export default function Form() {
 const {id} = useParams();
@@ -35,6 +35,7 @@ React.useEffect(() =>{
   
 return (
 <div className="background">
+    <Header/>
   <div className='body' class="box-body">
     
     <p>{id}</p>
@@ -199,8 +200,6 @@ return (
     </Row>
     </div>
     <Footer/>
-  </div>
-  </div>
   </div>
 );
 }

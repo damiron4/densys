@@ -25,6 +25,7 @@ export default function Appointment() {
 	useEffect(()=> {
 		var element = document.getElementsByName('searchby');
 		element[0].checked = true;
+		setSearchBy("doctor");
 		handleSearch();
 	}, []);
 	
