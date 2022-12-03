@@ -47,7 +47,7 @@ function App() {
             <Route path="/doctorMP" exact element={<DoctorMP/>}/>
             <Route path="/appointment-form" exact element={<Appointment/>}/>
             <Route path="/doctorMP/:id" exact element={<Form/>}/>
-            <Route path="/box-list" exact element={<Boxlist/>}/>
+            <Route path="/box-list/:id" exact element={<Boxlist/>}/>
           </Routes>
     </>
   );

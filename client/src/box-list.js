@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from "react-router-dom";
+import { Link,useParams } from "react-router-dom";
 
 import "react-datepicker/dist/react-datepicker.css";
 import moment from 'moment'
@@ -12,7 +12,7 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import BackFon from './image/BackFon.png';
 
 export default function Form() {
-
+const {id} = useParams();
 
 const[timeSlots, setTimeSlots] = React.useState([]);
 const createTimeSlots = (fromTime, toTime) =>{
@@ -33,7 +33,8 @@ React.useEffect(() =>{
   
 return (
 
-  <div className='body'>
+  <div className='body' class="box-body">
+    <p>{id}</p>
     <Row xs={0} md={5} className="g-4">
         <Col>
         <Card style={{ width: '18rem' }}>
@@ -60,6 +61,7 @@ return (
             </Card.Body>
             </Card>
         </Col>
+
 
         <Col>
         <Card style={{ width: '18rem'}}>

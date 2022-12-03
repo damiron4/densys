@@ -4,7 +4,7 @@ import { Link , useParams} from "react-router-dom";
 import "react-datepicker/dist/react-datepicker.css";
 
 export default function Form() {
-const {id} = useParams()
+const {id} = useParams();
 
 	
 return (
