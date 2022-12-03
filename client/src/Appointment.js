@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { Axios } from 'axios';
+import Axios from 'axios';
 import { ReactSearchAutocomplete } from 'react-search-autocomplete'
 
 import Header from "./components/header";
@@ -24,29 +24,7 @@ export default function Appointment() {
 	
 	const [submitted, setSubmitted] = useState(false);
 	const [error, setError] = useState(false);
-
-	const items = [
-		{
-		  id: 0,
-		  name: 'Cobol'
-		},
-		{
-		  id: 1,
-		  name: 'JavaScript'
-		},
-		{
-		  id: 2,
-		  name: 'Basic'
-		},
-		{
-		  id: 3,
-		  name: 'PHP'
-		},
-		{
-		  id: 4,
-		  name: 'Java'
-		}
-	  ]
+	const [items, setItems] = useState({});
 	
 	const handleName = (e) => {
 		setName(e.target.value);
@@ -82,10 +60,41 @@ export default function Appointment() {
 	}
 
 	useEffect(()=> {
-		// Axios.get("http://localhost:5000/doctors/search").then((response) => {});
-		
-	})
+		handleSearch();
+	}, []);
+	
 
+	const handleSearch = () => {
+		var element = document.getElementsByName('searchby');
+		  
+		for(let i = 0; i < element.length; i++) {
+			if(element[i].checked) {
+				if (element[i].value == "doctor") {
+					Axios.get("http://localhost:5000/doctor/search").then((response) => {
+					setItems(response.data);
+					});	
+				} else if (element[i].value == "specialization") {
+					// Axios.get("http://localhost:5000/doctor/search").then((response) => {
+					// setItems(response.data);
+					// });
+					setItems([
+						{id:0, name: "1"},
+						{id:1, name: "2"}
+					]);
+				} else if (element[i].value == "procedure") {
+					// Axios.get("http://localhost:5000/doctor/search").then((response) => {
+					// setItems(response.data);
+					// });
+					setItems([
+						{id:0, name: "p1"},
+						{id:1, name: "p2"}
+					]);
+				}
+			}	
+		}
+		
+		
+	} 
 
 const handleOnSearch = (string, results) => {
     // onSearch will have as the first callback parameter
@@ -95,7 +104,7 @@ const handleOnSearch = (string, results) => {
 
   const handleOnHover = (result) => {
     // the item hovered
-    console.log(result)
+    // console.log(result)
   }
 
   const handleOnSelect = (item) => {
@@ -104,7 +113,7 @@ const handleOnSearch = (string, results) => {
   }
 
   const handleOnFocus = () => {
-    console.log('Focused')
+    // console.log('Focused')
   }
 
   const formatResult = (item) => {
@@ -112,7 +121,7 @@ const handleOnSearch = (string, results) => {
       <>
         {/* <span style={{ display: 'block', textAlign: 'left' }}>id: {item.id}</span> */}
         {/* <span style={{ display: 'block', textAlign: 'left' }}>name: {item.name}</span> */}
-		{item.name + item.surname}
+		{item.name}
       </>
     )
   }
@@ -141,13 +150,14 @@ return (
 			<label className="label-c">Search by</label>
 			<div className='messages'>
 			<div class="l">
-			<input className='input-t' type="radio" name="searchby" value="Doctor"  onChange={e=>setSearchBy(e.target.value)}/> Doctor's name
+			<label className="label">Search by</label>
+			<input className='input-t' type="radio" name="searchby" value="doctor"  onChange={e=>{setSearchBy(e.target.value); handleSearch()}}/> Doctor
 			</div>
 			<div class="l">
-			<input className='input-t' type="radio" name="searchby" value="Spec" onChange={e=>setSearchBy(e.target.value)} /> Specialization 
+			<input className='input-t' type="radio" name="searchby" value="specialization" onChange={e=>{setSearchBy(e.target.value); handleSearch()}} /> Specialization 
 			</div>
 			<div class="l">
-			<input className='input-t' type="radio" name="searchby" value="Procedure" onChange={e=>setSearchBy(e.target.value)}/> Procedure
+			<input className='input-t' type="radio" name="searchby" value="procedure" onChange={e=>{setSearchBy(e.target.value); handleSearch()}}/> Procedure
 			</div>
 			</div>
 			<div style={{ width: 400 , margin: "auto",marginBottom:10}}>
