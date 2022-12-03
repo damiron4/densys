@@ -1,8 +1,8 @@
 import "react-datepicker/dist/react-datepicker.css";
 import { Link } from "react-router-dom";
 import React, { useState, Fragment, useEffect } from "react";
-import ReadOnlyRow from "./ReadOnlyRow";
-import EditableRow from "./EditableRow";
+import ReadOnlyRowP from "./ReadOnlyRowP";
+import EditableRowP from "./EditableRowP";
 import data from "./mock-data.json";
 
 
@@ -167,13 +167,13 @@ useEffect(() => {
           {contacts.map((contact)=>  (
              <Fragment>
              {editContactId === contact.id ? (
-               <EditableRow
+               <EditableRowP
                  editFormData={editFormData}
                  handleEditFormChange={handleEditFormChange}
                  handleCancelClick={handleCancelClick}
                />
              ) : (
-               <ReadOnlyRow
+               <ReadOnlyRowP
                  contact={contact}
                  handleEditClick={handleEditClick}
                  handleDeleteClick={handleDeleteClick}

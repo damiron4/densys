@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components"
 
-const ReadOnlyRow = ({ contact, handleEditClick, handleDeleteClick }) => {
+const ReadOnlyRowD = ({ contact, handleEditClick, handleDeleteClick }) => {
   const NavUnlisted = styled.ul`
   text-decoration: none;
 `;
@@ -38,4 +38,4 @@ const linkStyle = {
   );
 };
 
-export default ReadOnlyRow;
+export default ReadOnlyRowD;
