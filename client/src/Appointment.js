@@ -150,13 +150,14 @@ return (
 			<label className="label-c">Search by</label>
 			<div className='messages'>
 			<div class="l">
-			<input className='input-t' type="radio" name="searchby" value="Doctor"  onChange={e=>setSearchBy(e.target.value)}/> Doctor's name
+			<label className="label">Search by</label>
+			<input className='input-t' type="radio" name="searchby" value="doctor"  onChange={e=>{setSearchBy(e.target.value); handleSearch()}}/> Doctor
 			</div>
 			<div class="l">
-			<input className='input-t' type="radio" name="searchby" value="Spec" onChange={e=>setSearchBy(e.target.value)} /> Specialization 
+			<input className='input-t' type="radio" name="searchby" value="specialization" onChange={e=>{setSearchBy(e.target.value); handleSearch()}} /> Specialization 
 			</div>
 			<div class="l">
-			<input className='input-t' type="radio" name="searchby" value="Procedure" onChange={e=>setSearchBy(e.target.value)}/> Procedure
+			<input className='input-t' type="radio" name="searchby" value="procedure" onChange={e=>{setSearchBy(e.target.value); handleSearch()}}/> Procedure
 			</div>
 			</div>
 			<div style={{ width: 400 , margin: "auto",marginBottom:10}}>
