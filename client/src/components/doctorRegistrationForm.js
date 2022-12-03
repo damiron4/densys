@@ -2,7 +2,7 @@ import { useState } from 'react';
 import React from "react";
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
-import BackFon from '../image/BackFon.png';
+import BackFon from '../image/anon3x4.jpg';
 
 // TODO: Delete rating from form
 export default function DoctorRegistrationForm() {
