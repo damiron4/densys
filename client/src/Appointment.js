@@ -1,24 +1,15 @@
-import { useState } from 'react';
-import { Link } from "react-router-dom";
-import DatePicker from "react-datepicker";
+import { useState , Fragment} from 'react';
+
 import "react-datepicker/dist/react-datepicker.css";
 import Axios from 'axios';
 import { ReactSearchAutocomplete } from 'react-search-autocomplete'
-
+import data from "./mock-data.json";
 import Header from "./components/header";
 import Footer from "./components/footer";
 import { useEffect } from 'react';
 
 export default function Appointment() {
-
-	const [name, setName] = useState('');
-	const [surname, setSurName] = useState('');
-	const [docspec, setDocSpec] = useState('');
-	const [docch, setDocch] = useState('');
-	const [prefdate, setPrefdate] = useState(new Date());
-	const [contactd, setContacd] = useState('');
-	const [procedure, setProcedure] = useState('');
-	const [inputText, setInputText] = useState('');
+	const [contacts, setContacts] = useState(data);
 	const [searchby, setSearchBy] = useState();
 
 	
@@ -26,38 +17,7 @@ export default function Appointment() {
 	const [error, setError] = useState(false);
 	const [items, setItems] = useState({});
 	
-	const handleName = (e) => {
-		setName(e.target.value);
-		setSubmitted(false);
-	};
-	const handleSurName = (e) => {
-		setSurName(e.target.value);
-		setSubmitted(false);
-	};
-	const handleDocspec = (e) => {
-		setDocSpec(e.target.value);
-		setSubmitted(false);
-	};
-	const handleDocch = (e) => {
-		setDocch(e.target.value);
-		setSubmitted(false);
-	};
-	const handlePrefdate = (e) => {
-		setPrefdate(e.target.value);
-		setSubmitted(false);
-	}
-	const handleContactd = (e) => {
-		setContacd(e.target.value);
-		setSubmitted(false);
-	}
-	const handleProcedure = (e) => {
-		setProcedure(e.target.value);
-		setSubmitted(false);
-	}
-	const handleInputText= (e) => {
-		setInputText(e.target.value);
-		setSubmitted(false);
-	}
+	
 
 	useEffect(()=> {
 		handleSearch();
@@ -178,10 +138,14 @@ return (
 							<th>Doctor's name</th>
 							<th>Specialization</th>
 							<th>Procedure</th>
+							<th>Link</th>
 						</tr>
 					</thead>
 					<tbody>
-						{}
+					{contacts.map((contact)=>  (
+						<Fragment>
+						</Fragment>
+					))}
 					</tbody>
 				</table>
 			</div>
