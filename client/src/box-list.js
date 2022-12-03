@@ -34,14 +34,14 @@ React.useEffect(() =>{
 }, []);
   
 return (
-<div><Header/>
+<div className="background">
   <div className='body' class="box-body">
     
     <p>{id}</p>
     <Row xs={0} md={5} className="g-4">
         <Col>
         <Card style={{ width: '18rem' }}>
-            <Card.Img variant="top" src={BackFon}  width = {200} height = {300} />
+            <Card.Img variant="top" src={BackFon}  width = {0} height = {300} />
             <Card.Body>
                 <Card.Title>Crazy Frog</Card.Title>
                 <Card.Text>
@@ -199,6 +199,8 @@ return (
     </Row>
     </div>
     <Footer/>
+  </div>
+  </div>
   </div>
 );
 }

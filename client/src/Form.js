@@ -9,7 +9,7 @@ const {id} = useParams();
 	
 return (
 	
-	<div>
+	<div className="background">
 	<header className="site-header">
 		<div class="container">
 			<p><ht class="back-ht">A-Clinic</ht></p>

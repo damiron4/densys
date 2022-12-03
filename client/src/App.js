@@ -5,6 +5,7 @@ import RegDoctor from "./RegDoctor"
 import LoginPage from "./loginPage"
 import RegPatient from "./regPatient"
 import DoctorMP from "./DoctorMP"
+import PatientMP from "./PatientMP"
 import Appointment from './Appointment';
 import Form from './Form';
 import Boxlist from './box-list';
@@ -24,9 +25,9 @@ function App() {
               <li>
                 <Link to="/register/patient">RegPatient</Link>
               </li>
-              {/* <li>
-                <Link to="/AdministratorMP">AdministratorMP</Link>
-              </li> */}
+              <li>
+                <Link to="/patientMP">PatientMP</Link>
+              </li>
               <li>
                 <Link to="/doctorMP">DoctorMP</Link>
               </li>
@@ -34,7 +35,7 @@ function App() {
                 <Link to="/appointment-form">Appointment</Link>
               </li>
               <li>
-                <Link to="/box-list">box</Link>
+                <Link to="/appointment-form/1">box 1</Link>
               </li>
             </ul>
           </nav>
@@ -43,11 +44,12 @@ function App() {
             <Route path="/login" exact element={<LoginPage />} />
             <Route path="/register/doctor" exact element={<RegDoctor/>}/>
             <Route path="/register/patient" exact element={<RegPatient/>}/>
-            {/* <Route path="/AdministratorMP" exact element={<AdministratorMP/>}/> */}
+            <Route path="/patientMP" exact element={<PatientMP/>}/>
             <Route path="/doctorMP" exact element={<DoctorMP/>}/>
             <Route path="/appointment-form" exact element={<Appointment/>}/>
             <Route path="/doctorMP/:id" exact element={<Form/>}/>
-            <Route path="/box-list/:id" exact element={<Boxlist/>}/>
+            <Route path="/patientMP/:id" exact element={<Form/>}/>
+            <Route path="/appointment-form/:id" exact element={<Boxlist/>}/>
           </Routes>
     </>
   );

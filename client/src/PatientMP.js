@@ -1,10 +1,10 @@
 import "react-datepicker/dist/react-datepicker.css";
 import { Link } from "react-router-dom";
 import React, { useState, Fragment, useEffect } from "react";
-import { nanoid } from "nanoid";
-import ReadOnlyRow from "./ReadOnlyRow";
-import EditableRow from "./EditableRow";
+import ReadOnlyRowP from "./ReadOnlyRowP";
+import EditableRowP from "./EditableRowP";
 import data from "./mock-data.json";
+
 
 export default function DoctorMP(){
   const [contacts, setContacts] = useState(data);
@@ -14,9 +14,11 @@ export default function DoctorMP(){
     midname: "",
     dbirth: "",
     iin:"",
+    bloodg:"",
     contactn:"",
-    depid:"",
-    specid:"",
+    emerg:"",
+    address:"",
+    mstatus:"",
   });
 
   const [editFormData, setEditFormData] = useState({
@@ -25,24 +27,16 @@ export default function DoctorMP(){
     midname: "",
     dbirth: "",
     iin:"",
+    bloodg:"",
     contactn:"",
-    depid:"",
-    specid:"",
+    emerg:"",
+    address:"",
+    mstatus:"",
   });
 
   const [editContactId, setEditContactId] = useState(null);
 
-  const handleAddFormChange = (event) => {
-    event.preventDefault();
-
-    const fieldName = event.target.getAttribute("name");
-    const fieldValue = event.target.value;
-
-    const newFormData = { ...addFormData };
-    newFormData[fieldName] = fieldValue;
-
-    setAddFormData(newFormData);
-  };
+ 
 
   const handleEditFormChange = (event) => {
     event.preventDefault();
@@ -58,21 +52,18 @@ export default function DoctorMP(){
   const handleAddFormSubmit = (event) => {
     event.preventDefault();
 
-    const newContact = {
-      id: nanoid(),
-      name: addFormData.name,
-      surname: addFormData.surname,
-      midname: addFormData.midname,
-      dbirth: addFormData.dbirth,
-      iin: addFormData.iin,
-      contactn: addFormData.contactn,
-      depid: addFormData.depid,
-      specid: addFormData.specid,
-    };
-
-    const newContacts = [...contacts, newContact];
-    setContacts(newContacts);
-  };
+    // const newContact = {
+    //   id: nanoid(),
+    //   name: addFormData.name,
+    //   surname: addFormData.surname,
+    //   middlename: addFormData.middlename,
+    //   birthDate: addFormData.birthDate,
+    //   IIN: addFormData.IIN,
+    //   contactNumber: addFormData.contactNumber,
+    //   departmentId: addFormData.departmentId,
+    //   specializationDetailsId: addFormData.specializationDetailsId,
+    // };
+  }
 
   const handleEditFormSubmit = (event) => {
     event.preventDefault();
@@ -84,9 +75,11 @@ export default function DoctorMP(){
       midname: editFormData.midname,
       dbirth: editFormData.dbirth,
       iin: editFormData.iin,
+      bloodg:editFormData.bloodg,
       contactn: editFormData.contactn,
-      depid: editFormData.depid,
-      specid: editFormData.specid,
+      emerg:editFormData.emerg,
+      address:editFormData.address,
+      mstatus:editFormData.mstatus,
     };
 
     const newContacts = [...contacts];
@@ -108,9 +101,11 @@ export default function DoctorMP(){
       midname: contact.midname,
       dbirth: contact.dbirth,
       iin: contact.iin,
+      bloodg: contact.bloodg,
       contactn: contact.contactn,
-      depid: contact.depid,
-      specid: contact.specid,
+      emerg:contact.emerg,
+      address:contact.address,
+      mstatus:contact.mstatus,
     };
 
     setEditFormData(formValues);
@@ -148,7 +143,7 @@ useEffect(() => {
 }, []);
 
   return(
-    <div>
+    <div className="background">
       <header className="site-header">
           <div class="container">
               <p><ht class="back-ht"><Link className="text-link" to="/">A-Clinic</Link></ht></p>
@@ -157,69 +152,10 @@ useEffect(() => {
                 <p><Link className="text-link" to="/register-patient">Register Patient</Link></p>
           </div>
       </header>
-    <div className= "features">
+    <div className= "body">
     <label className ="app-container">
-    <h2>Register Doctor</h2>
-      <form onSubmit={handleAddFormSubmit}>
-        <input
-          type="text"
-          name="name"
-          required="required"
-          placeholder="Enter a name..."
-          onChange={handleAddFormChange}
-        />
-        <input
-          type="text"
-          name="surname"
-          required="required"
-          placeholder="Enter a surname..."
-          onChange={handleAddFormChange}
-        />
-        <input
-          type="text"
-          name="midname"
-          required="required"
-          placeholder="Enter a midname..."
-          onChange={handleAddFormChange}
-        />
-        <input
-          type="text"
-          name="dbirth"
-          required="required"
-          placeholder="Enter a birth date..."
-          onChange={handleAddFormChange}
-        />
-        <input
-          type="text"
-          name="iin"
-          required="required"
-          placeholder="Enter an iin..."
-          onChange={handleAddFormChange}
-        />
-        <input
-           type="text"
-           name="contactn"
-           required="required"
-           placeholder="Enter a contact number.."
-           onChange={handleAddFormChange}
-        />
-        <input
-          type="text"
-          name="depid"
-          required="required"
-          placeholder="Enter a department ID..."
-          onChange={handleAddFormChange}
-        />
-        <input
-           type="text"
-           name="specid"
-           required="required"
-           placeholder="Enter a specialization details id..."
-           onChange={handleAddFormChange}
-        />
+    <h2>Register Patient</h2>
       
-        <button type="submit">Add</button>
-      </form>
     <form onSubmit={handleEditFormSubmit}>
       <table>
         <thead>
@@ -229,9 +165,11 @@ useEffect(() => {
             <th>Middlename</th>
             <th>Birth Date</th>
             <th>IIN</th>
+            <th>Blood Group</th>
             <th>Contact Number</th>
-            <th>Department ID</th>
-            <th>Specialization Details ID</th>
+            <th>Emergency contact Number</th>
+            <th>Address</th>
+            <th>Maritial status</th>
             <th>Actions</th>
           </tr>
         </thead>
@@ -239,13 +177,13 @@ useEffect(() => {
           {contacts.map((contact)=>  (
              <Fragment>
              {editContactId === contact.id ? (
-               <EditableRow
+               <EditableRowP
                  editFormData={editFormData}
                  handleEditFormChange={handleEditFormChange}
                  handleCancelClick={handleCancelClick}
                />
              ) : (
-               <ReadOnlyRow
+               <ReadOnlyRowP
                  contact={contact}
                  handleEditClick={handleEditClick}
                  handleDeleteClick={handleDeleteClick}
@@ -271,3 +209,4 @@ useEffect(() => {
     )
         
 }
+

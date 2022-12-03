@@ -87,7 +87,7 @@ export default function LoginPage() {
 	};
 	return (
 
-		<div>
+		<div className="background">
 			<Header/>
 				<section class= "body">
 					<div>

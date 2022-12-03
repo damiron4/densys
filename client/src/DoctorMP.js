@@ -1,8 +1,8 @@
 import "react-datepicker/dist/react-datepicker.css";
 import { Link } from "react-router-dom";
 import React, { useState, Fragment, useEffect } from "react";
-import ReadOnlyRow from "./ReadOnlyRow";
-import EditableRow from "./EditableRow";
+import ReadOnlyRowD from "./ReadOnlyRowD";
+import EditableRowD from "./EditableRowD";
 import data from "./mock-data.json";
 
 
@@ -135,7 +135,7 @@ useEffect(() => {
 }, []);
 
   return(
-    <div>
+    <div className="background">
       <header className="site-header">
           <div class="container">
               <p><ht class="back-ht"><Link className="text-link" to="/">A-Clinic</Link></ht></p>
@@ -167,13 +167,13 @@ useEffect(() => {
           {contacts.map((contact)=>  (
              <Fragment>
              {editContactId === contact.id ? (
-               <EditableRow
+               <EditableRowD
                  editFormData={editFormData}
                  handleEditFormChange={handleEditFormChange}
                  handleCancelClick={handleCancelClick}
                />
              ) : (
-               <ReadOnlyRow
+               <ReadOnlyRowD
                  contact={contact}
                  handleEditClick={handleEditClick}
                  handleDeleteClick={handleDeleteClick}
