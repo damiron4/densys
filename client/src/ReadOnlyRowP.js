@@ -32,7 +32,7 @@ const linkStyle = {
         <button type="button" onClick={() => handleDeleteClick(contact.id)}>
           Delete
         </button>
-        <button type="button"><Link style={linkStyle} className="text-line" to="/doctorMP/34">Link</Link></button>
+        <button type="button"><Link style={linkStyle} className="text-line" to={"/patientMP/"+contact.id}>Link</Link></button>
       </td>
     </tr>
   );
