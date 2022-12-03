@@ -150,7 +150,6 @@ return (
 			<label className="label-c">Search by</label>
 			<div className='messages'>
 			<div class="l">
-			<label className="label">Search by</label>
 			<input className='input-t' type="radio" name="searchby" value="doctor"  onChange={e=>{setSearchBy(e.target.value); handleSearch()}}/> Doctor
 			</div>
 			<div class="l">
