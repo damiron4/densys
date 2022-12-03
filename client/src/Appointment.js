@@ -139,7 +139,7 @@ const errorMessage = () => {
 };
 return (
 	
-	<div>
+	<div className="background">
 		<Header/>
 		<section class= "body">
 			

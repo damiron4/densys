@@ -1,3 +1,7 @@
+.background{
+  background: #eee;
+  min-height: 1000px;
+}
 .site-header{
   min-width: 100px;
   height: 400px;
@@ -59,7 +63,7 @@ ht{
   margin-bottom: 5px;
   color:#000000;
 }
-img{
+.img-r{
   margin-top: 65px;
   height: 283px;
   border: 3px solid;
@@ -92,7 +96,9 @@ img{
 }
 .body{
   width: 100%;
-  margin: 0 auto 150px;
+  padding-top: 70px;
+  padding-bottom: 100px;
+  min-height: 570px;
 }
 .box-body{
   width: 90%;
