@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link,useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 import "react-datepicker/dist/react-datepicker.css";
 import moment from 'moment'
@@ -9,6 +9,8 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Dropdown from 'react-bootstrap/Dropdown';
 
+import Header from "./components/header";
+import Footer from "./components/footer";
 import BackFon from './image/BackFon.png';
 
 export default function Form() {
@@ -32,8 +34,9 @@ React.useEffect(() =>{
 }, []);
   
 return (
-
+<div><Header/>
   <div className='body' class="box-body">
+    
     <p>{id}</p>
     <Row xs={0} md={5} className="g-4">
         <Col>
@@ -194,13 +197,8 @@ return (
             </Card>
         </Col>
     </Row>
-    
-  <footer class="site-footer">
-      <div class="con">
-        <p>© A-Clinic</p>
-        <p>Welcome to A-Clinic, Health Care website</p>
-      </div>
-    </footer>
+    </div>
+    <Footer/>
   </div>
 );
 }

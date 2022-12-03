@@ -147,31 +147,44 @@ app.get("/doctor", async (req, res) => {
 
 app.get("/doctor/search", async (req, res) => {
     try {
-        pool.query("SELECT (name, surname) FROM doctor", (err, result) => {
-            // res.json(result.rows);
-            // console.log(result.rows);
+        pool.query("SELECT (id, name, surname) FROM doctor", (err, result) => {
             var doctorNames = [];
-            // var names= JSON.stringify(obj);
             let i = 0;
             for (x of result.rows){
+                doctor = x.row.replaceAll(","," ").replace("(","").replace(")","").split(" ");
                 doctorNames.push({
-                    id: i,
-                    name: x.row.replace(","," ").replace("(","").replace(")","")
+                    id: parseInt(doctor[0]),
+                    name: doctor[1] + " " + doctor[2]
                 })
                 i++;
             }
             res.send(doctorNames);
         });
-        // console.log(doctorNames.rows);
-        // let i = 0;
-        // for (doctor of doctorNames.rows) {
-        //     doctorNames.id = i;
-        // }
-        
     } catch (error) {
         console.error(error.message);        
     }
 })
+
+app.get("/doctor/search/result", async (req, res) => {
+    try {
+        pool.query("SELECT (id, name, surname) FROM doctor", (err, result) => {
+            var doctorNames = [];
+            let i = 0;
+            for (x of result.rows){
+                doctor = x.row.replaceAll(","," ").replace("(","").replace(")","").split(" ");
+                doctorNames.push({
+                    id: parseInt(doctor[0]),
+                    name: doctor[1] + " " + doctor[2]
+                })
+                i++;
+            }
+            res.send(doctorNames);
+        });
+    } catch (error) {
+        console.error(error.message);        
+    }
+})
+
 
 
 app.get("/patient/:id", async (req, res) => {

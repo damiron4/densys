@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { Link } from "react-router-dom";
+import { useState, useEffect } from 'react';
+import { useNavigate } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Axios from 'axios';
@@ -7,7 +7,6 @@ import { ReactSearchAutocomplete } from 'react-search-autocomplete'
 
 import Header from "./components/header";
 import Footer from "./components/footer";
-import { useEffect } from 'react';
 
 export default function Appointment() {
 
@@ -20,6 +19,8 @@ export default function Appointment() {
 	const [procedure, setProcedure] = useState('');
 	const [inputText, setInputText] = useState('');
 	const [searchby, setSearchBy] = useState();
+
+	let navigate = useNavigate();
 
 	
 	const [submitted, setSubmitted] = useState(false);
@@ -60,6 +61,8 @@ export default function Appointment() {
 	}
 
 	useEffect(()=> {
+		var element = document.getElementsByName('searchby');
+		element[0].checked = true;
 		handleSearch();
 	}, []);
 	
@@ -74,7 +77,7 @@ export default function Appointment() {
 					setItems(response.data);
 					});	
 				} else if (element[i].value == "specialization") {
-					// Axios.get("http://localhost:5000/doctor/search").then((response) => {
+					// Axios.get("http://localhost:5000/specialization/search").then((response) => {
 					// setItems(response.data);
 					// });
 					setItems([
@@ -82,7 +85,7 @@ export default function Appointment() {
 						{id:1, name: "2"}
 					]);
 				} else if (element[i].value == "procedure") {
-					// Axios.get("http://localhost:5000/doctor/search").then((response) => {
+					// Axios.get("http://localhost:5000/procedure/search").then((response) => {
 					// setItems(response.data);
 					// });
 					setItems([
@@ -99,7 +102,7 @@ export default function Appointment() {
 const handleOnSearch = (string, results) => {
     // onSearch will have as the first callback parameter
     // the string searched and for the second the results.
-    console.log(string, results)
+    // console.log(string, results);
   }
 
   const handleOnHover = (result) => {
@@ -109,7 +112,12 @@ const handleOnSearch = (string, results) => {
 
   const handleOnSelect = (item) => {
     // the item selected
-    console.log(item)
+    console.log(item);
+	if (searchby == "doctor") {
+		const url = `/box-list/${item.id}`;
+		navigate(url);
+	}
+	
   }
 
   const handleOnFocus = () => {
@@ -119,8 +127,8 @@ const handleOnSearch = (string, results) => {
   const formatResult = (item) => {
     return (
       <>
-        {/* <span style={{ display: 'block', textAlign: 'left' }}>id: {item.id}</span> */}
-        {/* <span style={{ display: 'block', textAlign: 'left' }}>name: {item.name}</span> */}
+        {/* <span style={{ display: 'block', textAlign: 'left' }}>id: {item.id}</span>
+        <span style={{ display: 'block', textAlign: 'left' }}>name: {item.name}</span> */}
 		{item.name}
       </>
     )
@@ -141,26 +149,25 @@ return (
 	
 	<div>
 		<Header/>
-		<section class= "body">
+		<section className= "body">
 			
-			<div>
+			<div style={{marginTop: 40}}>
 				<h1>Appointment form</h1>
 			</div>
 			
 			<label className="label-c">Search by</label>
 			<div className='messages'>
-			<div class="l">
-			<label className="label">Search by</label>
-			<input className='input-t' type="radio" name="searchby" value="doctor"  onChange={e=>{setSearchBy(e.target.value); handleSearch()}}/> Doctor
+				<div className="l">
+				<input className='input-t' type="radio" name="searchby" value="doctor"  onChange={e=>{setSearchBy(e.target.value); handleSearch()}}/> Doctor
+				</div>
+				<div className="l">
+				<input className='input-t' type="radio" name="searchby" value="specialization" onChange={e=>{setSearchBy(e.target.value); handleSearch()}} /> Specialization 
+				</div>
+				<div className="l">
+				<input className='input-t' type="radio" name="searchby" value="procedure" onChange={e=>{setSearchBy(e.target.value); handleSearch()}}/> Procedure
+				</div>
 			</div>
-			<div class="l">
-			<input className='input-t' type="radio" name="searchby" value="specialization" onChange={e=>{setSearchBy(e.target.value); handleSearch()}} /> Specialization 
-			</div>
-			<div class="l">
-			<input className='input-t' type="radio" name="searchby" value="procedure" onChange={e=>{setSearchBy(e.target.value); handleSearch()}}/> Procedure
-			</div>
-			</div>
-			<div style={{ width: 400 , margin: "auto",marginBottom:10}}>
+			<div style={{ width: 400 , margin: "auto", marginBottom: 10}}>
 				<ReactSearchAutocomplete
 					items={items}
 					onSearch={handleOnSearch}
@@ -172,11 +179,11 @@ return (
 				/>
 			</div>
 
-			<div className="appointment">
+			{/* <div className="appointment">
 				<table>
 					<thead>
 						<tr>
-							<th>Doctor's name</th>
+							<th>Doctor</th>
 							<th>Specialization</th>
 							<th>Procedure</th>
 						</tr>
@@ -185,16 +192,12 @@ return (
 						
 					</tbody>
 				</table>
-			</div>
+			</div> */}
 
 			<div className="messages">
 				{errorMessage()}
 			
 			</div>
-
-			{/* <button onClick={handleSubmit} className="btn" type="submit">
-			Find
-			</button> */}
 		</section>
 		<Footer/>
 	</div>
