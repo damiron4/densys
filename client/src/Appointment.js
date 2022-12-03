@@ -10,6 +10,7 @@ import { useEffect } from 'react';
 
 export default function Appointment() {
 	const [contacts, setContacts] = useState(data);
+	
 	const [searchby, setSearchBy] = useState();
 
 	
@@ -142,10 +143,7 @@ return (
 						</tr>
 					</thead>
 					<tbody>
-					{contacts.map((contact)=>  (
-						<Fragment>
-						</Fragment>
-					))}
+					{contacts.map((contact)=>  contact.id)}
 					</tbody>
 				</table>
 			</div>
