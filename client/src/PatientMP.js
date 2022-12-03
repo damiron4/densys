@@ -146,7 +146,7 @@ useEffect(() => {
       </header>
     <div className= "body">
     <label className ="app-container">
-    <h2>Register Doctor</h2>
+    <h2>Register Patient</h2>
       
     <form onSubmit={handleEditFormSubmit}>
       <table>
