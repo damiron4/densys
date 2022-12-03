@@ -2,7 +2,7 @@ import { useState } from 'react';
 import React from "react";
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
-import CrazyFrog from '/Users/ali/SWE/Densys/client/src/dof1.jpeg';
+import CrazyFrog from '../dof1.jpeg';
 
 // TODO: Delete rating from form
 export default function DoctorRegistrationForm() {
