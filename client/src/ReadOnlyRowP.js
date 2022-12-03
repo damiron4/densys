@@ -19,9 +19,11 @@ const linkStyle = {
                 <td>{contact.midname}</td>
                 <td>{contact.dbirth}</td>
                 <td>{contact.iin}</td>
+                <td>{contact.bloodg}</td>
                 <td>{contact.contactn}</td>
-                <td>{contact.depid}</td>
-                <td>{contact.specid}</td>
+                <td>{contact.emerg}</td>
+                <td>{contact.address}</td>
+                <td>{contact.mstatus}</td>
       <td>
         <button
           type="button"
