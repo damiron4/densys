@@ -1,10 +1,10 @@
 import "react-datepicker/dist/react-datepicker.css";
 import { Link } from "react-router-dom";
 import React, { useState, Fragment, useEffect } from "react";
-import { nanoid } from "nanoid";
 import ReadOnlyRow from "./ReadOnlyRow";
 import EditableRow from "./EditableRow";
 import data from "./mock-data.json";
+
 
 export default function DoctorMP(){
   const [contacts, setContacts] = useState(data);
@@ -32,17 +32,7 @@ export default function DoctorMP(){
 
   const [editContactId, setEditContactId] = useState(null);
 
-  const handleAddFormChange = (event) => {
-    event.preventDefault();
-
-    const fieldName = event.target.getAttribute("name");
-    const fieldValue = event.target.value;
-
-    const newFormData = { ...addFormData };
-    newFormData[fieldName] = fieldValue;
-
-    setAddFormData(newFormData);
-  };
+ 
 
   const handleEditFormChange = (event) => {
     event.preventDefault();
@@ -58,21 +48,18 @@ export default function DoctorMP(){
   const handleAddFormSubmit = (event) => {
     event.preventDefault();
 
-    const newContact = {
-      id: nanoid(),
-      name: addFormData.name,
-      surname: addFormData.surname,
-      midname: addFormData.midname,
-      dbirth: addFormData.dbirth,
-      iin: addFormData.iin,
-      contactn: addFormData.contactn,
-      depid: addFormData.depid,
-      specid: addFormData.specid,
-    };
-
-    const newContacts = [...contacts, newContact];
-    setContacts(newContacts);
-  };
+    // const newContact = {
+    //   id: nanoid(),
+    //   name: addFormData.name,
+    //   surname: addFormData.surname,
+    //   middlename: addFormData.middlename,
+    //   birthDate: addFormData.birthDate,
+    //   IIN: addFormData.IIN,
+    //   contactNumber: addFormData.contactNumber,
+    //   departmentId: addFormData.departmentId,
+    //   specializationDetailsId: addFormData.specializationDetailsId,
+    // };
+  }
 
   const handleEditFormSubmit = (event) => {
     event.preventDefault();
@@ -157,69 +144,10 @@ useEffect(() => {
                 <p><Link className="text-link" to="/register-patient">Register Patient</Link></p>
           </div>
       </header>
-    <div className= "features">
+    <div className= "body">
     <label className ="app-container">
     <h2>Register Doctor</h2>
-      <form onSubmit={handleAddFormSubmit}>
-        <input
-          type="text"
-          name="name"
-          required="required"
-          placeholder="Enter a name..."
-          onChange={handleAddFormChange}
-        />
-        <input
-          type="text"
-          name="surname"
-          required="required"
-          placeholder="Enter a surname..."
-          onChange={handleAddFormChange}
-        />
-        <input
-          type="text"
-          name="midname"
-          required="required"
-          placeholder="Enter a midname..."
-          onChange={handleAddFormChange}
-        />
-        <input
-          type="text"
-          name="dbirth"
-          required="required"
-          placeholder="Enter a birth date..."
-          onChange={handleAddFormChange}
-        />
-        <input
-          type="text"
-          name="iin"
-          required="required"
-          placeholder="Enter an iin..."
-          onChange={handleAddFormChange}
-        />
-        <input
-           type="text"
-           name="contactn"
-           required="required"
-           placeholder="Enter a contact number.."
-           onChange={handleAddFormChange}
-        />
-        <input
-          type="text"
-          name="depid"
-          required="required"
-          placeholder="Enter a department ID..."
-          onChange={handleAddFormChange}
-        />
-        <input
-           type="text"
-           name="specid"
-           required="required"
-           placeholder="Enter a specialization details id..."
-           onChange={handleAddFormChange}
-        />
       
-        <button type="submit">Add</button>
-      </form>
     <form onSubmit={handleEditFormSubmit}>
       <table>
         <thead>
@@ -271,3 +199,4 @@ useEffect(() => {
     )
         
 }
+

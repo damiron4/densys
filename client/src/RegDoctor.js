@@ -6,7 +6,6 @@ import Header from "./components/header";
 import Footer from "./components/footer";
 import AccessDenied from "./components/accessDenied";
 import DoctorRegistrationForm from "./components/doctorRegistrationForm";
-
 export default function RegDoctor() {
 	const [role, setRole] = useState('');
 

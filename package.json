@@ -3,6 +3,7 @@
     "axios": "^1.2.0",
     "body-parser": "^1.20.1",
     "cookie-parser": "^1.4.6",
-    "express-session": "^1.17.3"
+    "express-session": "^1.17.3",
+    "react-search-autocomplete": "^8.2.1"
   }
 }

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import React from "react";
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
+import BackFon from '../image/anon3x4.jpg';
 
 // TODO: Delete rating from form
 export default function DoctorRegistrationForm() {
@@ -172,93 +173,122 @@ export default function DoctorRegistrationForm() {
 
 	return (
 		<div>
-			<section class= "features">
+			<section class= "body">
+		<section class="con-body">
+			<div>
+				<h1>Doctor Registration</h1>
+			</div>
+			<div class="container">
 				<div>
-					<h1>Doctor Registration</h1>
-				</div>
-				<label className="label">Name</label>
-				<input onChange={handleName} className="input"
-				value={name} type="text" />
+					<label className="label">Name</label>
+					<input onChange={handleName} className="input"
+					value={name} type="text" />
 
-				<label className="label">Surname</label>
-				<input onChange={handleSurName} className="input"
-				value={surname} type="text" />
+					<label className="label">Surname</label>
+					<input onChange={handleSurName} className="input"
+					value={surname} type="text" />
 
-				<label className="label">Middlename</label>
-				<input onChange={handleMidName} className="input"
-				value={midname} type="text" />
+					<label className="label">Middlename</label>
+					<input onChange={handleMidName} className="input"
+					value={midname} type="text" />
 
-				<label className="label">Date of birth</label>
-				<DatePicker
+					<label className="label">Date of birth</label>
+					<DatePicker
 					selected={dbirth}
-					onChange={(dbirth:Date) => setDbirth(dbirth)} />
-
-				<label className="label">IIN number</label>
-				<input maxLength={12} minLength={12}
-				onChange={handleiin} className="input" 
-				value={iin} type="number" />
-
-				<label className="label">Governmental ID number</label>
-				<input onChange={handleGovId} className="input" 
-				value={govid} type="number" />
-
-				<label className="label">Contact number</label>
-				<input onChange={handleContactn} className="input"
-				value={contactn} type="number" />
-
-				<label className="label">Department ID</label>
-				<input onChange={handleDepid} className="input"
-				value={depid} type="number" />
-
-				<label className="label">Specialization details ID</label>
-				<input onChange={handleSpecid} className="input"
-				value={specid} type="number" />
-
-				<label className="label">Experience in years</label>
-				<input onChange={handleExper} className="input"
-				value={exper} type="number" />
-
-				<label className="label">Upload a photo</label>
-				<input type="file" name='file'
-				onChange={handlePhoto}/>
-
-				<label className="label">Category</label>
-				<input onChange={handleCategory} className="input"
-				value={category} type="text" />
-
-				<label className="label">Price of the appointment (Tenge)</label>
-				<input onChange={handlePrice} className="input"
-				value={price} type="number" />
-
-				<label className="label">Degree/education</label>	
-				<select onChange={handleDegree} value={degree}>	
+					onChange={(date:Date) => setDbirth(date)} />
+				</div>
+				<div>
+					<img src={BackFon} />
+				</div>
+			</div>
+			
+			<div class="container">
+				<div>
+					<label className="label">Email</label>
+					<input onChange={handleEmail} className="input"
+					value={email} type="email" />
+				</div>
+				<div>
+					<label className="label-c">Upload a photo</label>
+					<input type="file" name='file'
+					onChange={handlePhoto}/>
+				</div>
+			</div>
+			<div class="container">
+				<div>
+					<label className="label">Department ID</label>
+					<input onChange={handleDepid} className="input"
+					value={depid} type="number" />
+				</div><div>
+					<label className="label">Address</label>
+					<input onChange={handleAddress} className="input"
+					value={address} type="text" />
+				</div>
+			</div>
+			<div class="container">
+				<div>
+					<label className="label">IIN number</label>
+					<input maxLength={12} minLength={12}
+					onChange={handleiin} className="input" 
+					value={iin} type="number" />
+				</div><div>
+					<label className="label">Governmental ID number</label>
+					<input onChange={handleGovId} className="input" 
+					value={govid} type="number" />
+				</div>
+			</div>
+			<div class="container">
+				<div>
+					<label className="label">Contact number</label>
+					<input onChange={handleContactn} className="input"
+					value={contactn} type="number" />
+				</div><div>
+					<label className="label">Price of the appointment (Tenge)</label>
+					<input onChange={handlePrice} className="input"
+					value={price} type="number" />
+				</div>
+			</div>
+			<div class="container">
+				<div>
+					<label className="label">Category</label>
+					<input onChange={handleCategory} className="input"
+					value={category} type="text" />
+				</div><div>
+					<label className="label">Specialization details ID</label>
+					<input onChange={handleSpecid} className="input"
+					value={specid} type="number" />
+				</div>
+			</div>
+			<div class="container">
+				<div>
+					<label className="label">Experience in years</label>
+					<input onChange={handleExper} className="input"
+					value={exper} type="number" />
+				</div><div>
+					<label className="label">Degree/education</label>	
+					<select
+					onChange={handleDegree} 
+					value={degree}
+					>	
 					<option>...</option>
 					<option>Master's Degree</option>
 					<option>PhD</option>
-				</select>
-
-				<label className="label">Email</label>
-				<input onChange={handleEmail} className="input"
-				value={email} type="email" />
-
-				<label className="label">Address</label>
-				<input onChange={handleAddress} className="input"
-				value={address} type="text" />
-
-				<label className="label">Rating (a number in range from 0 to 10)</label>
-				<input onChange={handleRating} className="input" min={1} max={10} value={rating} type="number" />
-				
-				<label className="label">Password</label>
-				<input onChange={handlePassword} className="input"
-				value={password} type="password" />
-
-				<div className="messages">
-					{errorMessage()}
-					{successMessage()}
+					</select>
 				</div>
+			</div>
 
-				<button onClick={handleSubmit} className="btn" type="submit">Register</button>
-			</section>
+			
+			{}
+			<div className="messages">
+				{errorMessage()}
+				{successMessage()}
+			</div>
+
+			<button onClick={handleSubmit} className="button" type="submit">
+			Register
+			</button>
+		</section>
+	</section>
 		</div>
 	);
 }

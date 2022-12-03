@@ -65,13 +65,19 @@ app.post("/register/doctor", async (req, res) => {
         console.log("Doctor info received");
         const {dbirth, iin, govid, name, surname, midname, contactn, depid, specid, exper, photo, category, price, degree, rating, address, hpurl } = req.body;
         
-        // pool.query(" ")
-        hpurl = "/doctor/";
+        //hpurl = "/doctor/";
         // scheduledetails;
-        pool.query("INSERT INTO doctor (dbirth, iin, govid, name, surname, midname, contactn, depid, specid, exper, photo, category, price, scheduledetails, degree, rating, address, hpurl) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18)",
-            [dbirth, iin, govid, name, surname, midname, contactn, depid, specid, exper, photo, category, price, scheduledetails, degree, rating, address, hpurl],
-            async (error) => {
+        pool.query("INSERT INTO doctor (dbirth, iin, govid, name, surname, midname, contactn, depid, specid, exper, photo, category, price, degree, rating, address, hpurl) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17) RETURNING id",
+            [dbirth, iin, govid, name, surname, midname, contactn, depid, specid, exper, photo, category, price, degree, rating, address, hpurl],
+            async (error, result) => {
                 if (!error) {
+                    temp_hpurl = "/doctor/" + result.rows[0].id;
+                    pool.query("UPDATE doctor SET hpurl = $1 WHERE iin = $2", [temp_hpurl, iin],
+                    async(err) => {
+                        if(err) {
+                            res.json({err:err});
+                        }
+                    });
                     const password = Math.random().toString(36).slice(2, 10);
                     pool.query("INSERT INTO auth (username, password, role) VALUES($1, $2, 'doctor')", [iin, password], (err, result) => {
                         if (err) {
