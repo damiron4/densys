@@ -13,7 +13,7 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import BackFon from './image/BackFon.jpg';
 
 export default function Form() {
-const {id} = useParams();
+const {ht} = useParams();
 const [contacts, setContacts] = useState(data);
 const[timeSlots, setTimeSlots] = React.useState([]);
 const createTimeSlots = (fromTime, toTime) =>{
@@ -25,7 +25,6 @@ const createTimeSlots = (fromTime, toTime) =>{
     arr.push(new moment(startTime).format('hh:mm A'));
     startTime.add(30,'minutes');
   }
-  
   return arr;
 };
 React.useEffect(() =>{
@@ -35,12 +34,13 @@ React.useEffect(() =>{
 return (
 <div className="background">
   <div className='body' class="box-body">
-    <p>{id}</p>
+    <p>{ht}</p>
     <Row xs={0} md={5} className="g-4">
     {contacts.map((contact,index)=>  
+        
         <Col>
         <Card style={{ width: '18rem' }}>
-            <Card.Img variant="top" src={BackFon}  width = {0} height = {300} />
+            <Card.Img variant="top" src={BackFon}  width = {200} height = {300} />
             <Card.Body>
                 <Card.Title>{contact.name}</Card.Title>
                 <Card.Text>
