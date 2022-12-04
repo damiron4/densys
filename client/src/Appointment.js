@@ -34,9 +34,7 @@ export default function Appointment() {
 	}
 	return arr;
 	};
-	React.useEffect(() =>{
-	setTimeSlots(createTimeSlots('08:00', '12:00'));          //set time
-	}, []);	
+
 	const [submitted, setSubmitted] = useState(false);
 	const [error, setError] = useState(false);
 	const [items, setItems] = useState({});
@@ -47,10 +45,17 @@ export default function Appointment() {
 	  };
 
 	useEffect(()=> {
+		setTimeSlots(createTimeSlots('08:00', '12:00'));          //set time
+
 		var element = document.getElementsByName('searchby');
 		element[0].checked = true;
 		setSearchBy("doctor");
 		handleSearch();
+
+		Axios.get("http://localhost:5000/doctor").then((response) => {
+        	setContacts(response.data);
+    	});
+
 	}, []);
 	
 
@@ -114,8 +119,6 @@ const handleOnSearch = (string, results) => {
   const formatResult = (item) => {
     return (
       <>
-        {/* <span style={{ display: 'block', textAlign: 'left' }}>id: {item.id}</span>
-        <span style={{ display: 'block', textAlign: 'left' }}>name: {item.name}</span> */}
 		{item.name}
       </>
     )
@@ -171,7 +174,7 @@ return (
 				{contacts.map((contact,index)=>  
 					// {contact.specid===ht ? (
 					<Col>
-					<Card style={{ width: '18rem' }}>
+					<Card style={{ width: '18rem'}}>
 						<Card.Img variant="top" src={BackFon}  width = {0} height = {300} />
 						<Card.Body>
 							<Card.Title>{contact.name}</Card.Title>
