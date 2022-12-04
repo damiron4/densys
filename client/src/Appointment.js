@@ -21,7 +21,7 @@ import Popup from './popup';
 export default function Appointment() {
 	const [contacts, setContacts] = useState(data);
 	const[buttonPopup,setButtonPopup]=useState(false);
-
+	
 	const [searchby, setSearchBy] = useState();
 
 	let navigate = useNavigate();
@@ -176,7 +176,7 @@ return (
 			<div className='body' class="box-body">
 				<Row xs={0} md={5} className="g-4">
 				{contacts.map((contact)=>  
-					// {contact.specid===ht ? (
+					(contact.specid=="003" ? (
 					<Col>
 					<Card style={{ width: '18rem'}}>
 						<Card.Img variant="top" src={BackFon}  width = {0} height = {300} />
@@ -202,6 +202,8 @@ return (
 						</Card.Body>
 						</Card>
 					</Col>
+					):null)
+
 					)}
 				</Row>
 				<Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
@@ -209,29 +211,6 @@ return (
 				</Popup>
 			</div>
 
-			{/* <div className="appointment">
-				<table>
-					<thead>
-						<tr>
-							<th>Doctor</th>
-							<th>Specialization</th>
-							<th>Procedure</th>
-							<th>Link</th>
-						</tr>
-					</thead>
-					<tbody>
-					{contacts.map((contact)=>  
-					<tr>
-						<td>{contact.name}</td>
-						<td>{contact.specid}</td>
-						<td>{contact.procedure}</td>
-						<td><button type="button"><Link style={linkStyle} className="text-line" to={"/appointment-form/"+contact.specid}>Link</Link></button></td>
-					</tr>
-					
-					)}
-					</tbody>
-				</table>
-			</div> */}
 
 			<div className="messages">
 				{errorMessage()}
