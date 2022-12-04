@@ -99,6 +99,8 @@ const handleOnSearch = (string, results) => {
     // console.log(string, results);
   }
 
+
+
   const handleOnHover = (result) => {
     // the item hovered
     // console.log(result)
@@ -180,7 +182,6 @@ return (
 			<div className='body' class="box-body">
 				<Row xs={0} md={5} className="g-4">
 				{contacts.map((contact)=>  
-					// (contact.id==index ? (
 					<Col>
 						<Card style={{ width: '18rem'}}>
 						<Card.Img variant="top" src={BackFon}  width = {0} height = {300} />
@@ -206,7 +207,6 @@ return (
 						</Card.Body>
 						</Card>
 					</Col>
-					// ):null)
 
 					)}
 				</Row>
