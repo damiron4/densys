@@ -14,10 +14,14 @@ import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Dropdown from 'react-bootstrap/Dropdown';
+import Popup from './popup';
+
+
 
 export default function Appointment() {
 	const [contacts, setContacts] = useState(data);
-	
+	const[buttonPopup,setButtonPopup]=useState(false);
+
 	const [searchby, setSearchBy] = useState();
 
 	let navigate = useNavigate();
@@ -191,7 +195,7 @@ return (
 							</Dropdown.Toggle>
 							<Dropdown.Menu>
 							{timeSlots.map((item,index) => (
-								<Dropdown.Item href="#/action-1">{timeSlots [index+1]  ? timeSlots[index] +  ' - ' + timeSlots[index + 1] + '    ': ''}</Dropdown.Item>
+								<Dropdown.Item onClick={()=>setButtonPopup(true)} href="#/action-1">{timeSlots [index+1]  ? timeSlots[index] +  ' - ' + timeSlots[index + 1] + '    ': ''}</Dropdown.Item>
 							))}
 							</Dropdown.Menu>
 							</Dropdown>
@@ -200,6 +204,9 @@ return (
 					</Col>
 					)}
 				</Row>
+				<Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
+					<h3>My popup</h3>
+				</Popup>
 			</div>
 
 			{/* <div className="appointment">
