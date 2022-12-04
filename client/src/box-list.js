@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Link } from "react-router-dom";
+import React, { useState, Fragment } from 'react';
+import { Link, useParams } from "react-router-dom";
 
 import "react-datepicker/dist/react-datepicker.css";
 import moment from 'moment'
@@ -9,13 +9,12 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Dropdown from 'react-bootstrap/Dropdown';
 
-import CrazyFrog from './crazy_frog_doctor.jfif';
-import DoctorStrange from './Doctor_Strange.jfif';
-import NurseJoy from './nurse_Joy.jfif';
-import Tenma from './Tenma.jfif';
+import Header from "./components/header";
+import Footer from "./components/footer";
+import BackFon from './image/BackFon.jpg';
 
 export default function Form() {
-
+const {id} = useParams();
 
 const[timeSlots, setTimeSlots] = React.useState([]);
 const createTimeSlots = (fromTime, toTime) =>{
@@ -35,12 +34,15 @@ React.useEffect(() =>{
 }, []);
   
 return (
-
-  <div>
-    <Row xs={0} md={4} className="g-4">
+<div className="background">
+    <Header/>
+  <div className='body' class="box-body">
+    
+    <p>{id}</p>
+    <Row xs={0} md={5} className="g-4">
         <Col>
         <Card style={{ width: '18rem' }}>
-            <Card.Img variant="top" src={CrazyFrog}  width = {200} height = {300} />
+            <Card.Img variant="top" src={BackFon}  width = {0} height = {300} />
             <Card.Body>
                 <Card.Title>Crazy Frog</Card.Title>
                 <Card.Text>
@@ -64,9 +66,10 @@ return (
             </Card>
         </Col>
 
+
         <Col>
         <Card style={{ width: '18rem'}}>
-            <Card.Img variant="top" src={DoctorStrange}  width = {200} height = {300}/>
+            <Card.Img variant="top" src={BackFon}  width = {200} height = {300}/>
             <Card.Body>
                 <Card.Title>Doctor name</Card.Title>
                 <Card.Text >
@@ -88,7 +91,7 @@ return (
             
             <Col>
             <Card style={{ width: '18rem' }}>
-            <Card.Img variant="top" src={NurseJoy}  width = {200} height = {300}/>
+            <Card.Img variant="top" src={BackFon}  width = {200} height = {300}/>
             <Card.Body>
                 <Card.Title>Doctor name</Card.Title>
                 <Card.Text>
@@ -110,7 +113,7 @@ return (
 
         <Col>
             <Card style={{ width: '18rem' }}>
-            <Card.Img variant="top" src={Tenma}  width = {200} height = {300}/>
+            <Card.Img variant="top" src={BackFon}  width = {200} height = {300}/>
             <Card.Body>
                 <Card.Title>Doctor name</Card.Title>
                 <Card.Text>
@@ -129,9 +132,9 @@ return (
             </Card.Body>
             </Card>
             </Col>
-        ... <Col>
+        <Col>
         <Card style={{ width: '18rem' }}>
-            <Card.Img variant="top" src={Tenma} width = {200} height = {300} />
+            <Card.Img variant="top" src={BackFon} width = {200} height = {300} />
             <Card.Body>
                 <Card.Title>Doctor name</Card.Title>
                 <Card.Text>
@@ -153,7 +156,7 @@ return (
 
         <Col>
         <Card style={{ width: '18rem' }}>
-            <Card.Img variant="top" src={CrazyFrog} />
+            <Card.Img variant="top" src={BackFon} />
             <Card.Body>
                 <Card.Title>Doctor name</Card.Title>
                 <Card.Text>
@@ -175,7 +178,7 @@ return (
 
         <Col>
         <Card style={{ width: '18rem' }}>
-            <Card.Img variant="top" src={CrazyFrog} />
+            <Card.Img variant="top" src={BackFon} />
             <Card.Body>
                 <Card.Title>Doctor name</Card.Title>
                 <Card.Text>
@@ -191,41 +194,12 @@ return (
                 <Dropdown.Item href="#/action-3">09:00 - 09:30</Dropdown.Item>
             </Dropdown.Menu>
             </Dropdown>
-            </Card.Body>
-            </Card>
-        </Col>
-        <Col>
-        <Card style={{ width: '18rem' }}>
-            <Card.Img variant="top" src={CrazyFrog} />
-            <Card.Body>
-                <Card.Title>Doctor name</Card.Title>
-                <Card.Text>
-                Specialization: blablalba
-                </Card.Text>
-                <Card.Link href="#">Make appointment</Card.Link>
-            </Card.Body>
-            </Card>
-        </Col>
-        <Col>
-        <Card style={{ width: '18rem' }}>
-            <Card.Img variant="top" src={CrazyFrog} />
-            <Card.Body>
-                <Card.Title>Doctor name</Card.Title>
-                <Card.Text>
-                Specialization: blablalba
-                </Card.Text>
-                <Card.Link href="#">Make appointment</Card.Link>
             </Card.Body>
             </Card>
         </Col>
     </Row>
-    
-  <footer class="site-footer">
-      <div class="con">
-        <p>© A-Clinic</p>
-        <p>Welcome to A-Clinic, Health Care website</p>
-      </div>
-    </footer>
+    </div>
+    <Footer/>
   </div>
 );
 }

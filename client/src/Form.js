@@ -4,12 +4,12 @@ import { Link , useParams} from "react-router-dom";
 import "react-datepicker/dist/react-datepicker.css";
 
 export default function Form() {
-const {id} = useParams()
+const {id} = useParams();
 
 	
 return (
 	
-	<div>
+	<div className="background">
 	<header className="site-header">
 		<div class="container">
 			<p><ht class="back-ht">A-Clinic</ht></p>

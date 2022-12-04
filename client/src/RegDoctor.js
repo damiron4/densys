@@ -19,7 +19,7 @@ export default function RegDoctor() {
 	}, [])
 
 	return (
-		<div>
+		<div className="background">
 			<Header/>
 			{ role === "admin" && <DoctorRegistrationForm />}
 			{ role !== "admin" && <AccessDenied />}

@@ -140,23 +140,51 @@ app.get("/doctor", async (req, res) => {
     try {
         const allInfo = await pool.query("SELECT * FROM doctor");
         res.json(allInfo.rows);
-    } catch (err) {
-        console.error(err.message);
+    } catch (error) {
+        console.error(error.message);
     }
 });
 
 app.get("/doctor/search", async (req, res) => {
     try {
-        const doctorNames = await pool.query("SELECT (name, surname) FROM doctor");
-        res.json(allInfo.rows);
-        let i = 0;
-        for (doctor of doctorNames) {
-            doctorNames.id = i;
-        }
+        pool.query("SELECT (id, name, surname) FROM doctor", (err, result) => {
+            var doctorNames = [];
+            let i = 0;
+            for (x of result.rows){
+                doctor = x.row.replaceAll(","," ").replace("(","").replace(")","").split(" ");
+                doctorNames.push({
+                    id: parseInt(doctor[0]),
+                    name: doctor[1] + " " + doctor[2]
+                })
+                i++;
+            }
+            res.send(doctorNames);
+        });
     } catch (error) {
-        console.error(err.message);        
+        console.error(error.message);        
     }
 })
+
+app.get("/doctor/search/result", async (req, res) => {
+    try {
+        pool.query("SELECT (id, name, surname) FROM doctor", (err, result) => {
+            var doctorNames = [];
+            let i = 0;
+            for (x of result.rows){
+                doctor = x.row.replaceAll(","," ").replace("(","").replace(")","").split(" ");
+                doctorNames.push({
+                    id: parseInt(doctor[0]),
+                    name: doctor[1] + " " + doctor[2]
+                })
+                i++;
+            }
+            res.send(doctorNames);
+        });
+    } catch (error) {
+        console.error(error.message);        
+    }
+})
+
 
 
 app.get("/patient/:id", async (req, res) => {

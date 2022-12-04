@@ -21,7 +21,7 @@ export default function RegPatient() {
 
 
 	return (
-		<div>
+		<div className="background">
 			<Header/>
 			{ role == "admin" && <PatientRegistrationForm />}
 			{ role != "admin" && <AccessDenied />}
