@@ -13,6 +13,13 @@ import BackFon from './image/BackFon.jpg';
 export default function MainPage() {
     const [contacts, setContacts] = useState([]);
 
+	useEffect(() =>{
+		Axios.get("http://localhost:5000/departments").then((response) => {
+			setContacts(response.data);
+		});
+	
+	}, []);
+
 	return (
 
 		<div className="background">
@@ -22,7 +29,6 @@ export default function MainPage() {
 				{contacts.map((contact)=>  
 					<Col>
 						<Card style={{ width: '18rem', height: '21rem'}}>
-						<Card.Img variant="top" src={BackFon}  width = {0} height = {300} />
 						<Card.Body>
 							<Card.Title>{contact.name}</Card.Title>
 							<Card.Text>
