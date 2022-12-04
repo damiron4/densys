@@ -1,4 +1,5 @@
 import { useState , Fragment} from 'react';
+import { Link } from "react-router-dom";
 
 import "react-datepicker/dist/react-datepicker.css";
 import Axios from 'axios';
@@ -18,7 +19,10 @@ export default function Appointment() {
 	const [error, setError] = useState(false);
 	const [items, setItems] = useState({});
 	
-	
+	const linkStyle = {
+		textDecoration: "none",
+		color: 'black'
+	  };
 
 	useEffect(()=> {
 		handleSearch();
@@ -143,7 +147,15 @@ return (
 						</tr>
 					</thead>
 					<tbody>
-					{contacts.map((contact)=>  contact.id)}
+					{contacts.map((contact)=>  
+					<tr>
+						<td>{contact.name}</td>
+						<td>{contact.specid}</td>
+						<td>{contact.procedure}</td>
+						<td><button type="button"><Link style={linkStyle} className="text-line" to={"/appointment-form/"+contact.specid}>Link</Link></button></td>
+					</tr>
+					
+					)}
 					</tbody>
 				</table>
 			</div>
