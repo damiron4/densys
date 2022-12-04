@@ -28,7 +28,7 @@ ht{
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: hsl(0, 1%, 26%, 0.7);
+  background-color: hsl(0, 1%, 26%, 0.75);
 }
 .popup-inner{
   position: relative;
