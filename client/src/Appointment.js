@@ -21,6 +21,8 @@ import Popup from './popup';
 export default function Appointment() {
 	const [contacts, setContacts] = useState(data);
 	const[buttonPopup,setButtonPopup]=useState(false);
+	// const[index,setIndex]=useState(-1);
+
 
 	const [searchby, setSearchBy] = useState();
 
@@ -111,8 +113,9 @@ const handleOnSearch = (string, results) => {
     console.log(item);
 	if (searchby == "doctor") {
 		const url = `/box-list/${item.id}`;
-		navigate(url);
+		// navigate(url);
 	}
+	// setIndex(item.id);
 	
   }
 
@@ -175,10 +178,9 @@ return (
 
 			<div className='body' class="box-body">
 				<Row xs={0} md={5} className="g-4">
-				{contacts.map((contact,index)=>  
-					// {contact.specid===ht ? (
+				{contacts.map((contact)=>  
 					<Col>
-					<Card style={{ width: '18rem'}}>
+						<Card style={{ width: '18rem'}}>
 						<Card.Img variant="top" src={BackFon}  width = {0} height = {300} />
 						<Card.Body>
 							<Card.Title>{contact.name}</Card.Title>
