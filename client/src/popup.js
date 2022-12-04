@@ -61,7 +61,10 @@ export default function Popup(props){
 					value={contactn} type="number" />
 				</div>
                 <button onClick={()=>props.setTrigger(false)} className="button-close" type="submit">
-			        Register
+			        Close
+			    </button>
+                <button onClick={()=>props.setTrigger(false)} className="button" type="submit">
+			    Register
 			    </button>
                 {props.children}
             </div>

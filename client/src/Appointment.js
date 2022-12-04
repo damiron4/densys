@@ -179,6 +179,7 @@ return (
 			<div className='body' class="box-body">
 				<Row xs={0} md={5} className="g-4">
 				{contacts.map((contact)=>  
+					// {contact.specid===ht ? (
 					<Col>
 						<Card style={{ width: '18rem'}}>
 						<Card.Img variant="top" src={BackFon}  width = {0} height = {300} />
