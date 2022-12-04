@@ -7,8 +7,8 @@ import data from "./mock-data.json";
 
 
 export default function DoctorMP(){
-  const [submitted, setSubmitted] = useState(false);
-  const [error, setError] = useState(false);
+  // const [submitted, setSubmitted] = useState(false);
+  //const [error, setError] = useState(false);
   const [contacts, setContacts] = useState(data);
   const [addFormData, setAddFormData] = useState({
     name: "",
@@ -77,23 +77,23 @@ export default function DoctorMP(){
       depid: editFormData.depid,
       specid: editFormData.specid,
     };
-    try{
-      const response = await fetch(`http://localhost:5000/doctor/${editContactId.id}`, {
-        method: "PUT",
-        headers: {"Content-Type": "application/json"},
-        editFormData: JSON.stringify(editFormData)
-      });
-      const jsonData = await response.json();
-      console.log(jsonData);
-      if (!jsonData.err) {
-        setError(true);
-        console.log(jsonData.err);
-      } else {
-        setSubmitted(true);
-      }
-    } catch(error) {
-      console.error(error.message);
-    }
+    // try{
+    //   const response = await fetch(`http://localhost:5000/doctor/${editContactId.id}`, {
+    //     method: "PUT",
+    //     headers: {"Content-Type": "application/json"},
+    //     editFormData: JSON.stringify(editFormData)
+    //   });
+    //   const jsonData = await response.json();
+    //   console.log(jsonData);
+    //   if (!jsonData.err) {
+    //     setError(true);
+    //     console.log(jsonData.err);
+    //   } else {
+    //     setSubmitted(true);
+    //   }
+    // } catch(error) {
+    //   console.error(error.message);
+    // }
     const newContacts = [...contacts];
 
     const index = contacts.findIndex((contact) => contact.id === editContactId);

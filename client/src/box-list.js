@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link,useParams } from "react-router-dom";
 
 import "react-datepicker/dist/react-datepicker.css";
 import moment from 'moment'
 import data from "./mock-data.json";
+import Axios from 'axios';
 
 import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
@@ -15,7 +16,7 @@ import BackFon from './image/BackFon.jpg';
 export default function Form() {
 const {ht} = useParams();
 const [contacts, setContacts] = useState(data);
-const[timeSlots, setTimeSlots] = React.useState([]);
+const[timeSlots, setTimeSlots] = useState([]);
 const createTimeSlots = (fromTime, toTime) =>{
   let startTime= moment(fromTime, 'hh:mm A');
   let endTime = moment(toTime, 'hh:mm A');
@@ -27,8 +28,15 @@ const createTimeSlots = (fromTime, toTime) =>{
   }
   return arr;
 };
-React.useEffect(() =>{
-  setTimeSlots(createTimeSlots('08:00', '12:00'));          //set time
+
+useEffect(() =>{
+    setTimeSlots(createTimeSlots('08:00', '12:00'));          //set time
+
+    Axios.get("http://localhost:5000/doctor").then((response) => {
+        setContacts(response.data);
+        console.log("Data rec");
+    });
+
 }, []);
   
 return (
