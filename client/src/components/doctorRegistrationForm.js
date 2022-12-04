@@ -121,7 +121,7 @@ export default function DoctorRegistrationForm() {
 
 	const handleSubmit = async e => {
 		e.preventDefault();
-		if (name === '' || password === ''|| surname === '' || midname === '' || iin === '' || govid === '' || address === '' || degree === '...' || photo === '') {
+		if (name === '' || surname === '' || midname === '' || iin === '' || govid === '' || address === '' || degree === '...' || photo === '') {
 		setError(true);
 		} else {		
 			try {

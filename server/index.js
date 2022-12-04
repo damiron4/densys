@@ -208,6 +208,7 @@ app.get("/doctor/:id", async (req, res) => {
 });
 
 app.put("/patient/:id", async (req, res) => {
+    console.log("New info is received");
     try {
         const id = req.params.id;
         const { dbirth, iin, govid, name, surname, midname, bloodg, emerg, contactn, email, address, mstatus} = req.body;
@@ -223,6 +224,7 @@ app.put("/patient/:id", async (req, res) => {
 });
 
 app.put("/doctor/:id", async (req, res) => {
+    console.log("New info is received");
     try {
         const id = req.params.id;
         //add iin

@@ -87,7 +87,7 @@ export default function PatientRegistrationForm() {
     
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (name === '' || password === ''|| surname === '' || midname === '' || dbirth === '' || iin === '' || contactn === '' || emerg === '' || govid === '' || bloodg === '...' || mstatus === '...' || address === '' ) {
+        if (name === '' || surname === '' || midname === '' || dbirth === '' || iin === '' || contactn === '' || emerg === '' || govid === '' || bloodg === '...' || mstatus === '...' || address === '' ) {
         setError(true);
         } else {
             setSubmitted(true);

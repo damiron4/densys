@@ -67,7 +67,7 @@ export default function DoctorMP(){
     event.preventDefault();
 
     const editedContact = {
-      id: editContactId,
+      id: editContactId.id,
       name: editFormData.name,
       surname: editFormData.surname,
       midname: editFormData.midname,
@@ -78,7 +78,7 @@ export default function DoctorMP(){
       specid: editFormData.specid,
     };
     try{
-      const response = await fetch("http://localhost:5000/doctor", {
+      const response = await fetch(`http://localhost:5000/doctor/${editContactId.id}`, {
         method: "PUT",
         headers: {"Content-Type": "application/json"},
         editFormData: JSON.stringify(editFormData)
