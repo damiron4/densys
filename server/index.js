@@ -239,7 +239,14 @@ app.get("/doctor/search/result", async (req, res) => {
     }
 })
 
-
+app.get("/departments", async (req, res) => {
+    try {
+        const allInfo = await pool.query("SELECT * FROM department");
+        res.json(allInfo.rows);
+    } catch (error) {
+        console.error(error.message);        
+    }
+})
 
 app.get("/patient/:id", async (req, res) => {
     try {

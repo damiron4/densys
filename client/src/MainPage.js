@@ -13,6 +13,13 @@ export default function MainPage() {
     const [contacts, setContacts] = useState([]);
     const[buttonPopup,setButtonPopup]=useState(false);
 
+	useEffect(() =>{
+		Axios.get("http://localhost:5000/departments").then((response) => {
+			setContacts(response.data);
+		});
+	
+	}, []);
+
 	return (
 
 		<div className="background">

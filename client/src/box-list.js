@@ -34,7 +34,6 @@ useEffect(() =>{
 
     Axios.get("http://localhost:5000/doctor").then((response) => {
         setContacts(response.data);
-        console.log("Data rec");
     });
 
 }, []);
