@@ -5,7 +5,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import Axios from 'axios';
 import moment from 'moment'
 import { ReactSearchAutocomplete } from 'react-search-autocomplete'
-import data from "./mock-data.json";
+// import data from "./mock-data.json";
 import Header from "./components/header";
 import Footer from "./components/footer";
 import { Link } from "react-router-dom";
@@ -19,7 +19,7 @@ import Popup from './popup';
 
 
 export default function Appointment() {
-	const [contacts, setContacts] = useState(data);
+	const [contacts, setContacts] = useState([]);
 	const[buttonPopup,setButtonPopup]=useState(false);
 	const[index,setIndex]=useState(-1);
 
@@ -107,6 +107,16 @@ const handleOnSearch = (string, results) => {
   const handleOnSelect = (item) => {
     // the item selected
 	setIndex(item.id);
+	if (searchby == "doctor") {
+		Axios.get(`http://localhost:5000/doctor/${item.id}`).then((response) => {
+        	setContacts(response.data);
+    	});
+	} else if (searchby == "specialization") {
+		Axios.get(`http://localhost:5000/doctor/specialization/${item.id}`).then((response) => {
+        	setContacts(response.data);
+    	});
+	}
+	
 	
   }
 
@@ -170,7 +180,7 @@ return (
 			<div className='body' class="box-body">
 				<Row xs={0} md={5} className="g-4">
 				{contacts.map((contact)=>  
-					(contact.id==index ? (
+					// (contact.id==index ? (
 					<Col>
 						<Card style={{ width: '18rem'}}>
 						<Card.Img variant="top" src={BackFon}  width = {0} height = {300} />
@@ -196,7 +206,7 @@ return (
 						</Card.Body>
 						</Card>
 					</Col>
-					):null)
+					// ):null)
 
 					)}
 				</Row>

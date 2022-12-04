@@ -181,22 +181,13 @@ app.get("/specialization/search", async (req, res) => {
     }
 })
 
-app.get("/doctor/specialization/search", async (req, res) => {
-    const specid = req.params.specid;
+app.get("/doctor/specialization/:id", async (req, res) => {
     try {
-        pool.query("SELECT * FROM doctor WHERE specid = $1", [specid], (err, result) => {
-            var doctorNames = [];
-            let i = 0;
-            for (x of result.rows){
-                doctor = x.row.replaceAll(","," ").replace("(","").replace(")","").split(" ");
-                doctorNames.push({
-                    id: parseInt(doctor[0]),
-                    name: doctor[1] + " " + doctor[2]
-                })
-                i++;
-            }
-            res.send(doctorNames);
-        });
+        const specid = req.params.id;
+        console.log(specid);
+        const allInfo = await pool.query("SELECT * FROM doctor WHERE specid = $1", [specid]);
+        res.json(allInfo.rows);
+        // console.log(allInfo.fields);
     } catch (error) {
         console.error(error.message);        
     }
