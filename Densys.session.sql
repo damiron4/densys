@@ -69,8 +69,33 @@ CREATE TABLE DOCTOR(
     rating FLOAT DEFAULT 0 CHECK(Rating >= 0 and Rating <= 10),
     address VARCHAR(60),
     hpurl VARCHAR(100),
-    id SERIAL PRIMARY KEY
+    id SERIAL PRIMARY KEY,
+    FOREIGN KEY specid REFERENCES specialization(id)
 );
+
+--@block
+-- CREATE TABLE specialize (
+--     doctorid INT NOT NULL,
+--     specid INT NOT NULL,
+--     FOREIGN KEY doctorid REFERENCES doctor(id),
+--     FOREIGN KEY specid REFERENCES specialization(id)
+--     PRIMARY KEY (doctorid, specid)
+-- )
+
+CREATE TABLE specialization (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(30) NOT NULL,
+    description VARCHAR(144)    
+)
+
+
+
+CREATE TABLE appointment (
+
+)
+
+
+--@block
 
 
 -- -- -- Mstatus: Divorced, Married, Separated, Single, Widowed, Rather not say

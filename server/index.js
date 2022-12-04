@@ -149,6 +149,43 @@ app.get("/doctor/search", async (req, res) => {
     try {
         pool.query("SELECT (id, name, surname) FROM doctor", (err, result) => {
             var doctorNames = [];
+            for (x of result.rows){
+                doctor = x.row.replaceAll(","," ").replace("(","").replace(")","").split(" ");
+                doctorNames.push({
+                    id: parseInt(doctor[0]),
+                    name: doctor[1] + " " + doctor[2]
+                })
+            }
+            res.send(doctorNames);
+        });
+    } catch (error) {
+        console.error(error.message);        
+    }
+})
+
+app.get("/specialization/search", async (req, res) => {
+    try {
+        pool.query("SELECT (id, name) FROM specialization", (err, result) => {
+            var specializationNames = [];
+            for (x of result.rows){
+                specialization = x.row.replaceAll(","," ").replace("(","").replace(")","").split(" ");
+                specializationNames.push({
+                    id: parseInt(specialization[0]),
+                    name: specialization[1]
+                })
+            }
+            res.send(specializationNames);
+        });
+    } catch (error) {
+        console.error(error.message);        
+    }
+})
+
+app.get("/doctor/specialization/search", async (req, res) => {
+    const specid = req.params.specid;
+    try {
+        pool.query("SELECT * FROM doctor WHERE specid = $1", [specid], (err, result) => {
+            var doctorNames = [];
             let i = 0;
             for (x of result.rows){
                 doctor = x.row.replaceAll(","," ").replace("(","").replace(")","").split(" ");

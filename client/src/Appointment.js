@@ -28,7 +28,7 @@ export default function Appointment() {
 
 	let navigate = useNavigate();
 
-	const[timeSlots, setTimeSlots] = React.useState([]);
+	const[timeSlots, setTimeSlots] = useState([]);
 	const createTimeSlots = (fromTime, toTime) =>{
 	let startTime= moment(fromTime, 'hh:mm A');
 	let endTime = moment(toTime, 'hh:mm A');
@@ -75,13 +75,9 @@ export default function Appointment() {
 					setItems(response.data);
 					});	
 				} else if (element[i].value == "specialization") {
-					// Axios.get("http://localhost:5000/specialization/search").then((response) => {
-					// setItems(response.data);
-					// });
-					setItems([
-						{id:0, name: "1"},
-						{id:1, name: "2"}
-					]);
+					Axios.get("http://localhost:5000/specialization/search").then((response) => {
+					setItems(response.data);
+					});
 				} else if (element[i].value == "procedure") {
 					// Axios.get("http://localhost:5000/procedure/search").then((response) => {
 					// setItems(response.data);
@@ -112,12 +108,7 @@ const handleOnSearch = (string, results) => {
 
   const handleOnSelect = (item) => {
     // the item selected
-    console.log(item);
-	if (searchby == "doctor") {
-		const url = `/box-list/${item.id}`;
-		// navigate(url);
-	}
-	 setIndex(item.id);
+	setIndex(item.id);
 	
   }
 
