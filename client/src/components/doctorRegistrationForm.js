@@ -183,7 +183,7 @@ export default function DoctorRegistrationForm() {
 					<label className="label">Name</label>
 					<input onChange={handleName} className="input"
 					value={name} type="text" />
-
+				
 					<label className="label">Surname</label>
 					<input onChange={handleSurName} className="input"
 					value={surname} type="text" />

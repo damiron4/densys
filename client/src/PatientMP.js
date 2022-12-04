@@ -6,7 +6,7 @@ import EditableRowP from "./EditableRowP";
 import data from "./mock-data.json";
 
 
-export default function DoctorMP(){
+export default function PatientMP(){
   const [contacts, setContacts] = useState(data);
   const [addFormData, setAddFormData] = useState({
     name: "",
@@ -126,9 +126,9 @@ export default function DoctorMP(){
   };  
 
   
-const getDoctors = async () => {
+const getPatients = async () => {
   try {
-    const response = await fetch("http://localhost:5000/doctor");
+    const response = await fetch("http://localhost:5000/patient");
     const jsonData = await response.json();
 
     setContacts(jsonData);
@@ -139,7 +139,7 @@ const getDoctors = async () => {
 };
 
 useEffect(() => {
-  getDoctors();
+  getPatients();
 }, []);
 
   return(
