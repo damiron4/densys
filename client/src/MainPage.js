@@ -2,16 +2,17 @@
 import { useEffect, useState } from 'react';
 import Footer from "./components/footer";
 import { useNavigate } from 'react-router-dom';
+import Axios from 'axios';
 import Dropdown from 'react-bootstrap/Dropdown';
 import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import {Link} from 'react-router-dom';
-import LoginPopup from './loginPopup';
+import LoginPopup from './components/loginPopup';
 
 export default function MainPage() {
     const [contacts, setContacts] = useState([]);
-    const[buttonPopup,setButtonPopup]=useState(false);
+    const [buttonPopup, setButtonPopup] = useState(false);
 
 	useEffect(() =>{
 		Axios.get("http://localhost:5000/departments").then((response) => {

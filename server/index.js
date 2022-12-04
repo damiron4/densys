@@ -10,7 +10,7 @@ const app = express();
 app.use(express.json());
 app.use(cors({
     origin: ["http://localhost:3000"],
-    methods: ["GET", "POST"],
+    methods: ["GET", "POST", "DELETE"],
     credentials: true
     })
 );
@@ -110,15 +110,29 @@ app.get("/login", (req, res) => {
     }
 });
 
+app.delete('/logout', (req, res) => {
+    if (req.session) {
+        req.session.destroy(err => {
+            if (err) {
+                res.status(400).send('Unable to log out')
+            } else {
+                res.send('Logout successful')
+            }
+        });
+    } else {
+        res.end();
+    }
+  })
+
 app.post("/login", async (req, res) => {
     // const { username, password } = req.body;
     try {
         console.log("Login info received");
-        const { username, password, role } = req.body;
-        const result = await pool.query("SELECT * FROM auth WHERE username = $1 and password = $2 and role = $3;", [username, password, role])
+        const { username, password, userType } = req.body;
+        const result = await pool.query("SELECT * FROM auth WHERE username = $1 and password = $2 and role = $3;", [username, password, userType])
         if (result.rowCount != 0) {
             req.session.user = result.rows[0];
-            res.send({message: "Login successful"});
+            res.send({message: "Login successful."});
         } else {
             res.send({ message: "Wrong username or password." });
         }
