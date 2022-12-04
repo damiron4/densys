@@ -30,6 +30,21 @@ ht{
   align-items: center;
   background-color: hsl(0, 1%, 26%, 0.75);
 }
+.button2 {
+  background-color: rgba(177, 55, 55, 0);
+  color: rgb(255, 0, 0); 
+  width: 100px;
+  position: absolute;
+  top: 36px;
+  right: 16px;
+  border: 0;
+}
+
+.button2:hover {
+  background-color: #464ee9;
+  width: 100px;
+  color: white;
+}
 .popup-inner{
   position: relative;
   padding: 32px;
@@ -111,7 +126,7 @@ ht{
   margin-right: 10px;
 }
 .input-l{
-  width:15%;
+  width:60%;
   display: flex;
   margin: auto;
   font-size: large;

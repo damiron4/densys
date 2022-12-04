@@ -1,28 +1,33 @@
 
 import { useEffect, useState } from 'react';
-import Axios from "axios";
-import Header from "./components/header";
 import Footer from "./components/footer";
 import { useNavigate } from 'react-router-dom';
 import Dropdown from 'react-bootstrap/Dropdown';
 import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
-import BackFon from './image/BackFon.jpg';
+import {Link} from 'react-router-dom';
+import LoginPopup from './loginPopup';
 
 export default function MainPage() {
     const [contacts, setContacts] = useState([]);
+    const[buttonPopup,setButtonPopup]=useState(false);
 
 	return (
 
 		<div className="background">
-			<Header/>
+                <header className="site-header">
+                    <div className="container">
+                    <p><ht className="back-ht"><Link className="text-link" to="/">A-Clinic</Link></ht></p>
+                    <p><Link className="text-link" to="/">Main Page</Link></p>
+                    <button class="button2" onClick={()=>setButtonPopup(true)}>Login</button>
+                    </div>
+                </header>
 				<section class= "body">
                 <Row xs={0} md={5} className="g-4">
 				{contacts.map((contact)=>  
 					<Col>
 						<Card style={{ width: '18rem', height: '21rem'}}>
-						<Card.Img variant="top" src={BackFon}  width = {0} height = {300} />
 						<Card.Body>
 							<Card.Title>{contact.name}</Card.Title>
 							<Card.Text>
@@ -37,7 +42,9 @@ export default function MainPage() {
 
 					)}
 				</Row>
-
+                <LoginPopup trigger={buttonPopup} setTrigger={setButtonPopup}>
+					<h3>My popup</h3>
+				</LoginPopup>
 
 				</section>
 			<Footer/>

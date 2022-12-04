@@ -4,7 +4,7 @@ import Header from "./components/header";
 import Footer from "./components/footer";
 import { useNavigate } from 'react-router-dom';
 
-export default function LoginPage() {
+export default function LoginPopup(props) {
 	const [username, setUsername] = useState('');
 	const [password, setPassword] = useState('');
 	// TODO: ROLE SELECTION BUTTONS (FRONT)
@@ -85,11 +85,9 @@ export default function LoginPage() {
 		</div>
 		);
 	};
-	return (
-
-		<div className="background">
-			<Header/>
-				<section class= "body">
+	return (props.trigger)?(
+		<div className='popup'>
+            <div className='popup-inner'>
 					<div>
 						<h1>Login</h1>
 					</div>
@@ -108,12 +106,13 @@ export default function LoginPage() {
 						{errorMessage()}
 						{statusMessage()}
 					</div>
-
+					<button onClick={()=>props.setTrigger(false)} className="button-close" type="submit">
+			        	Close
+			    	</button>
 					<button onClick={handleLogin} className="button" type="submit">
-					Login
+						Login
 					</button>
-				</section>
-			<Footer/>
+				</div>
 		</div>
-	);
+	):"";
 }

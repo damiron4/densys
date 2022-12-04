@@ -2,7 +2,7 @@ import './App.css';
 import { Route, Link, Routes } from "react-router-dom"
 
 import RegDoctor from "./RegDoctor"
-import LoginPage from "./loginPage"
+import LoginPage from "./loginPopup"
 import RegPatient from "./regPatient"
 import DoctorMP from "./DoctorMP"
 import PatientMP from "./PatientMP"
