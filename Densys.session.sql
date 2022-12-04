@@ -70,7 +70,7 @@ CREATE TABLE DOCTOR(
     address VARCHAR(60),
     hpurl VARCHAR(100),
     id SERIAL PRIMARY KEY,
-    FOREIGN KEY specid REFERENCES specialization(id)
+    FOREIGN KEY specid REFERENCES specialization (id)
 );
 
 --@block
@@ -88,7 +88,22 @@ CREATE TABLE specialization (
     description VARCHAR(144)    
 )
 
+--@block
+CREATE TABLE department (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(30) NOT NULL,
+    description VARCHAR(144),
+)
 
+CREATE TABLE procedure (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(30) NOT NULL,
+    depid INT NOT NULL,
+    description VARCHAR(144),
+    FOREIGN KEY depid REFERENCES department (id)
+)
+
+--@block
 
 CREATE TABLE appointment (
 

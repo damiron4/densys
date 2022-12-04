@@ -184,10 +184,36 @@ app.get("/specialization/search", async (req, res) => {
 app.get("/doctor/specialization/:id", async (req, res) => {
     try {
         const specid = req.params.id;
-        console.log(specid);
         const allInfo = await pool.query("SELECT * FROM doctor WHERE specid = $1", [specid]);
         res.json(allInfo.rows);
-        // console.log(allInfo.fields);
+    } catch (error) {
+        console.error(error.message);        
+    }
+})
+
+app.get("/procedure/search", async (req, res) => {
+    try {
+        pool.query("SELECT (id, name) FROM procedure", (err, result) => {
+            var procedureNames = [];
+            for (x of result.rows){
+                procedure = x.row.replaceAll("(","").replaceAll(")","").replaceAll("\"","").split(",");
+                procedureNames.push({
+                    id: parseInt(procedure[0]),
+                    name: procedure[1]
+                })
+            }
+            res.send(procedureNames);
+        });
+    } catch (error) {
+        console.error(error.message);        
+    }
+})
+
+app.get("/doctor/procedure/:id", async (req, res) => {
+    try {
+        const procid = req.params.id;
+        const allInfo = await pool.query("SELECT * FROM doctor D WHERE D.depid IN (SELECT P.depid FROM procedure P WHERE P.depid = D.depid AND P.id = $1)", [procid]);
+        res.json(allInfo.rows);
     } catch (error) {
         console.error(error.message);        
     }

@@ -44,6 +44,7 @@ export default function Appointment() {
 	const [submitted, setSubmitted] = useState(false);
 	const [error, setError] = useState(false);
 	const [items, setItems] = useState({});
+	const [specializations, setSpecializations] = useState({});
 	
 	const linkStyle = {
 		textDecoration: "none",
@@ -58,10 +59,9 @@ export default function Appointment() {
 		setSearchBy("doctor");
 		handleSearch();
 
-		Axios.get("http://localhost:5000/doctor").then((response) => {
-        	setContacts(response.data);
+		Axios.get("http://localhost:5000/specialization/search").then((response) => {
+        	setSpecializations(response.data);
     	});
-
 	}, []);
 	
 
@@ -79,13 +79,9 @@ export default function Appointment() {
 					setItems(response.data);
 					});
 				} else if (element[i].value == "procedure") {
-					// Axios.get("http://localhost:5000/procedure/search").then((response) => {
-					// setItems(response.data);
-					// });
-					setItems([
-						{id:0, name: "p1"},
-						{id:1, name: "p2"}
-					]);
+					Axios.get("http://localhost:5000/procedure/search").then((response) => {
+					setItems(response.data);
+					});
 				}
 			}	
 		}
@@ -108,7 +104,7 @@ const handleOnSearch = (string, results) => {
 
   const handleOnSelect = (item) => {
     // the item selected
-	setIndex(item.id);
+	// setIndex(item.id);
 	if (searchby == "doctor") {
 		Axios.get(`http://localhost:5000/doctor/${item.id}`).then((response) => {
         	setContacts(response.data);
@@ -117,9 +113,11 @@ const handleOnSearch = (string, results) => {
 		Axios.get(`http://localhost:5000/doctor/specialization/${item.id}`).then((response) => {
         	setContacts(response.data);
     	});
+	} else if (searchby == "procedure") {
+		Axios.get(`http://localhost:5000/doctor/procedure/${item.id}`).then((response) => {
+        	setContacts(response.data);
+    	});
 	}
-	
-	
   }
 
   const handleOnFocus = () => {
@@ -188,7 +186,7 @@ return (
 						<Card.Body>
 							<Card.Title>{contact.name}</Card.Title>
 							<Card.Text>
-							Specialization: {contact.specid}
+							Specialization: {specializations[contact.specid].name}
 							</Card.Text>
 							<Card.Text>
 							Experience in years: {contact.exp}
