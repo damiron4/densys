@@ -47,7 +47,7 @@ return (
     {contacts.map((contact,index)=>  
         
         <Col>
-        <Card style={{ width: '18rem' }}>
+        <Card style={{ width: '18rem', height:'30rem' }}>
             <Card.Img variant="top" src={BackFon}  width = {200} height = {300} />
             <Card.Body>
                 <Card.Title>{contact.name}</Card.Title>

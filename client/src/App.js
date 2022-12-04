@@ -9,7 +9,9 @@ import PatientMP from "./PatientMP"
 import Appointment from './Appointment';
 import Form from './Form';
 import Boxlist from './box-list';
+import MainPage from './MainPage'
 import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 function App() {
   return (
@@ -17,7 +19,10 @@ function App() {
           <nav>
             <ul>
               <li>
-                <Link to="/login">Login Page</Link>
+                <Link to="/">Login Page</Link>
+              </li>
+              <li>
+                <Link to="/main">Main Page</Link>
               </li>
               <li>
                 <Link to="/register/doctor">RegDoctor</Link>
@@ -41,7 +46,8 @@ function App() {
           </nav>
           
           <Routes>
-            <Route path="/login" exact element={<LoginPage />} />
+            <Route path="/" exact element={<LoginPage />} />
+            <Route path="/main" exact element={<MainPage />} />
             <Route path="/register/doctor" exact element={<RegDoctor/>}/>
             <Route path="/register/patient" exact element={<RegPatient/>}/>
             <Route path="/patientMP" exact element={<PatientMP/>}/>
