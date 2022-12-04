@@ -2,7 +2,7 @@ import { useState } from 'react';
 import React from "react";
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
-import CrazyFrog from '/Users/ali/SWE/Densys/client/src/dof1.jpeg';
+import CrazyFrog from './crazy_frog_doctor.jfif';
 
 // TODO: Delete rating from form
 export default function DoctorRegistrationForm() {
@@ -183,7 +183,7 @@ export default function DoctorRegistrationForm() {
 					<label className="label">Name</label>
 					<input onChange={handleName} className="input"
 					value={name} type="text" />
-
+				
 					<label className="label">Surname</label>
 					<input onChange={handleSurName} className="input"
 					value={surname} type="text" />

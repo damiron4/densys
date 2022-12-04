@@ -61,9 +61,23 @@ export default function DoctorMP(){
     // };
   }
 
-  const handleEditFormSubmit = (event) => {
+  const handleEditFormSubmit = async (event) => {
     event.preventDefault();
-
+    // try{
+    //   const body = {name, surname, midname, dbirth, iin, contactn, depid, specid }
+    //   const response = await fetch("http://localhost:5000/doctor", {
+    //     method: "SET",
+    //     headers: {"Content-Type": "application/json"},
+    //     body: JSON.stringify(body)
+    //   });
+    //   const jsonData = await response.json();
+		// 	console.log(jsonData);
+    //   if (!jsonData.err) {
+    //     // setError(true);
+    //     console.log(jsonData.err);
+    //   } else {
+    //     setSubmitted(true);
+    //   }
     const editedContact = {
       id: editContactId,
       name: editFormData.name,
