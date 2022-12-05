@@ -22,7 +22,6 @@ export default function Header() {
 	const [userType, setUserType] = useState("admin");
 	const [username, setUsername] = useState('');
 	const [password, setPassword] = useState('');
-	const [error, setError] = useState(false);
 	const [loginStatus, setLoginStatus] = useState('');
 	const navigate = useNavigate();
 
@@ -44,13 +43,6 @@ export default function Header() {
 		window.location.reload();
 	}
 
-	const getValue = (type) => {
-		const element = document.getElementsByName(type);
-		if (element.value == userType) {
-			element.checked = true;
-		}
-	}
-
 	const handleClose = () => {
 		setShow(false);
 	}
@@ -66,8 +58,7 @@ export default function Header() {
 	const handleLogin = async e => {
 		e.preventDefault();
 		if (username === '' || password === '' ) {
-			setError(true);
-			setLoginStatus('');
+			setLoginStatus('Please fill in all fields.');
 			return
 		}
 		try {
@@ -81,10 +72,11 @@ export default function Header() {
 			const jsonData = await response.json();
 			console.log(jsonData);
 			if (jsonData.message) {
-				setLoginStatus(jsonData.message);
-				// navigate("/dashboard");	  
-				if (jsonData.message === "Login successful.") {
-					navigate("/dashboard");	  
+				if (jsonData.message === "Wrong username or password.") {
+					setLoginStatus(jsonData.message);
+				} else if (jsonData.message === "Login successful.") {
+					handleClose();
+					navigate("/dashboard");
 				}
 			}
 		} catch (error) {
@@ -93,18 +85,9 @@ export default function Header() {
 	};
 	
     return (
-    // <header className="site-header">
-	// 	<div className="container">
-	// 	<p><ht className="back-ht"><Link className="text-link" to="/">A-Clinic</Link></ht></p>
-    //   		<p><Link className="text-link" to="/">Main Page</Link></p>
-    //   		<p>Register Doctor</p>
-    //   		<p><Link className="text-link" to="/register/patient">Register Patient</Link></p>
-	// 	</div>
-	// </header>
-	
+	<>
 	<Navbar bg="light" expand="lg">
       <Container>
-		
         <Navbar.Brand href="/">A-Clinic</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
@@ -128,26 +111,25 @@ export default function Header() {
 		<Nav className="d-flex">
 			{(role === '') &&
 			<div>
-				<Nav.Link onClick={()=>{setShow(true); setLoginStatus('');}}>Login</Nav.Link>
+				<Button variant="outline-info" onClick={()=>{setShow(true); setLoginStatus('');}}>Login</Button>
 				<Modal show={show} onHide={handleClose} centered>
 					<Modal.Header closeButton onClick={handleClose}>
 						<Modal.Title>Log in</Modal.Title>
 					</Modal.Header >
 					<Modal.Body style={{marginLeft: 40, marginRight: 40 }}>
-						<Form style={{marginBottom: 0}}>
-							{/* <Form.Label>Log in as</Form.Label> */}
+						<Form style={{marginBottom: 40}}>
+							<div><Form.Label>Log in as</Form.Label></div>
 							<ButtonGroup className="ml-4 mb-2">
-								<ToggleButton type="radio" variant="secondary" name="patient" value="patient" checked = {userType === "patient"} onClick={(e) => setUserType("patient")}>
+								<ToggleButton type="radio" variant="outline-info" name="patient" value="patient" checked = {userType === "patient"} onClick={(e) => setUserType("patient")}>
 									Patient
 								</ToggleButton>
-								<ToggleButton type="radio" variant="secondary" name="doctor" value="doctor" checked = {userType === "doctor"} onClick={(e) => setUserType("doctor")}>
+								<ToggleButton type="radio" variant="outline-info" name="doctor" value="doctor" checked = {userType === "doctor"} onClick={(e) => setUserType("doctor")}>
 									Staff
 								</ToggleButton>
-								<ToggleButton type="radio" variant="secondary" name="admin" value="admin" checked = {userType === "admin"} onClick={(e) => setUserType("admin")}>
+								<ToggleButton type="radio" variant="outline-info" name="admin" value="admin" checked = {userType === "admin"} onClick={(e) => setUserType("admin")}>
 									Administration
 								</ToggleButton>
 							</ButtonGroup>
-
 							<Form.Group className="mb-3">
 								<Form.Label>Username</Form.Label>
 								<Form.Control onChange={handleUsername}
@@ -162,7 +144,7 @@ export default function Header() {
 								placeholder="Enter your password"/>
 							</Form.Group>
 							<Form.Group className="d-grid mb-3">
-								<Button variant="primary" size="lg" onClick={handleLogin} type="submit">Login</Button>{' '}
+								<Button variant="info" size="lg" onClick={handleLogin} type="submit">Login</Button>{' '}
 							</Form.Group>
 							{ (loginStatus) &&
 							<Form.Group>
@@ -172,13 +154,7 @@ export default function Header() {
 							</Form.Group>}
 						</Form>
 					</Modal.Body>
-					<Modal.Footer>
-					{/* <div className="messages">
-						{errorMessage()}
-						{statusMessage()}
-					</div> */}
-				</Modal.Footer>
-			</Modal>
+				</Modal>
 			</div>
 			}
 			{(role !== '') &&
@@ -191,5 +167,7 @@ export default function Header() {
         </Navbar.Collapse>
       </Container>
     </Navbar>
+	<div className="site-header"></div>
+	</>
     )
 };

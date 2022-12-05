@@ -3,7 +3,10 @@ import React from "react";
 export default function accessDenied() {
   return (
     <div>
-      <h1>Access Denied</h1>
+      <div style={{margin: 100}}>
+        <h1>Access Denied.</h1>
+        <h4>Please log in to access the page.</h4>
+      </div>
     </div>
   );
 }

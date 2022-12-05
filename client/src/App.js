@@ -1,26 +1,24 @@
 import './App.css';
-import { Route, Link, Routes } from "react-router-dom"
+import { Route, Link, Routes } from "react-router-dom";
 
-import RegDoctor from "./RegDoctor"
-import LoginPage from "./components/loginPopup"
-import RegPatient from "./regPatient"
-import DoctorMP from "./DoctorMP"
-import PatientMP from "./PatientMP"
+import RegDoctor from "./RegDoctor";
+import LoginPage from "./components/loginPopup";
+import RegPatient from "./regPatient";
+import DoctorMP from "./DoctorMP";
+import PatientMP from "./PatientMP";
 import Appointment from './Appointment';
 import Form from './Form';
 import Boxlist from './box-list';
-import MainPage from './MainPage'
+import MainPage from './MainPage';
+import Dashboard from './Dashboard';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 function App() {
   return (
     <>
-          <nav>
+          {/* <nav>
             <ul>
-              <li>
-                <Link to="/">Login Page</Link>
-              </li>
               <li>
                 <Link to="/main">Main Page</Link>
               </li>
@@ -39,17 +37,15 @@ function App() {
               <li>
                 <Link to="/appointment-form">Appointment</Link>
               </li>
-              <li>
-                <Link to="/appointment-form/1">box 1</Link>
-              </li>
             </ul>
-          </nav>
+          </nav> */}
           
           <Routes>
-            <Route path="/" exact element={<LoginPage />} />
+            <Route path="/" exact element={<MainPage />} />
             <Route path="/main" exact element={<MainPage />} />
             <Route path="/register/doctor" exact element={<RegDoctor/>}/>
             <Route path="/register/patient" exact element={<RegPatient/>}/>
+            <Route path="/dashboard" exact element={<Dashboard/>}/>
             <Route path="/patientMP" exact element={<PatientMP/>}/>
             <Route path="/doctorMP" exact element={<DoctorMP/>}/>
             <Route path="/appointment-form" exact element={<Appointment/>}/>

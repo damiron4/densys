@@ -7,8 +7,8 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
-import {Link} from 'react-router-dom';
-import LoginPopup from './components/loginPopup';
+import Header from './components/header';
+// import LoginPopup from './components/loginPopup';
 
 export default function MainPage() {
     const [contacts, setContacts] = useState([]);
@@ -24,13 +24,7 @@ export default function MainPage() {
 	return (
 
 		<div className="background">
-                <header className="site-header">
-                    <div className="container">
-                    <p><ht className="back-ht"><Link className="text-link" to="/">A-Clinic</Link></ht></p>
-                    <p><Link className="text-link" to="/">Main Page</Link></p>
-                    <button class="button2" onClick={()=>setButtonPopup(true)}>Login</button>
-                    </div>
-                </header>
+                <Header/>
 				<section class= "body">
                 <Row xs={0} md={5} className="g-4">
 				{contacts.map((contact)=>  
@@ -47,13 +41,8 @@ export default function MainPage() {
 						</Card.Body>
 						</Card>
 					</Col>
-
 					)}
 				</Row>
-                <LoginPopup trigger={buttonPopup} setTrigger={setButtonPopup}>
-					<h3>My popup</h3>
-				</LoginPopup>
-
 				</section>
 			<Footer/>
 		</div>
