@@ -107,9 +107,9 @@ DROP TABLE appointment
 --@block
 CREATE TABLE appointment (
   id_p SERIAL PRIMARY KEY,
-  pat_name VARCHAR(30) NOT NULL,
-  pat_iin VARCHAR9(20) NOT NULL,
-  pat_contactn PHONENUMBER NOT NULL, 
+  name VARCHAR(30) NOT NULL,
+  iin VARCHAR(20) NOT NULL,
+  contactn PHONENUMBER NOT NULL, 
   start_t time NOT NULL,
   end_t time NOT NULL,
   day DATE NOT NULL,
