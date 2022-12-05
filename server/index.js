@@ -105,9 +105,9 @@ app.post("/register/doctor", async (req, res) => {
 app.post("/appointment-form",(req, res) => {
    try {
         console.log("Appointment info received");
-        const {start_t, end_t, day, doc_id, dep_id, pro_id, status} = req.body;
-        pool.query("INSERT INTO appointment( start_t, end_t, day, doc_id, dep_id, pro_id, status) VALUES($1, $2, $3, $4, $5, $6, $7) RETURNIN id_p",
-        [id_p, start_t, end_t, day, doc_id, dep_id, pro_id, status],
+        const {name, iin, contactn, start_t, end_t, day, doc_id, dep_id, pro_id, status} = req.body;
+        pool.query("INSERT INTO appointment(name, iin, contactn, start_t, end_t, day, doc_id, dep_id, pro_id, status) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNIN id_p",
+        [name, iin, contactn, start_t, end_t, day, doc_id, dep_id, pro_id, status],
         async (error) => {
             if(error) {
                 res.send({message: error.message}); 
