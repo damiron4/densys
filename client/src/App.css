@@ -4,7 +4,7 @@
 }
 .site-header{
   min-width: 100px;
-  height: 400px;
+  height: 300px;
   padding-top: 38px;
   background-image: url(image/main-background.jpeg);
   background-size: cover;
@@ -13,7 +13,7 @@
 .text-link{
   color:#ffffff
 }
-ht{
+.ht{
   font-family: "Arial", sans-serif;
   font-size: 45px;
   background-repeat: no-repeat;
@@ -29,6 +29,21 @@ ht{
   justify-content: center;
   align-items: center;
   background-color: hsl(0, 1%, 26%, 0.75);
+}
+.button2 {
+  background-color: rgba(177, 55, 55, 0);
+  color: rgb(255, 0, 0); 
+  width: 100px;
+  position: absolute;
+  top: 36px;
+  right: 16px;
+  border: 0;
+}
+
+.button2:hover {
+  background-color: #464ee9;
+  width: 100px;
+  color: white;
 }
 .popup-inner{
   position: relative;
@@ -111,7 +126,7 @@ ht{
   margin-right: 10px;
 }
 .input-l{
-  width:15%;
+  width:60%;
   display: flex;
   margin: auto;
   font-size: large;
