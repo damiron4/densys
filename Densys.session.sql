@@ -102,7 +102,25 @@ CREATE TABLE procedure (
     description VARCHAR(144),
     FOREIGN KEY depid REFERENCES department (id)
 )
-
+--@block
+DROP TABLE appointment
+--@block
+CREATE TABLE appointment (
+  id_p SERIAL PRIMARY KEY,
+  pat_name VARCHAR(30) NOT NULL,
+  pat_iin VARCHAR9(20) NOT NULL,
+  pat_contactn PHONENUMBER NOT NULL, 
+  start_t time NOT NULL,
+  end_t time NOT NULL,
+  day DATE NOT NULL,
+  doc_id int NOT NULL,
+  dep_id int NOT NULL,
+  pro_id int NOT NULL,
+  status status NOT NULL,
+  FOREIGN KEY (dep_id) REFERENCES department(id), 
+  FOREIGN KEY (doc_id) REFERENCES doctor(id),
+  FOREIGN KEY (pro_id) REFERENCES procedure(id)
+  );
 --@block
 
 CREATE TABLE appointment (
