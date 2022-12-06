@@ -29,6 +29,7 @@ export default function Appointment() {
 	let navigate = useNavigate();
 
 	const[timeSlots, setTimeSlots] = useState([]);
+
 	const createTimeSlots = (fromTime, toTime) =>{
 	let startTime= moment(fromTime, 'hh:mm A');
 	let endTime = moment(toTime, 'hh:mm A');
