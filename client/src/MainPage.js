@@ -15,7 +15,7 @@ export default function MainPage() {
     const [buttonPopup, setButtonPopup] = useState(false);
 
 	useEffect(() =>{
-		Axios.get("http://localhost:5000/departments").then((response) => {
+		Axios.get("http://localhost:5001/departments").then((response) => {
 			setContacts(response.data);
 		});
 	

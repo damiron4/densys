@@ -25,7 +25,7 @@ export default function LoginPopup(props) {
 	// Copy this to other pages if you need roles
 	Axios.defaults.withCredentials = true;
 	useEffect(()=> {
-		Axios.get("http://localhost:5000/login").then((response) => {
+		Axios.get("http://localhost:5001/login").then((response) => {
 			if (response.data.loggedIn) {
 				setLoginStatus("User " + response.data.user.username + " logged in as " + response.data.user.role);
 				setRole(response.data.user.role);
@@ -62,7 +62,7 @@ export default function LoginPopup(props) {
 		}
 		try {
 			const body = {username, password, role}
-			const response = await fetch("http://localhost:5000/login", {
+			const response = await fetch("http://localhost:5001/login", {
 				method: "POST",
 				headers: { "Content-Type": "application/json" },
 				credentials: "include",
