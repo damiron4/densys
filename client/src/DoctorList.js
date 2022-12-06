@@ -1,24 +1,26 @@
 import "react-datepicker/dist/react-datepicker.css";
 import { Link } from "react-router-dom";
 import React, { useState, Fragment, useEffect } from "react";
-import ReadOnlyRowP from "./ReadOnlyRowP";
-import EditableRowP from "./EditableRowP";
-import data from "./mock-data.json";
+import ReadOnlyRowD from "./ReadOnlyRowD";
+import EditableRowD from "./EditableRowD";
+// import data from "./mock-data.json";
 
+import Header from "./components/header";
+import Footer from "./components/footer";
 
-export default function PatientMP(){
-  const [contacts, setContacts] = useState(data);
+export default function DoctorList(){
+  // const [submitted, setSubmitted] = useState(false);
+  //const [error, setError] = useState(false);
+  const [contacts, setContacts] = useState([]);
   const [addFormData, setAddFormData] = useState({
     name: "",
     surname: "",
     midname: "",
     dbirth: "",
     iin:"",
-    bloodg:"",
     contactn:"",
-    emerg:"",
-    address:"",
-    mstatus:"",
+    depid:"",
+    specid:"",
   });
 
   const [editFormData, setEditFormData] = useState({
@@ -27,11 +29,9 @@ export default function PatientMP(){
     midname: "",
     dbirth: "",
     iin:"",
-    bloodg:"",
     contactn:"",
-    emerg:"",
-    address:"",
-    mstatus:"",
+    depid:"",
+    specid:"",
   });
 
   const [editContactId, setEditContactId] = useState(null);
@@ -65,23 +65,37 @@ export default function PatientMP(){
     // };
   }
 
-  const handleEditFormSubmit = (event) => {
+  const handleEditFormSubmit = async (event) => {
     event.preventDefault();
 
     const editedContact = {
-      id: editContactId,
+      id: editContactId.id,
       name: editFormData.name,
       surname: editFormData.surname,
       midname: editFormData.midname,
       dbirth: editFormData.dbirth,
       iin: editFormData.iin,
-      bloodg:editFormData.bloodg,
       contactn: editFormData.contactn,
-      emerg:editFormData.emerg,
-      address:editFormData.address,
-      mstatus:editFormData.mstatus,
+      depid: editFormData.depid,
+      specid: editFormData.specid,
     };
-
+    // try{
+    //   const response = await fetch(`http://localhost:5000/doctor/${editContactId.id}`, {
+    //     method: "PUT",
+    //     headers: {"Content-Type": "application/json"},
+    //     editFormData: JSON.stringify(editFormData)
+    //   });
+    //   const jsonData = await response.json();
+    //   console.log(jsonData);
+    //   if (!jsonData.err) {
+    //     setError(true);
+    //     console.log(jsonData.err);
+    //   } else {
+    //     setSubmitted(true);
+    //   }
+    // } catch(error) {
+    //   console.error(error.message);
+    // }
     const newContacts = [...contacts];
 
     const index = contacts.findIndex((contact) => contact.id === editContactId);
@@ -101,11 +115,9 @@ export default function PatientMP(){
       midname: contact.midname,
       dbirth: contact.dbirth,
       iin: contact.iin,
-      bloodg: contact.bloodg,
       contactn: contact.contactn,
-      emerg:contact.emerg,
-      address:contact.address,
-      mstatus:contact.mstatus,
+      depid: contact.depid,
+      specid: contact.specid,
     };
 
     setEditFormData(formValues);
@@ -126,9 +138,9 @@ export default function PatientMP(){
   };  
 
   
-const getPatients = async () => {
+const getDoctors = async () => {
   try {
-    const response = await fetch("http://localhost:5000/patient");
+    const response = await fetch("http://localhost:5000/doctor");
     const jsonData = await response.json();
 
     setContacts(jsonData);
@@ -139,22 +151,15 @@ const getPatients = async () => {
 };
 
 useEffect(() => {
-  getPatients();
+  getDoctors();
 }, []);
 
   return(
     <div className="background">
-      <header className="site-header">
-          <div class="container">
-              <p><ht class="back-ht"><Link className="text-link" to="/">A-Clinic</Link></ht></p>
-                <p>Main Page</p>
-                <p><Link className="text-link" to="/register-doctor">Register Doctor</Link></p>
-                <p><Link className="text-link" to="/register-patient">Register Patient</Link></p>
-          </div>
-      </header>
+      <Header/>
     <div className= "body">
     <label className ="app-container">
-    <h2>Register Patient</h2>
+    <h2>Register Doctor</h2>
       
     <form onSubmit={handleEditFormSubmit}>
       <table>
@@ -165,11 +170,9 @@ useEffect(() => {
             <th>Middlename</th>
             <th>Birth Date</th>
             <th>IIN</th>
-            <th>Blood Group</th>
             <th>Contact Number</th>
-            <th>Emergency contact Number</th>
-            <th>Address</th>
-            <th>Maritial status</th>
+            <th>Department ID</th>
+            <th>Specialization Details ID</th>
             <th>Actions</th>
           </tr>
         </thead>
@@ -177,13 +180,13 @@ useEffect(() => {
           {contacts.map((contact)=>  (
              <Fragment>
              {editContactId === contact.id ? (
-               <EditableRowP
+               <EditableRowD
                  editFormData={editFormData}
                  handleEditFormChange={handleEditFormChange}
                  handleCancelClick={handleCancelClick}
                />
              ) : (
-               <ReadOnlyRowP
+               <ReadOnlyRowD
                  contact={contact}
                  handleEditClick={handleEditClick}
                  handleDeleteClick={handleDeleteClick}
@@ -198,13 +201,7 @@ useEffect(() => {
       </label>
       
       </div>
-        <footer class="site-footer">
-          <div class="con">
-            <p>© A-Clinic</p>
-            <p>Welcome to A-Clinic, Health Care website</p>
-          </div>
-        </footer>
-      
+        <Footer/>
       </div>
     )
         

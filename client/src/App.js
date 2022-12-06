@@ -2,10 +2,9 @@ import './App.css';
 import { Route, Link, Routes } from "react-router-dom";
 
 import RegDoctor from "./RegDoctor";
-import LoginPage from "./components/loginPopup";
 import RegPatient from "./regPatient";
-import DoctorMP from "./DoctorMP";
-import PatientMP from "./PatientMP";
+import DoctorList from "./DoctorList";
+import PatientList from "./PatientList";
 import Appointment from './Appointment';
 import Form from './Form';
 import Boxlist from './box-list';
@@ -46,11 +45,12 @@ function App() {
             <Route path="/register/doctor" exact element={<RegDoctor/>}/>
             <Route path="/register/patient" exact element={<RegPatient/>}/>
             <Route path="/dashboard" exact element={<Dashboard/>}/>
-            <Route path="/patientMP" exact element={<PatientMP/>}/>
-            <Route path="/doctorMP" exact element={<DoctorMP/>}/>
+            <Route path="/patients" exact element={<PatientList/>}/>
+            <Route path="/doctors" exact element={<DoctorList/>}/>
             <Route path="/appointment-form" exact element={<Appointment/>}/>
-            <Route path="/doctorMP/:id" exact element={<Form/>}/>
-            <Route path="/patientMP/:id" exact element={<Form/>}/>
+            <Route path="/doctors/:id" exact element={<Form/>}/>
+            {/* <Route path="/doctorMP/:id" exact element={<Form/>}/>
+            <Route path="/patientList/:id" exact element={<Form/>}/> */}
             <Route path="/appointment-form/:id" exact element={<Boxlist/>}/>
           </Routes>
     </>
