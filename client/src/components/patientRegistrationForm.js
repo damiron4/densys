@@ -87,10 +87,9 @@ export default function PatientRegistrationForm() {
     
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (name === '' || surname === '' || midname === '' || dbirth === '' || iin === '' || contactn === '' || emerg === '' || govid === '' || bloodg === '...' || mstatus === '...' || address === '' ) {
+        if (name === '' || surname === '' || midname === '' || dbirth === '' || iin === '' || govid === '' || bloodg === '...' || mstatus === '...' || address === '' ) {
         setError(true);
         } else {
-            setSubmitted(true);
             setError(false);
             try {
                 const body = {dbirth, iin, govid, name, surname, midname, bloodg, emerg, contactn, email, address, mstatus, dreg}
@@ -101,6 +100,12 @@ export default function PatientRegistrationForm() {
                 });
                 const jsonData = await response.json();
                 console.log(jsonData)
+                if (!jsonData.err) {
+					// setError(true);
+					console.log(jsonData.err);
+				} else {
+					setSubmitted(true);
+				}
             } catch(error){
                 console.error(error.message)
             }
@@ -182,7 +187,7 @@ export default function PatientRegistrationForm() {
 			<div class="container">
 				<div>
 					<label className="label">IIN number</label>
-					<input maxLength={12}
+					<input maxLength={12} minLength={12}
 					onChange={handleiin} className="input" 
 					value={iin} type="number" />
 				</div>
