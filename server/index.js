@@ -37,7 +37,7 @@ app.post("/register/patient", async (req, res) => {
             async (error) => {
                 if (!error) {
                     const password = Math.random().toString(36).slice(2, 10);
-                    pool.query("INSERT INTO AUTH (username, password, patient) VALUES($1, $2, 'patient')", [iin, password], (err, result) => {
+                    pool.query("INSERT INTO auth (username, password, role) VALUES($1, $2, 'patient')", [iin, password], (err, result) => {
                         if (err) {
                             res.json({ err: err });
                         }
@@ -64,9 +64,6 @@ app.post("/register/doctor", async (req, res) => {
     try {
         console.log("Doctor info received");
         const {dbirth, iin, govid, name, surname, midname, contactn, depid, specid, exper, photo, category, price, degree, rating, address, hpurl } = req.body;
-        
-        //hpurl = "/doctor/";
-        // scheduledetails;
         pool.query("INSERT INTO doctor (dbirth, iin, govid, name, surname, midname, contactn, depid, specid, exper, photo, category, price, degree, rating, address, hpurl) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17) RETURNING id",
             [dbirth, iin, govid, name, surname, midname, contactn, depid, specid, exper, photo, category, price, degree, rating, address, hpurl],
             async (error, result) => {

@@ -131,7 +131,7 @@ export default function PatientList(){
   
 const getPatients = async () => {
   try {
-    const response = await fetch("http://localhost:5001/patient");
+    const response = await fetch("http://localhost:5000/patient");
     const jsonData = await response.json();
 
     setContacts(jsonData);
@@ -142,6 +142,7 @@ const getPatients = async () => {
 };
 
 useEffect(() => {
+  
   getPatients();
 }, []);
 
