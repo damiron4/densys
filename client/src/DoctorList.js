@@ -140,7 +140,7 @@ export default function DoctorList(){
   
 const getDoctors = async () => {
   try {
-    const response = await fetch("http://localhost:5000/doctor");
+    const response = await fetch("http://localhost:5001/doctor");
     const jsonData = await response.json();
 
     setContacts(jsonData);

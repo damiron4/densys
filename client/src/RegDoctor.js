@@ -12,7 +12,7 @@ export default function RegDoctor() {
 
 	Axios.defaults.withCredentials = true;
 	useEffect(()=> {
-		Axios.get("http://localhost:5000/login").then((response) => {
+		Axios.get("http://localhost:5001/login").then((response) => {
 			if (response.data.loggedIn) {
 				setRole(response.data.user.role);
 			}

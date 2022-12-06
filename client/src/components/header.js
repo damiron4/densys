@@ -29,7 +29,7 @@ export default function Header() {
 	
 	Axios.defaults.withCredentials = true;
 	useEffect(()=> {
-		Axios.get("http://localhost:5000/login").then((response) => {
+		Axios.get("http://localhost:5001/login").then((response) => {
 			if (response.data.loggedIn) {
 				setRole(response.data.user.role);
 				setUsername(response.data.user.username);
@@ -39,7 +39,7 @@ export default function Header() {
 
 	const logOut = (e) => {
 		e.preventDefault();
-		Axios.delete("http://localhost:5000/logout");
+		Axios.delete("http://localhost:5001/logout");
 		window.location.reload();
 	}
 
@@ -63,7 +63,7 @@ export default function Header() {
 		}
 		try {
 			const body = {username, password, userType}
-			const response = await fetch("http://localhost:5000/login", {
+			const response = await fetch("http://localhost:5001/login", {
 				method: "POST",
 				headers: { "Content-Type": "application/json" },
 				credentials: "include",

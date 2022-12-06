@@ -32,7 +32,7 @@ const createTimeSlots = (fromTime, toTime) =>{
 useEffect(() =>{
     setTimeSlots(createTimeSlots('08:00', '12:00'));          //set time
 
-    Axios.get("http://localhost:5000/doctor").then((response) => {
+    Axios.get("http://localhost:5001/doctor").then((response) => {
         setContacts(response.data);
     });
 

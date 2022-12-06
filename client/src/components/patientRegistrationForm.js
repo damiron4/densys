@@ -94,7 +94,7 @@ export default function PatientRegistrationForm() {
             setError(false);
             try {
                 const body = {dbirth, iin, govid, name, surname, midname, bloodg, emerg, contactn, email, address, mstatus, dreg}
-                const response = await fetch("http://localhost:5000/register/patient", {
+                const response = await fetch("http://localhost:5001/register/patient", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify(body)

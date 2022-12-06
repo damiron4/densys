@@ -60,7 +60,7 @@ export default function Appointment() {
 		setSearchBy("doctor");
 		handleSearch();
 
-		Axios.get("http://localhost:5000/specialization/search").then((response) => {
+		Axios.get("http://localhost:5001/specialization/search").then((response) => {
         	setSpecializations(response.data);
     	});
 	}, []);
@@ -72,15 +72,15 @@ export default function Appointment() {
 		for(let i = 0; i < element.length; i++) {
 			if(element[i].checked) {
 				if (element[i].value === "doctor") {
-					Axios.get("http://localhost:5000/doctor/search").then((response) => {
+					Axios.get("http://localhost:5001/doctor/search").then((response) => {
 					setItems(response.data);
 					});	
 				} else if (element[i].value === "specialization") {
-					Axios.get("http://localhost:5000/specialization/search").then((response) => {
+					Axios.get("http://localhost:5001/specialization/search").then((response) => {
 					setItems(response.data);
 					});
 				} else if (element[i].value === "procedure") {
-					Axios.get("http://localhost:5000/procedure/search").then((response) => {
+					Axios.get("http://localhost:5001/procedure/search").then((response) => {
 					setItems(response.data);
 					});
 				}
@@ -107,15 +107,15 @@ const handleOnSearch = (string, results) => {
     // the item selected
 	// setIndex(item.id);
 	if (searchby === "doctor") {
-		Axios.get(`http://localhost:5000/doctor/${item.id}`).then((response) => {
+		Axios.get(`http://localhost:5001/doctor/${item.id}`).then((response) => {
         	setContacts(response.data);
     	});
 	} else if (searchby === "specialization") {
-		Axios.get(`http://localhost:5000/doctor/specialization/${item.id}`).then((response) => {
+		Axios.get(`http://localhost:5001/doctor/specialization/${item.id}`).then((response) => {
         	setContacts(response.data);
     	});
 	} else if (searchby === "procedure") {
-		Axios.get(`http://localhost:5000/doctor/procedure/${item.id}`).then((response) => {
+		Axios.get(`http://localhost:5001/doctor/procedure/${item.id}`).then((response) => {
         	setContacts(response.data);
     	});
 	}
