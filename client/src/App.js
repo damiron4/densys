@@ -48,6 +48,7 @@ function App() {
             <Route path="/patients" exact element={<PatientList/>}/>
             <Route path="/doctors" exact element={<DoctorList/>}/>
             <Route path="/appointment-form" exact element={<Appointment/>}/>
+            <Route path="/doctors/:id" exact element={<Form/>}/>
             {/* <Route path="/doctorMP/:id" exact element={<Form/>}/>
             <Route path="/patientList/:id" exact element={<Form/>}/> */}
             <Route path="/appointment-form/:id" exact element={<Boxlist/>}/>
