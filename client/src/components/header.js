@@ -86,14 +86,14 @@ export default function Header() {
 	
     return (
 	<>
-	<Navbar bg="light" expand="lg">
+	<Navbar expand="lg" className="fixed-top bg-dark bg-gradient">
       <Container>
-        <Navbar.Brand href="/">A-Clinic</Navbar.Brand>
+        <Navbar.Brand className="text-light" href="/">Densys</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-			<Nav.Link href="/">Home</Nav.Link>
-			<Nav.Link href="/dashboard">Dashboard</Nav.Link>
+			<Nav.Link className="text-light" href="/">Home</Nav.Link>
+			<Nav.Link className="text-light" href="/dashboard">Dashboard</Nav.Link>
 			{/* <Nav.Link href="#link">Link</Nav.Link> */}
 			{/* <NavDropdown title="Dropdown" id="basic-nav-dropdown">
 				<NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
@@ -111,7 +111,7 @@ export default function Header() {
 		<Nav className="d-flex">
 			{(role === '') &&
 			<div>
-				<Button variant="outline-info" onClick={()=>{setShow(true); setLoginStatus('');}}>Login</Button>
+				<Button variant="outline-light" onClick={()=>{setShow(true); setLoginStatus('');}}>Login</Button>
 				<Modal show={show} onHide={handleClose} centered>
 					<Modal.Header closeButton onClick={handleClose}>
 						<Modal.Title>Log in</Modal.Title>
@@ -147,8 +147,8 @@ export default function Header() {
 								<Button variant="info" size="lg" onClick={handleLogin} type="submit">Login</Button>{' '}
 							</Form.Group>
 							{ (loginStatus) &&
-							<Form.Group>
-								<Alert key="danger" variant="danger">
+							<Form.Group >
+								<Alert  key="danger" variant="danger">
 								{loginStatus}
 								</Alert>
 							</Form.Group>}
@@ -158,7 +158,7 @@ export default function Header() {
 			</div>
 			}
 			{(role !== '') &&
-			<NavDropdown title={username} id="basic-nav-dropdown">
+			<NavDropdown className="text-light" title={username} id="basic-nav-dropdown">
 			<NavDropdown.Item onClick={logOut}>Log out</NavDropdown.Item>
 			</NavDropdown>
 			}

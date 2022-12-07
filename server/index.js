@@ -85,7 +85,7 @@ app.post("/register/doctor", async (req, res) => {
                                 message: "Doctor registration is successful.",
                                 username: iin,
                                 password: password
-                            });
+                            }); 
                         }
                     });
                 } else {
