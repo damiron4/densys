@@ -284,7 +284,7 @@ export default function DoctorRegistrationForm() {
 				{successMessage()}
 			</div>
 
-			<button onClick={handleSubmit} className="button" type="submit">
+			<button onClick={() => {handleSubmit()}}  className="button" type="submit">
 			Register
 			</button>
 		</section>
