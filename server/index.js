@@ -116,6 +116,18 @@ app.post("/appointment-form",(req, res) => {
    } 
 });
 
+app.get("/appointments", async (req, res) => {
+    try {
+        // console.log("ssss");
+        const appointments = await pool.query("SELECT A.id, A.day, A.start_t, A.end_t, A.name, A.surname, A.contactn, D.name AS dname, D.surname AS dsname, P.name AS pname, A.status FROM appointment A, doctor D, procedure P WHERE A.pro_id = P.id AND A.doc_id = D.id ORDER BY day, start_t");
+        res.json(appointments.rows);
+        console.log(appointments);
+    }
+    catch(error){
+         console.log(error.message);
+    } 
+ });
+
 app.get("/login", (req, res) => {
     if (req.session.user) {
         res.send({loggedIn: true, user: req.session.user})
