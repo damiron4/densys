@@ -128,6 +128,37 @@ app.get("/appointments", async (req, res) => {
     } 
  });
 
+ app.post("/appointment/approve/:id", async (req, res) => {
+    try {
+        const id = req.params.id;
+        const result = await pool.query("UPDATE appointment SET status = 'Approved' WHERE id = $1", [id]);
+        if (result.rowCount > 0) {
+            res.send({result: 1});
+        } else {
+            res.send({result: 0})
+        }
+        // console.log(result);
+    }
+    catch(error){
+         console.log(error.message);
+    } 
+ });
+
+ app.post("/appointment/cancel/:id", async (req, res) => {
+    try {
+        const id = req.params.id;
+        const result = await pool.query("UPDATE appointment SET status = 'Canceled' WHERE id = $1", [id]);
+        if (result.rowCount > 0) {
+            res.send({result: 1});
+        } else {
+            res.send({result: 0})
+        }
+    }
+    catch(error){
+         console.log(error.message);
+    } 
+ });
+
 app.get("/login", (req, res) => {
     if (req.session.user) {
         res.send({loggedIn: true, user: req.session.user})

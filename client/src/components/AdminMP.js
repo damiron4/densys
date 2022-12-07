@@ -7,17 +7,41 @@ import Axios from "axios";
 import Button from 'react-bootstrap/Button'; 
 import ButtonGroup from 'react-bootstrap/ButtonGroup'; 
 
+// function approveAppointment(id) {
+//     Axios.get(`http://localhost:5001/appointment/approve/${id}`).then((response) => {
+//         setAppointments(response.data);
+//         console.log(appointments);
+//     });
+// }
+
 export default function AdminMP() {
     const [appointments, setAppointments] = useState([])
     // const [doctors, setDoctors] = useState({})
     // const [procedures, setProcedures] = useState({})
     
-    useEffect(()=> {
-		Axios.get("http://localhost:5001/appointments").then((response) => {
+    async function refreshData() {
+        Axios.get("http://localhost:5001/appointments").then((response) => {
             setAppointments(response.data);
-            console.log(appointments);
-		});
-	}, [1])
+        });
+    }
+
+    useEffect(()=> {
+		refreshData();
+	}, [])
+
+    async function approveAppointment(id) {
+        Axios.post(`http://localhost:5001/appointment/approve/${id}`).then((response) => {
+            if (response.data.result) {
+                refreshData();
+        }});
+    }
+
+    async function cancelAppointment(id) {
+        Axios.post(`http://localhost:5001/appointment/cancel/${id}`).then((response) => {
+            if (response.data.result) {
+                refreshData();
+        }});
+    }
 
 	return (
 		<div style={{marginTop: 100, marginInline: 300}}>
@@ -60,8 +84,8 @@ export default function AdminMP() {
                         <td>{appointment.pname}</td>
                         <td>{appointment.status}</td>
                         <td><ButtonGroup aria-label="Basic example">
-                                <Button variant="outline-info">Approve</Button>
-                                <Button variant="outline-danger">Cancel</Button>
+                                <Button variant={appointment.status === "Pending" ? "outline-info" : "secondary"} disabled={appointment.status !== "Pending"} onClick={(e)=>approveAppointment(appointment.id)}>Approve</Button>
+                                <Button variant={appointment.status === "Pending" ? "outline-danger" : "secondary"} disabled={appointment.status !== "Pending"} onClick={(e)=>cancelAppointment(appointment.id)}>Cancel</Button>
                             </ButtonGroup></td>
                     </tr>))}   
                     </tbody>

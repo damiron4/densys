@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import Axios from "axios";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 // Bootstrap Components
 import Container from 'react-bootstrap/Container';
@@ -24,6 +24,7 @@ export default function Header() {
 	const [password, setPassword] = useState('');
 	const [loginStatus, setLoginStatus] = useState('');
 	const navigate = useNavigate();
+	const location = useLocation()
 
 	const [show, setShow] = useState(false);
 	
@@ -76,7 +77,12 @@ export default function Header() {
 					setLoginStatus(jsonData.message);
 				} else if (jsonData.message === "Login successful.") {
 					handleClose();
-					navigate("/dashboard");
+					console.log(location);
+					if (location.pathname === "/dashboard") {
+						window.location.reload();
+					} else {
+						navigate("/dashboard");
+					}
 				}
 			}
 		} catch (error) {
@@ -86,7 +92,7 @@ export default function Header() {
 	
     return (
 	<>
-	<Navbar expand="lg" className="fixed-top bg-dark bg-gradient">
+	<Navbar expand="lg" variant="dark" className="fixed-top bg-dark bg-gradient">
       <Container>
         <Navbar.Brand className="text-light" href="/">Densys</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -94,18 +100,7 @@ export default function Header() {
           <Nav className="me-auto">
 			<Nav.Link className="text-light" href="/">Home</Nav.Link>
 			<Nav.Link className="text-light" href="/dashboard">Dashboard</Nav.Link>
-			{/* <Nav.Link href="#link">Link</Nav.Link> */}
-			{/* <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-				<NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-				<NavDropdown.Item href="#action/3.2">
-					Another action
-				</NavDropdown.Item>
-				<NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-				<NavDropdown.Divider />
-				<NavDropdown.Item href="#action/3.4">
-					Separated link
-				</NavDropdown.Item>
-			</NavDropdown> */}
+			<Nav.Link className="text-light" href="/appointment-form">Make an appointment</Nav.Link>
 		</Nav>
 		  
 		<Nav className="d-flex">
@@ -158,7 +153,7 @@ export default function Header() {
 			</div>
 			}
 			{(role !== '') &&
-			<NavDropdown className="text-light" title={username} id="basic-nav-dropdown">
+			<NavDropdown style={{color: "#ffffff"}} className="text-light" title={username} id="basic-nav-dropdown">
 			<NavDropdown.Item onClick={logOut}>Log out</NavDropdown.Item>
 			</NavDropdown>
 			}
