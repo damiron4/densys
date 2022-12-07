@@ -187,68 +187,8 @@ export default function DoctorRegistrationForm() {
 				{errorMessage()}
 				{successMessage()}
 			</div>
-				<div>      
-        <Row>
-            <Col class="col-md-3 border-right">
-                <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"/><span class="font-weight-bold">{name}</span><span class="text-black-50">{email}</span><span> </span></div>
-				<div><label className="label-c">Upload a photo</label><input type="file" name='file'
-					onChange={handlePhoto}/></div>
-            </Col>
-            <Col class="col-md-5 border-right">
-                <div class="p-3 py-4">
-                    <div class="d-flex justify-content-between align-items-center mb-3">
-                        <h2 class="text-right">Doctor Registration</h2>
-                    </div>
-                    <Row class="row mt-2">
-                    
-                        <Col class="col-md-6"><label class="labels">Name</label><input onChange={handleName} type="text" class="form-control" value={name} placeholder={name}/>
-                        
-                    </Col>
-                        <Col class="col-md-6"><label class="labels">Surname</label><input onChange={handleSurName} type="text" class="form-control" value={surname} placeholder={surname}/></Col>
-                    </Row>
-                    <Col class="row mt-3">
-                        <Col class="col-md-12"><label class="labels">Middle Name</label><input onChange={handleMidName} type="text" class="form-control" value={midname} placeholder={midname}/></Col>
-                        <Row class="row mt-2">
-                            <Col class="col-md-6"><label class="labels">INN</label><input onChange={handleiin} type="number" class="form-control" value={iin} placeholder={iin}/></Col>
-                            <Col class="col-md-6"><label class="labels">Governmental ID</label><input onChange={handleGovId} type="number" class="form-control" value={govid} placeholder={govid}/></Col>
-                        </Row>
-                        <Col class="col-md-12"><label class="labels">Date of birth</label><DatePicker selected={dbirth} onChange={(date:Date) => setDbirth(date)} /></Col>
-                        <Col class="col-md-12"><label class="labels">Mobile Number</label><input onChange={handleContactn} type="number" class="form-control" placeholder={contactn} value={contactn}/></Col>
-                        <Col class="col-md-12"><label class="labels">Address</label><input onChange={handleAddress} type="text" class="form-control" placeholder={address} value={address}/></Col>
-                        <Col class="col-md-12"><label class="labels">Email</label><input onChange={handleEmail} type="text" class="form-control" placeholder={email} value={email}/></Col>
-                        
-                    </Col>
-                
-                </div>
-            </Col>
-            <Col class="col-md-4">
-                <div class="p-3 py-5">
-                    <div class="d-flex justify-content-between align-items-center experience"><span></span><span class="border px-3 p-1 add-experience"><i class="fa fa-plus"></i>&nbsp;Experience</span></div>
-                    <Col class="col-md-12"><label class="labels">Category</label><input onChange={handleCategory} type="text" class="form-control" placeholder={category} value={category}/></Col>
-                        <Row class="row mt-2">
-                            <Col class="col-md-6"><label class="labels">Degree</label><select onChange={handleDegree} value={degree}><option>...</option><option>Master's Degree</option><option>PhD</option></select></Col>
-                            <Col class="col-md-6"><label class="labels">Experience</label><input onChange={handleExper} type="number" class="form-control" value={exper} placeholder={exper}/></Col>
-                        </Row>
-                        
-                        <Row class="row mt-2">
-                            <Col class="col-md-6"><label class="labels">Department ID</label><input onChange={handleDepid} type="number" class="form-control" value={depid} placeholder={depid}/></Col>
-                            <Col class="col-md-6"><label class="labels">Specialization ID</label><input onChange={handleSpecid} type="number" class="form-control" value={specid} placeholder={specid}/></Col>
-                        </Row>
-                    
-                        <Col class="col-md-12"><label class="labels">Price</label><input onChange={handlePrice} type="number" class="form-control" placeholder={price} value={price}/></Col>
 
-
-                    
-                        
-            </div>
-        </Col>
-
-
-        
-                      
-                       
-    </Row>
-    </div>
+			
 			<button onClick={handleSubmit} className="button" type="submit">
 			Register
 			</button>
