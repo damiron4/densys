@@ -1,12 +1,13 @@
 .background{
-  background: #eee;
+  background: rgb(251, 249, 249);
   min-height: 1000px;
 }
 .site-header{
   min-width: 100px;
-  height: 300px;
+  height: 350px;
   padding-top: 38px;
-  background-image: url(image/main-background.jpeg);
+  background-image: url(image/main-background.png);
+  background-position:bottom;
   background-size: cover;
   color: #ffffff;
 }
@@ -241,7 +242,7 @@ form * {
   bottom: 0;
   width: 100%;
   text-align: center;
-  background-color: #0dcaf0;
+  background-color: #332D2D;
   /* background-color: rgb(154, 209, 213); */
   color: #ffffff;
 }
@@ -252,7 +253,8 @@ form * {
 .site-footer p {
   display: inline-block;
   vertical-align: middle;
-  padding: 0 20px;
+  padding: 0 10px;
+  padding-top: 10px;
 }
 
 .button{
