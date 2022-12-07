@@ -71,11 +71,9 @@
   padding: 0px;
 } 
 .container p {
-  width: max-content;
-  margin: 0 5px;
+  text-align: center;
   text-transform: uppercase;
   font-size: 18px;
-  text-shadow: 2px 2px 4px #000000;
 }
 .label{
   width: 80%;
@@ -134,9 +132,15 @@
   border: 2px solid;
   border-radius: 4px;
 }
+input[type=file]{
+  padding-left: 65px;
+  position: absolute;
+  text-align: center;
+  margin: auto;
+}
 .body{
   width: 100%;
-  padding-top: 70px;
+  padding-top: 30px;
   padding-bottom: 100px;
   min-height: 570px;
 }
@@ -147,7 +151,7 @@
 }
 .con-body{
   width: 60%;
-  padding-top: 20px;
+  padding-top: 10px;
   padding-bottom: 20px;
   margin: auto;
   margin-top: 40px;
@@ -163,9 +167,6 @@
 select{
   width: 80%;
   font-size: large;
-  color:rgb(0, 0, 0);
-  border: 2px solid;
-  border-radius: 4px;
 }
 .messages{
   display: flex;
@@ -265,3 +266,53 @@ form * {
 }
 
 
+.body-1 {
+  width: 75%;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  margin: auto;
+  background-color:rgb(227, 227, 227);
+  border-radius: 20px;
+  border-color: #847462;
+  border: 1px solid;
+}
+
+.form-control:focus {
+  box-shadow: none;
+  border-color: #BA68C8;
+}
+.profile-button {
+  background: rgb(99, 39, 120);
+  box-shadow: none;
+  border: none
+}
+
+.profile-button:hover {
+  background: #682773
+}
+
+.profile-button:focus {
+  background: #682773;
+  box-shadow: none
+}
+
+.profile-button:active {
+  background: #682773;
+  box-shadow: none
+}
+
+.back:hover {
+  color: #682773;
+  cursor: pointer
+}
+
+.labels {
+  font-size: 11px
+}
+
+.add-experience:hover {
+  background: #BA68C8;
+  color: #fff;
+  cursor: pointer;
+  border: solid 1px #BA68C8
+}

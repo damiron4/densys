@@ -6,7 +6,7 @@ import RegPatient from "./regPatient";
 import DoctorList from "./DoctorList";
 import PatientList from "./PatientList";
 import Appointment from './Appointment';
-import Form from './Form';
+import FormDoc from './Form';
 import Boxlist from './box-list';
 import MainPage from './MainPage';
 import Dashboard from './Dashboard';
@@ -48,7 +48,7 @@ function App() {
             <Route path="/patients" exact element={<PatientList/>}/>
             <Route path="/doctors" exact element={<DoctorList/>}/>
             <Route path="/appointment-form" exact element={<Appointment/>}/>
-            <Route path="/doctors/:id" exact element={<Form/>}/>
+            <Route path="/doctors/:id" exact element={<FormDoc/>}/>
             {/* <Route path="/doctorMP/:id" exact element={<Form/>}/>
             <Route path="/patientList/:id" exact element={<Form/>}/> */}
             <Route path="/appointment-form/:id" exact element={<Boxlist/>}/>

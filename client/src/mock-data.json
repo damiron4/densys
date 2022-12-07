@@ -48,7 +48,7 @@
       "procedure": "Surgery"
     },
     {
-      "id": 1,
+      "id": 3,
       "name": "Zhaksylyk",
       "surname": "Kuanysh",
       "midname": "Krasava",
@@ -69,10 +69,11 @@
       "bloodg":"A+",
       "emerg":"3242-42342",
       "mstatus": "Single",
-      "procedure": "Therapist"
+      "procedure": "Therapist",
+      "govid":"2131232141312"
     },
     {
-      "id": 1,
+      "id": 2,
       "name": "Ayan",
       "surname": "Myrzakhmet",
       "midname": "Krasava",

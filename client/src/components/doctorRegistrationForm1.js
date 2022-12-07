@@ -3,10 +3,7 @@ import React from "react";
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 import BackFon from '../image/BackFon.jpg';
-import Col from 'react-bootstrap/Col';
-import Form from 'react-bootstrap/Form';
-import Row from 'react-bootstrap/Row';
-import Container from 'react-bootstrap/Container';
+
 // TODO: Delete rating from form
 export default function DoctorRegistrationForm() {
 	const [name, setName] = useState('');
@@ -175,11 +172,110 @@ export default function DoctorRegistrationForm() {
 	};
 
 	return (
-		
 		<div >
 		<section class= "body">
-		<section class="body-1">
+		<section class="con-body">
+			<div>
+				<h1>Doctor Registration</h1>
+			</div>
+			<div class="container">
+				<div>
+					<label className="label">Name</label>
+					<input onChange={handleName} className="input"
+					value={name} type="text" />
+				
+					<label className="label">Surname</label>
+					<input onChange={handleSurName} className="input"
+					value={surname} type="text" />
+
+					<label className="label">Middlename</label>
+					<input onChange={handleMidName} className="input"
+					value={midname} type="text" />
+
+					<label className="label">Date of birth</label>
+					<DatePicker
+					selected={dbirth}
+					onChange={(date:Date) => setDbirth(date)} />
+				</div>
+				<div>
+					<img src={BackFon} class="img-r" />
+				</div>
+			</div>
 			
+			<div class="container">
+				<div>
+					<label className="label">Email</label>
+					<input onChange={handleEmail} className="input"
+					value={email} type="email" />
+				</div>
+				<div>
+					<label className="label-c">Upload a photo</label>
+					<input type="file" name='file'
+					onChange={handlePhoto}/>
+				</div>
+			</div>
+			<div class="container">
+				<div>
+					<label className="label">Department ID</label>
+					<input onChange={handleDepid} className="input"
+					value={depid} type="number" />
+				</div><div>
+					<label className="label">Address</label>
+					<input onChange={handleAddress} className="input"
+					value={address} type="text" />
+				</div>
+			</div>
+			<div class="container">
+				<div>
+					<label className="label">IIN number</label>
+					<input maxLength={12} minLength={12}
+					onChange={handleiin} className="input" 
+					value={iin} type="number" />
+				</div><div>
+					<label className="label">Governmental ID number</label>
+					<input onChange={handleGovId} className="input" 
+					value={govid} type="number" />
+				</div>
+			</div>
+			<div class="container">
+				<div>
+					<label className="label">Contact number</label>
+					<input onChange={handleContactn} className="input"
+					value={contactn} type="number" />
+				</div><div>
+					<label className="label">Price of the appointment (Tenge)</label>
+					<input onChange={handlePrice} className="input"
+					value={price} type="number" />
+				</div>
+			</div>
+			<div class="container">
+				<div>
+					<label className="label">Category</label>
+					<input onChange={handleCategory} className="input"
+					value={category} type="text" />
+				</div><div>
+					<label className="label">Specialization details ID</label>
+					<input onChange={handleSpecid} className="input"
+					value={specid} type="number" />
+				</div>
+			</div>
+			<div class="container">
+				<div>
+					<label className="label">Experience in years</label>
+					<input onChange={handleExper} className="input"
+					value={exper} type="number" />
+				</div><div>
+					<label className="label">Degree/education</label>	
+					<select
+					onChange={handleDegree} 
+					value={degree}
+					>	
+					<option>...</option>
+					<option>Master's Degree</option>
+					<option>PhD</option>
+					</select>
+				</div>
+			</div>
 
 			
 			{}
@@ -188,13 +284,11 @@ export default function DoctorRegistrationForm() {
 				{successMessage()}
 			</div>
 
-			
 			<button onClick={handleSubmit} className="button" type="submit">
 			Register
 			</button>
 		</section>
 	</section>
 		</div>
-		
 	);
 }
