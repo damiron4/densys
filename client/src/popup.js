@@ -74,13 +74,12 @@ export default function Popup(props){
 									autoFocus/>
 							</Form.Group>
 							<Form.Group className="mb-4">
-								<Form.Label>IIN number</Form.Label>
+								<Form.Label>Surname</Form.Label>
 								<Form.Control 
-								type="number"
-                                maxLength={12}
-                                onChange={handleiin}
-                                value={iin}
-								placeholder="Enter your IIN number"/>
+								type="text"
+                                onChange={handleSurname}
+                                value={surname}
+								placeholder="Enter your surname"/>
 							</Form.Group>
                             <Form.Group className="mb-4">
 								<Form.Label>Contact Number</Form.Label>
