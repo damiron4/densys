@@ -13,21 +13,20 @@ import ToggleButton from 'react-bootstrap/ToggleButton';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 
 export default function Popup(props){
-    const {id} = useParams();
+    //console.log(times)
+    
     const [name, setName] = useState('');
+    const [surname, setSurname] = useState('');
     const [contactn, setContactn] = useState('');
-    const [iin, setiin] = useState('');
     const [submitted, setSubmitted] = useState(false);
     const [error, setError] = useState(false);
     // const [error, setError] = useState(false);
-
-
     const handleName = (e) => {
         setName(e.target.value);
         setSubmitted(false);
     };
-    const handleiin = (e) => {
-        setiin(e.target.value);
+    const handleSurname = (e) => {
+        setSurname(e.target.value);
         setSubmitted(false);
     };
     const handleContactn = (e) => {
@@ -36,13 +35,14 @@ export default function Popup(props){
     };
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (name === '' || iin === '' || contactn === ''  ) {
+        if (name === '' || surname === '' || contactn === ''  ) {
         setError(true);
         } else {
             setSubmitted(true);
             setError(false);
             try {
-                const body = {iin, name, contactn}
+                //id, start_t, end_t, day, doc_id, pro_id, status
+                const body = {name, surname, contactn}
                 const response = await fetch("http://localhost:5001/appointment", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
