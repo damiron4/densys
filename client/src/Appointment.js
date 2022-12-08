@@ -179,7 +179,7 @@ return (
 			</div>
 
 			<div className='body' class="box-body">
-				<Row xs={0} md={5} className="g-4">
+				<Row xs={0} md={4} className="g-4">
 				{contacts.map((contact)=>  
 					<Col>
 						<Card style={{ width: '18rem', height: '30rem'}}>
