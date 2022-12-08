@@ -182,7 +182,7 @@ return (
 				<Row xs={0} md={4} className="g-4">
 				{contacts.map((contact)=>  
 					<Col>
-						<Card style={{ width: '100%', height: '30rem'}}>
+						<Card style={{ width: '100%', height: '100%'}}>
 						<Card.Img variant="top" src={BackFon}  width = {0} height = {300} />
 						<Card.Body>
 							<Card.Title>{contact.name}</Card.Title>
