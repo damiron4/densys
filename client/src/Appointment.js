@@ -35,7 +35,7 @@ export default function Appointment() {
 
 	const [searchby, setSearchBy] = useState();
 
-	let navigate = useNavigate();
+	// let navigate = useNavigate();
 
 	const[timeSlots, setTimeSlots] = useState([]);
 

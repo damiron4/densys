@@ -20,6 +20,7 @@ export default function Popup(props){
     const [contactn, setContactn] = useState('');
     const [submitted, setSubmitted] = useState(false);
     const [error, setError] = useState(false);
+    // const [error, setError] = useState(false);
     const handleName = (e) => {
         setName(e.target.value);
         setSubmitted(false);
@@ -61,8 +62,8 @@ export default function Popup(props){
         <div className='popup'>
             <div className='popup-inner'>
             <Modal.Body style={{marginLeft: 40, marginRight: 40 }}>
-						<Form style={{marginBottom: 40}}>
-							<div><Form.Label>Appointment</Form.Label></div>
+						<Form onSubmit={(e)=>handleSubmit(e)} style={{marginBottom: 40}}>
+							<div><Form.Label  >Appointment</Form.Label></div>
 							
 							<Form.Group className="mb-3">
 								<Form.Label>Name</Form.Label>

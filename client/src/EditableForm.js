@@ -105,7 +105,7 @@ return (
         </Col>
         <Col class="col-md-4">
             <div class="p-3 py-5">
-                <div class="d-flex justify-content-between align-items-center experience"><span></span><span class="border px-3 p-1 add-experience"><i class="fa fa-plus"></i>&nbsp;Experience</span></div>
+                <div class="d-flex justify-content-between align-items-center experience"><span></span><span class="border px-3 p-1 add-experience">Experience</span></div>
                 <Col class="col-md-12"><label class="labels">Category</label><Form.Control
                     type="text"
                     placeholder="Category *"

@@ -128,7 +128,9 @@ export default function PatientList(){
     setContacts(newContacts);
   };  
 
-  
+const uploadPatients = async() =>{
+  const response = await fetch("http://localhost:5001/patient/${editContactId.id}");
+}
 const getPatients = async () => {
   try {
     const response = await fetch("http://localhost:5001/patient");
