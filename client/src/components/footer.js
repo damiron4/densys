@@ -1,4 +1,5 @@
 import React from 'react';
+import { Route, Link, Routes } from "react-router-dom";
 import { CDBFooter, CDBBox, CDBFooterLink, CDBBtn, CDBIcon, CDBContainer } from 'cdbreact';
 import logo from '../image/densys2.png'
 
@@ -40,27 +41,6 @@ export default function footer() {
              <img src={logo} className="logo rounded-circle position-relative" />
              <i class=""></i>Densys
           </h6>
-          <p>
-            Hello
-          </p>
-        </div>
-
-        <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
-          <h6 class="text-uppercase fw-bold mb-4">
-            Products
-          </h6>
-          <p>
-            <a href="#!" class="text-reset">Angular</a>
-          </p>
-          <p>
-            <a href="#!" class="text-reset">React</a>
-          </p>
-          <p>
-            <a href="#!" class="text-reset">Vue</a>
-          </p>
-          <p>
-            <a href="#!" class="text-reset">Laravel</a>
-          </p>
         </div>
 
         <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
@@ -68,28 +48,21 @@ export default function footer() {
             Useful links
           </h6>
           <p>
-            <a href="#!" class="text-reset">Pricing</a>
+            <Link to="/main">Main Page</Link>
           </p>
           <p>
-            <a href="#!" class="text-reset">Settings</a>
-          </p>
-          <p>
-            <a href="#!" class="text-reset">Orders</a>
-          </p>
-          <p>
-            <a href="#!" class="text-reset">Help</a>
-          </p>
+            <Link to="/appointment-form">Appointment</Link>
+          </p>  
         </div>
 
         <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
           <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
-          <p><i class="fas fa-home me-3"></i> New York, NY 10012, US</p>
+          <p><i class="fas fa-home me-3"></i>Republic of Kazakhstan, 010000, Astana city, 53 Kabanbay Batyr Ave.</p>
           <p>
             <i class="fas fa-envelope me-3"></i>
-            info@example.com
+            nu@nu.edu.kz
           </p>
-          <p><i class="fas fa-phone me-3"></i> + 01 234 567 88</p>
-          <p><i class="fas fa-print me-3"></i> + 01 234 567 89</p>
+          <p><i class="fas fa-phone me-3"></i>8 (7172) 70 66 88</p>
         </div>
       </div>
     </div>
