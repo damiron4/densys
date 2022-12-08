@@ -34,13 +34,15 @@ export default function footer() {
   </section>
 
   <section class="">
-    <div class="container text-center text-md-start mt-5">
+    <div class="container text-center text-md-start mt-2">
       <div class="row mt-3">
         <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
           <h6 class="text-uppercase fw-bold mb-4">
              <img src={logo} className="logo rounded-circle position-relative" />
              <i class=""></i>Densys
           </h6>
+          <p><i class="fas fa-home me-3"></i>Republic of Kazakhstan, 010000, Astana city, 53 Kabanbay Batyr Ave.</p>
+
         </div>
 
         <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
@@ -48,16 +50,15 @@ export default function footer() {
             Useful links
           </h6>
           <p>
-            <Link to="/main">Main Page</Link>
+            <a href="/main" class="text-reset">Main Page</a>
           </p>
           <p>
-            <Link to="/appointment-form">Appointment</Link>
+            <a href="/appointment-form" class="text-reset">Appointment</a>
           </p>  
         </div>
 
         <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
           <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
-          <p><i class="fas fa-home me-3"></i>Republic of Kazakhstan, 010000, Astana city, 53 Kabanbay Batyr Ave.</p>
           <p>
             <i class="fas fa-envelope me-3"></i>
             nu@nu.edu.kz

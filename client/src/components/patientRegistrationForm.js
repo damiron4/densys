@@ -4,6 +4,8 @@ import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 export default function PatientRegistrationForm() {
     const [name, setName] = useState('');
@@ -148,80 +150,39 @@ export default function PatientRegistrationForm() {
     };
 
     return (
-        <div>
+    <div>
             <section class="body">
                 <section class="con-body">
-                    <div>
-                        <h1>Patient Registration</h1>
+                      {}
+      <div className="messages">
+        {errorMessage()}
+        {successMessage()}
+      </div>
+        <div>      
+        <Row>
+            
+            <Col class="col-md-5 border-right">
+                <div class="p-3 py-4">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h2 class="text-right">Patient Registration</h2>
                     </div>
-
-                    <div class="container">
-                        <div>
-                            <label className="label">Name</label>
-                            <input onChange={handleName} className="input"
-                                value={name} type="text" />
-                        </div>
-                        <div>
-                            <label className="label">Surname</label>
-                            <input onChange={handleSurName} className="input"
-                                value={surname} type="text" />
-
-                        </div>
-                    </div>
-                    <div class='container'>
-                        <div>
-                            <label className="label">Middlename</label>
-                            <input onChange={handleMidName} className="input"
-                                value={midname} type="text" />
-                        </div>
-                        <div>
-                            <label className="label">Date of birth</label>
-                            <DatePicker
-                                selected={dbirth}
-                                onChange={(date: Date) => setDbirth(date)} />
-                        </div>
-
-                    </div>
-                    <div class="container">
-                        <div>
-                            <label className="label">Email</label>
-                            <input onChange={handleEmail} className="input"
-                                value={email} type="email" />
-                        </div>
-                        <div>
-                            <label className="label">Address</label>
-                            <input onChange={handleAddress} className="input"
-                                value={address} type="text" />
-                        </div>
-                    </div>
-                    <div class="container">
-                        <div>
-                            <label className="label">IIN number</label>
-                            <input maxLength={12} minLength={12}
-                                onChange={handleiin} className="input"
-                                value={iin} type="number" />
-                        </div>
-                        <div>
-                            <label className="label">Governmental ID number</label>
-                            <input onChange={handleGovId} className="input"
-                                value={govid} type="number" />
-                        </div>
-                    </div>
-                    <div class="container">
-                        <div>
-                            <label className="label">Contact number</label>
-                            <input onChange={handleContactn} className="input"
-                                value={contactn} type="number" />
-                        </div>
-                        <div>
-                            <label className="label">Emergency contact number</label>
-                            <input onChange={handleEmerg} className="input"
-                                value={emerg} type="number" />
-                        </div>
-                    </div>
-                    <div class="container">
-                        <div>
-                            <label className="label">Blood group</label>
+                    <Row class="row mt-2">
+                    
+                        <Col class="col-md-6"><label class="labels">Name</label><input onChange={handleName} type="text" class="form-control" value={name} placeholder={name}/>
+                        
+                    </Col>
+                        <Col class="col-md-6"><label class="labels">Middle Name</label><input onChange={handleMidName} type="text" class="form-control" value={midname} placeholder={midname}/></Col>
+                    </Row>
+                    <Col class="row mt-3">
+                        <Col class="col-md-12"><label class="labels">Email</label><input onChange={handleEmail} type="text" class="form-control" value={email} placeholder={email}/></Col>
+                        <Row class="row mt-2">
+                            <Col class="col-md-6"><label class="labels">INN number</label><input onChange={handleiin} type="number" class="form-control" value={iin} placeholder={iin}/></Col>
+                            <Col class="col-md-6"><label class="labels">Governmental ID number</label><input onChange={handleGovId} type="number" class="form-control" value={govid} placeholder={govid}/></Col>
+                        </Row>
+                    </Col>
+                   
+                <Row>
+                    <Col>  <label className="labels">Blood group</label>
                             <select
                                 onChange={handlebloodg}
                                 value={bloodg}
@@ -235,10 +196,29 @@ export default function PatientRegistrationForm() {
                                 <option>AB-</option>
                                 <option>O+</option>
                                 <option>O-</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label className="label">Maritial status</label>
+                            </select></Col>
+                </Row>
+                </div>
+            </Col>
+            <Col class="col-md-5">
+                <div class="p-3 py-5">
+                    <div class="d-flex justify-content-between align-items-center experience"><span></span><span class="border px-3 p-1 add-experience"><i class="fa fa-plus"></i>&nbsp;</span></div>
+                    
+                        <Row>
+                        <Col class="col-md-12"><label class="labels">Surname</label><input onChange={handleSurName} type="text" class="form-control" placeholder={surname} value={surname}/></Col>
+                        </Row>
+                        <Row class="row mt-2">
+                        <Col class="col-md-6"><label class="labels">Address</label><input onChange={handleAddress} type="text" class="form-control" placeholder={address} value={address}/></Col>
+
+<Col class="col-md-6"><label class="labels">Date of birth</label><DatePicker selected={dbirth} onChange={(date:Date) => setDbirth(date)} /></Col>
+                        </Row>
+
+                    <Row class="row mt-2">
+                        <Col class="col-md-6"><label class="labels">Contact Number</label><input onChange={handleContactn} type="text" class="form-control" value={contactn} placeholder="Start from 7"/></Col>
+                        <Col class="col-md-6"><label class="labels">Emergency Contact Number</label><input onChange={handleEmerg} type="text" class="form-control" value={emerg} placeholder={emerg}/></Col>
+                        </Row>
+                <Row>
+                    <Col class="col-md-6"><label className="labels">Maritial status</label>
                             <select
                                 onChange={handleMstatus}
                                 value={mstatus}
@@ -246,15 +226,16 @@ export default function PatientRegistrationForm() {
                                 <option>...</option>
                                 <option>Single</option>
                                 <option>Married</option>
-                            </select>
-
-                        </div>
-                    </div>
-                    { }
-                    <div className="messages">
-                        {errorMessage()}
-                        {successMessage()}
-                    </div>
+                            </select></Col>
+                </Row>
+                        
+            </div>
+        </Col>
+                       
+    </Row>
+    </div>
+                   
+                
 
                     <button onClick={handleSubmit} className="button" type="submit">
                         Register
