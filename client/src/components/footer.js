@@ -1,4 +1,5 @@
 import React from 'react';
+import { CDBFooter, CDBBox, CDBFooterLink, CDBBtn, CDBIcon, CDBContainer } from 'cdbreact';
 import logo from '../image/densys2.png'
 
 export default function footer() {
