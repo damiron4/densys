@@ -199,7 +199,7 @@ return (
 							</Dropdown.Toggle>
 							<Dropdown.Menu>
 							{timeSlots.map((item,index) => (
-								<Dropdown.Item onClick={()=>setButtonPopup(true)} href="#/action-1">{timeSlots [index+1]  ? timeSlots[index] +  ' - ' + timeSlots[index + 1] + '    ': ''}</Dropdown.Item>
+								<Dropdown.Item onClick={()=>setButtonPopup(true)} href={"#/action-1/"+contact.id}>{timeSlots [index+1]  ? timeSlots[index] +  ' - ' + timeSlots[index + 1] + '    ': ''}</Dropdown.Item>
 							))}
 							</Dropdown.Menu>
 							</Dropdown>

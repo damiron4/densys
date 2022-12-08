@@ -1,5 +1,5 @@
 import React,{useState} from 'react'
-
+import { Link , useParams} from "react-router-dom";
 import Container from 'react-bootstrap/Container';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
@@ -13,11 +13,13 @@ import ToggleButton from 'react-bootstrap/ToggleButton';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 
 export default function Popup(props){
+    const {id} = useParams();
     const [name, setName] = useState('');
     const [contactn, setContactn] = useState('');
     const [iin, setiin] = useState('');
     const [submitted, setSubmitted] = useState(false);
     const [error, setError] = useState(false);
+
 
     const handleName = (e) => {
         setName(e.target.value);
