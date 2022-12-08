@@ -31,12 +31,12 @@ export default function Appointment() {
 	const[timeSlots, setTimeSlots] = useState([]);
 
 	const createTimeSlots = (fromTime, toTime) =>{
-	let startTime= moment(fromTime, 'hh:mm A');
-	let endTime = moment(toTime, 'hh:mm A');
+	let startTime= moment(fromTime, 'hh:mm');
+	let endTime = moment(toTime, 'hh:mm');
 	let arr=[];
 
 	while(startTime<=endTime) {
-		arr.push(new moment(startTime).format('hh:mm A'));
+		arr.push(new moment(startTime).format('hh:mm'));
 		startTime.add(30,'minutes');
 	}
 	return arr;
@@ -144,6 +144,10 @@ const errorMessage = () => {
 	</div>
 	);
 };
+
+jsarray = contact;
+sessionStorage.setItem("contact", JSON.stringify(jsarray));
+
 return (
 	
 	<div className="background">
@@ -203,15 +207,16 @@ return (
 							))}
 							</Dropdown.Menu>
 							</Dropdown>
+							<Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
+					
+							</Popup>
 						</Card.Body>
 						</Card>
 					</Col>
 
 					)}
 				</Row>
-				<Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
-					
-				</Popup>
+
 			</div>
 
 
