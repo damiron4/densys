@@ -40,7 +40,7 @@ export default function Popup(props){
             setError(false);
             try {
                 const body = {iin, name, contactn}
-                const response = await fetch("http://localhost:5001/register/patient", {
+                const response = await fetch("http://localhost:5001/appointment", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify(body)
@@ -86,7 +86,7 @@ export default function Popup(props){
 								type="number"
                                 onChange={handleContactn}
                                 value={contactn}
-								placeholder="Enter your IIN number"/>
+								placeholder="Enter your contact number"/>
 							</Form.Group>
 							<Form.Group className="d-grid mb-3">
 								<Button variant="info" size="lg" type="submit">Register</Button>{' '}
@@ -94,10 +94,10 @@ export default function Popup(props){
 							
 						</Form>
 					</Modal.Body>
-               
-                <button onClick={()=>props.setTrigger(false)} className="button-close" type="submit">
-			        Close
-			    </button>
+                <button onClick={()=>props.setTrigger(false)} class="btn-close" aria-label="Close"></button>
+                {/* <button onClick={()=>props.setTrigger(false)} className="button-close" type="submit"> */}
+			        {/* Close */}
+			    {/* </button> */}
                 
             </div>
         </div> 

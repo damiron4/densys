@@ -85,14 +85,6 @@ export default function DoctorList(){
     //     headers: {"Content-Type": "application/json"},
     //     editFormData: JSON.stringify(editFormData)
     //   });
-    //   const jsonData = await response.json();
-    //   console.log(jsonData);
-    //   if (!jsonData.err) {
-    //     setError(true);
-    //     console.log(jsonData.err);
-    //   } else {
-    //     setSubmitted(true);
-    //   }
     // } catch(error) {
     //   console.error(error.message);
     // }
@@ -104,6 +96,7 @@ export default function DoctorList(){
 
     setContacts(newContacts);
     setEditContactId(null);
+
   };
   const handleEditClick = (event, contact) => {
     event.preventDefault();

@@ -12,12 +12,15 @@ cd client
 npm install react-scripts --save
 npm install react-datepicker --save
 npm install react-router-dom@6
+npm install react-bootstrap bootstrap
+npm install cdbreact
 npm start 
 ```
 
 To run the server call:
 ```
 cd server
+npm install cookie-parser body-parser express-session axios
 node index
 ```
 or (if you have nodemon installed)
