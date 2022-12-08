@@ -15,7 +15,16 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Dropdown from 'react-bootstrap/Dropdown';
 import Popup from './popup';
-
+import doc1 from './image/doc1.jpg';
+import doc2 from './image/doc2.jpg';
+import doc3 from './image/doc3.jpg';
+import doc4 from './image/doc4.jpg';
+import doc5 from './image/doc5.jpg';
+import doc6 from './image/doc6.jpg';
+import doc7 from './image/doc7.jpg';
+import doc8 from './image/doc8.jpg';
+import doc9 from './image/doc9.jpg';
+import doc10 from './image/doc10.jpg';
 
 
 export default function Appointment() {
@@ -138,11 +147,14 @@ export default function Appointment() {
 		
 	} 
 
-// const handleOnSearch = (string, results) => {
-//     // onSearch will have as the first callback parameter
-//     // the string searched and for the second the results.
-//     // console.log(string, results);
-//   }
+const handleOnSearch = (string, results) => {
+    // onSearch will have as the first callback parameter
+    // the string searched and for the second the results.
+    // console.log(string, results);
+  }
+
+  const images = [doc1,doc2,doc3,doc4,doc5,doc6,doc7,doc8,doc9,doc10]
+
 
 
 
