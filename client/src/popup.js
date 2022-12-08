@@ -40,7 +40,7 @@ export default function Popup(props){
             setError(false);
             try {
                 const body = {iin, name, contactn}
-                const response = await fetch("http://localhost:5001/register/patient", {
+                const response = await fetch("http://localhost:5001/appointment", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify(body)
