@@ -72,7 +72,7 @@
   padding: 0px;
 } 
 .container p {
-  text-align: center;
+  /* text-align: center; */
   text-transform: uppercase;
   font-size: 18px;
 }
@@ -246,6 +246,10 @@ form * {
   background-color: #332D2D;
   /* background-color: rgb(154, 209, 213); */
   color: #ffffff;
+}
+.logo{
+  width: 8%;
+  margin-right: 25px;
 }
 .site-footer .con {
   text-align: center;

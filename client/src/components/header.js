@@ -2,7 +2,7 @@ import React from "react";
 import { useEffect, useState } from "react";
 import Axios from "axios";
 import { useNavigate, useLocation } from 'react-router-dom';
-
+import logo from '../image/densys.png'
 // Bootstrap Components
 import Container from 'react-bootstrap/Container';
 import Modal from 'react-bootstrap/Modal';
@@ -94,7 +94,8 @@ export default function Header() {
 	<>
 	<Navbar expand="lg" variant="dark" className="fixed-top bg-dark bg-gradient">
       <Container>
-        <Navbar.Brand className="text-light" href="/">Densys</Navbar.Brand>
+		<img src={logo} className="logo position-relative" />
+        {/* <Navbar.Brand className="text-light" href="/">Densys</Navbar.Brand> */}
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
