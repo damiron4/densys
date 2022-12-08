@@ -8,6 +8,7 @@ import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Header from './components/header';
+import BackFon from './image/main-background2.jpeg';
 // import LoginPopup from './components/loginPopup';
 
 export default function MainPage() {
@@ -25,11 +26,12 @@ export default function MainPage() {
 
 		<div className="background">
                 <Header/>
-				<section class= "body">
-                <Row xs={0} md={5} className="g-4">
+				<section class= "body b-body">
+                <Row xs={0} md={3} className="g-4">
 				{contacts.map((contact)=>  
 					<Col>
-						<Card style={{ width: '18rem', height: '21rem'}}>
+						<Card style={{ width: '100%', height: '100%'}}>
+						<Card.Img variant="top" src={BackFon}  width = {100} height = {200} />
 						<Card.Body>
 							<Card.Title>{contact.name}</Card.Title>
 							<Card.Text>
