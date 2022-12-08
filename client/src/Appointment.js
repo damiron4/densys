@@ -210,7 +210,7 @@ return (
 					)}
 				</Row>
 				<Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
-					<h3>My popup</h3>
+					
 				</Popup>
 			</div>
 

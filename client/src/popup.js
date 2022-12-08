@@ -94,10 +94,8 @@ export default function Popup(props){
 							
 						</Form>
 					</Modal.Body>
-                <button onClick={()=>props.setTrigger(false)} class="btn-close" aria-label="Close"></button>
-                {/* <button onClick={()=>props.setTrigger(false)} className="button-close" type="submit"> */}
-			        {/* Close */}
-			    {/* </button> */}
+                <button onClick={()=>props.setTrigger(false)} class="btn-close button-close" aria-label="Close"></button>
+                
                 
             </div>
         </div> 
