@@ -56,7 +56,7 @@ return (
             </Col>
             <Col class="col-md-4">
                 <div class="p-3 py-5">
-                    <div class="d-flex justify-content-between align-items-center experience"><span></span><span class="border px-3 p-1 add-experience"><i class="fa fa-plus"></i>&nbsp;Experience</span></div>
+                    <div class="d-flex justify-content-between align-items-center experience"><span></span><span class="border px-3 p-1 add-experience">Experience</span></div>
                     <Col class="col-md-12"><label class="labels">Category</label><input type="text" class="form-control" placeholder={contact.category} value=""/></Col>
                         <Row class="row mt-2">
                             <Col class="col-md-6"><label class="labels">Degree</label><input type="text" class="form-control" value="" placeholder={contact.degree}/></Col>

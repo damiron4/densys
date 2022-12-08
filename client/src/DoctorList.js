@@ -64,7 +64,23 @@ export default function DoctorList(){
     //   specializationDetailsId: addFormData.specializationDetailsId,
     // };
   }
+ 
+  const updateDoc = async () => {
+    try{
+      console.log(editContactId.iin);
+       const response = await fetch(`http://localhost:5001/doctor/${editContactId.id}`, {
+         method: "PUT",
+        //  headers: {"Content-Type": "application/json"},å
+        data:{
 
+        }
+        //  editFormData: JSON.stringify(editFormData),
+         
+       }).then(response => response.json());
+     } catch(error) {
+       console.error(error.message);
+     }
+    }
   const handleEditFormSubmit = async (event) => {
     event.preventDefault();
 
@@ -79,15 +95,8 @@ export default function DoctorList(){
       depid: editFormData.depid,
       specid: editFormData.specid,
     };
-    // try{
-    //   const response = await fetch(`http://localhost:5000/doctor/${editContactId.id}`, {
-    //     method: "PUT",
-    //     headers: {"Content-Type": "application/json"},
-    //     editFormData: JSON.stringify(editFormData)
-    //   });
-    // } catch(error) {
-    //   console.error(error.message);
-    // }
+
+    
     const newContacts = [...contacts];
 
     const index = contacts.findIndex((contact) => contact.id === editContactId);
@@ -96,8 +105,13 @@ export default function DoctorList(){
 
     setContacts(newContacts);
     setEditContactId(null);
+    
+      updateDoc();
 
   };
+
+  
+  
   const handleEditClick = (event, contact) => {
     event.preventDefault();
     setEditContactId(contact.id);
@@ -114,6 +128,8 @@ export default function DoctorList(){
     };
 
     setEditFormData(formValues);
+    
+   
   };
 
   const handleCancelClick = () => {
@@ -143,8 +159,11 @@ const getDoctors = async () => {
   }
 };
 
+
 useEffect(() => {
   getDoctors();
+  
+
 }, []);
 
   return(
