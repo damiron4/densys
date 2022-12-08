@@ -14,7 +14,7 @@ import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Dropdown from 'react-bootstrap/Dropdown';
-import Popup from './popup';
+// import Popup from './popup';
 import doc1 from './image/doc1.jpg';
 import doc2 from './image/doc2.jpg';
 import doc3 from './image/doc3.jpg';
@@ -25,7 +25,19 @@ import doc7 from './image/doc7.jpg';
 import doc8 from './image/doc8.jpg';
 import doc9 from './image/doc9.jpg';
 import doc10 from './image/doc10.jpg';
+import Modal from 'react-bootstrap/Modal';
+import Form from 'react-bootstrap/Form';
 
+// import { Link , useParam, useLocation} from "react-router-dom";
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+import Button from 'react-bootstrap/Button';
+import Alert from 'react-bootstrap/Alert';
+import ButtonGroup from 'react-bootstrap/ButtonGroup';
+import ToggleButton from 'react-bootstrap/ToggleButton';
+// import LoginPopup from './loginPopup';
+import NavDropdown from 'react-bootstrap/NavDropdown';
 
 export default function Appointment() {
 	const [contacts, setContacts] = useState([]);
@@ -33,12 +45,24 @@ export default function Appointment() {
 	const[index,setIndex]=useState(-1);
 	const [searchby, setSearchBy] = useState();
 	const[timeSlots, setTimeSlots] = useState([]);
+
+	const [start_t, setStart_t] = useState('');
+	const [end_t, setEnd_t] = useState("30");
+	const [doc_id, setDoc_id] = useState('');
+
+
+
     const [name, setName] = useState('');
     const [surname, setSurname] = useState('');
     const [contactn, setContactn] = useState('');
+
+
+
+
     const [submitted, setSubmitted] = useState(false);
     const [error, setError] = useState(false);
-
+	const status = "Pending";
+	const pro_id = 3;
 	const createTimeSlots = (fromTime, toTime) =>{
 	let startTime= moment(fromTime, 'hh:mm');
 	let endTime = moment(toTime, 'hh:mm');
@@ -55,7 +79,8 @@ export default function Appointment() {
 	// const [error, setError] = useState(false);
 	const [items, setItems] = useState({});
 	const [specializations, setSpecializations] = useState({});
-	
+	const [day, setDay] = useState(new Date());
+
 
 	const linkStyle = {
 		textDecoration: "none",
@@ -81,8 +106,8 @@ export default function Appointment() {
         } else {
             setError(false);
             try {
+				// cat = specializations[contact.specid].name;
                 //id, start_t, end_t, day, doc_id, pro_id, status
-                const body = {name, surname, contactn}
                  await fetch("http://localhost:5001/appointment", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
@@ -90,13 +115,12 @@ export default function Appointment() {
                         name: name,
                         surname: surname,
                         contactn: contactn,
-                        id:null,
-                        start_t: null,
-                        end_t: null,
-                        day: null,
-                        doc_id: null,
-                        pro_id: null,
-                        status: null,
+                        start_t: start_t,
+                        end_t: end_t,
+                        day: day,
+                        doc_id: doc_id,
+                        pro_id: pro_id,
+                        status: status,
                     }
                 });
 				setSubmitted(true);
@@ -158,47 +182,47 @@ const handleOnSearch = (string, results) => {
 
 
 
-//   const handleOnHover = (result) => {
-//     // the item hovered
-//     // console.log(result)
-//   }
+  const handleOnHover = (result) => {
+    // the item hovered
+    // console.log(result)
+  }
 
-//   const handleOnSelect = (item) => {
-//     // the item selected
-// 	// setIndex(item.id);
-// 	if (searchby === "doctor") {
-// 		Axios.get(`http://localhost:5001/doctor/${item.id}`).then((response) => {
-//         	setContacts(response.data);
-//     	});
-// 	} else if (searchby === "specialization") {
-// 		Axios.get(`http://localhost:5001/doctor/specialization/${item.id}`).then((response) => {
-//         	setContacts(response.data);
-//     	});
-// 	} else if (searchby === "procedure") {
-// 		Axios.get(`http://localhost:5001/doctor/procedure/${item.id}`).then((response) => {
-//         	setContacts(response.data);
-//     	});
-// 	}
-//   }
+  const handleOnSelect = (item) => {
+    // the item selected
+	// setIndex(item.id);
+	if (searchby === "doctor") {
+		Axios.get(`http://localhost:5001/doctor/${item.id}`).then((response) => {
+        	setContacts(response.data);
+    	});
+	} else if (searchby === "specialization") {
+		Axios.get(`http://localhost:5001/doctor/specialization/${item.id}`).then((response) => {
+        	setContacts(response.data);
+    	});
+	} else if (searchby === "procedure") {
+		Axios.get(`http://localhost:5001/doctor/procedure/${item.id}`).then((response) => {
+        	setContacts(response.data);
+    	});
+	}
+  }
 
-//   const handleOnFocus = () => {
-//     // console.log('Focused')
-//   }
+  const handleOnFocus = () => {
+    // console.log('Focused')
+  }
 
-//   const formatResult = (item) => {
-//     return (
-//       <>
-// 		{item.name}
-//       </>
-//     )
-//   }
+  const formatResult = (item) => {
+    return (
+      <>
+		{item.name}
+      </>
+    )
+  }
 //   const handlePopUp = (e)=> {
 // 	e.preventDefault();
 // 	navigate( ,{state:{id:1,name:'sabaoon'}});
 // 	setButtonPopup(true)
 	
 
-  }
+  
 
 const errorMessage = () => {
 	// return (
@@ -256,6 +280,7 @@ return (
 								<Card.Img variant="top" src={BackFon}  width = {0} height = {300} />
 									<Card.Body>
 										<Card.Title>{contact.name}</Card.Title>
+										<Card.Text onChange={(e)=>setDoc_id(e.target.value)}>ID: {contact.id}</Card.Text>
 										<Card.Text> Specialization: {specializations[contact.specid].name}</Card.Text>
 										<Card.Text>Experience in years: {contact.exp}</Card.Text>
 
@@ -265,7 +290,7 @@ return (
 											</Dropdown.Toggle>
 											<Dropdown.Menu>
 												{timeSlots.map((item,index) => (
-													<Dropdown.Item onClick={()=> setButtonPopup(true)} href={"#/action-1/"+contact.id}>{timeSlots [index+1]  ? timeSlots[index] +  ' - ' + timeSlots[index + 1] + '    ': ''}</Dropdown.Item>
+													<Dropdown.Item onClick={()=> setButtonPopup(true)} onChange={(e)=>setStart_t(timeSlots[index])} href={"#/action-1/"+contact.id}>{timeSlots [index+1]  ? timeSlots[index] +  ' - ' + timeSlots[index + 1] + '    ': ''}</Dropdown.Item>
 												))}
 											</Dropdown.Menu>
 										</Dropdown>
@@ -274,7 +299,7 @@ return (
 										{buttonPopup? (
 											<div className='popup'>
 												<div className='popup-inner'>
-												{/* <Modal.Body style={{marginLeft: 40, marginRight: 40 }}>
+												<Modal.Body style={{marginLeft: 40, marginRight: 40 }}>
 															<Form onSubmit={(e)=>handleSubmit(e)} style={{marginBottom: 40}}>
 																<div><Form.Label  >Appointment</Form.Label></div>
 																
@@ -282,25 +307,25 @@ return (
 																	<Form.Label>Name</Form.Label>
 																	<Form.Control
 																		type="text"
-																		onChange={handleName}
 																		value={name}
 																		placeholder="Enter your name"
+																		onChange={(e)=>setName(e.target.value)}
 																		autoFocus/>
 																</Form.Group>
 																<Form.Group className="mb-4">
 																	<Form.Label>Surname</Form.Label>
 																	<Form.Control 
 																	type="text"
-																	onChange={handleSurname}
 																	value={surname}
+																	onChange={(e)=>setSurname(e.target.value)}
 																	placeholder="Enter your surname"/>
 																</Form.Group>
 																<Form.Group className="mb-4">
 																	<Form.Label>Contact Number</Form.Label>
 																	<Form.Control 
-																	type="number"
-																	onChange={handleContactn}
+																	type="text"
 																	value={contactn}
+																	onChange={(e)=>setContactn(e.target.value)}
 																	placeholder="Enter your contact number"/>
 																</Form.Group>
 																<Form.Group className="d-grid mb-3">
@@ -308,8 +333,8 @@ return (
 																</Form.Group>
 																
 															</Form>
-														</Modal.Body> */}
-													<button onClick={()=>setButtonPopup(false)} class="btn-close button-close" aria-label="Close"></button>
+														</Modal.Body>
+													<button onClick={()=> handleSubmit()} class="btn-close button-close" aria-label="Close"></button>
 												</div>
 											</div> 
 										) :null } 
@@ -329,3 +354,5 @@ return (
 	</div>
 
 );
+				
+}
