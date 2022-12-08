@@ -16,7 +16,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 function App() {
   return (
     <>
-          <nav>
+          {/* <nav>
             <ul>
               <li>
                 <Link to="/main">Main Page</Link>
@@ -37,7 +37,7 @@ function App() {
                 <Link to="/appointment-form">Appointment</Link>
               </li>
             </ul>
-          </nav>
+          </nav> */}
           
           <Routes>
             <Route path="/" exact element={<MainPage />} />

@@ -159,30 +159,27 @@ export default function PatientRegistrationForm() {
         {successMessage()}
       </div>
         <div>      
-        <Row>
-            
-            <Col class="col-md-5 border-right">
-                <div class="p-3 py-4">
-                    <div class="d-flex justify-content-between align-items-center mb-3">
+        <div class="p-3 pt-4">
+                    <div class="d-flex justify-content-between align-items-center">
                         <h2 class="text-right">Patient Registration</h2>
                     </div>
+        </div>
+        <Row>
+            <Col class="col-md-6">
+                <div class="px-3">
                     <Row class="row mt-2">
-                    
-                        <Col class="col-md-6"><label class="labels">Name</label><input onChange={handleName} type="text" class="form-control" value={name} placeholder={name}/>
-                        
-                    </Col>
+                        <Col class="col-md-6"><label class="labels">Name</label><input onChange={handleName} type="text" class="form-control" value={name} placeholder={name}/></Col>
                         <Col class="col-md-6"><label class="labels">Middle Name</label><input onChange={handleMidName} type="text" class="form-control" value={midname} placeholder={midname}/></Col>
                     </Row>
-                    <Col class="row mt-3">
+                    <Row>
                         <Col class="col-md-12"><label class="labels">Email</label><input onChange={handleEmail} type="text" class="form-control" value={email} placeholder={email}/></Col>
-                        <Row class="row mt-2">
-                            <Col class="col-md-6"><label class="labels">INN number</label><input onChange={handleiin} type="number" class="form-control" value={iin} placeholder={iin}/></Col>
-                            <Col class="col-md-6"><label class="labels">Governmental ID number</label><input onChange={handleGovId} type="number" class="form-control" value={govid} placeholder={govid}/></Col>
-                        </Row>
-                    </Col>
-                   
-                <Row>
-                    <Col>  <label className="labels">Blood group</label>
+                    </Row>
+                    <Row class="row mt-2">
+                        <Col class="col-md-6"><label class="labels">INN number</label><input onChange={handleiin} type="number" class="form-control" value={iin} placeholder={iin}/></Col>
+                        <Col class="col-md-6"><label class="labels">Governmental ID number</label><input onChange={handleGovId} type="number" class="form-control" value={govid} placeholder={govid}/></Col>
+                    </Row>
+                    <Row class="row mt-2">
+                        <Col class="col-md-12">  <label className="labels">Blood group</label>
                             <select
                                 onChange={handlebloodg}
                                 value={bloodg}
@@ -197,42 +194,38 @@ export default function PatientRegistrationForm() {
                                 <option>O+</option>
                                 <option>O-</option>
                             </select></Col>
-                </Row>
+                    </Row>
                 </div>
             </Col>
-            <Col class="col-md-5">
-                <div class="p-3 py-5">
-                    <div class="d-flex justify-content-between align-items-center experience"><span></span><span class="border px-3 p-1 add-experience"><i class="fa fa-plus"></i>&nbsp;</span></div>
-                    
-                        <Row>
+            <Col class="col-md-6">
+                <div class="px-3">
+                    <Row class="row mt-2">
                         <Col class="col-md-12"><label class="labels">Surname</label><input onChange={handleSurName} type="text" class="form-control" placeholder={surname} value={surname}/></Col>
-                        </Row>
-                        <Row class="row mt-2">
+                    </Row>
+                    <Row class="row mt-2">
                         <Col class="col-md-6"><label class="labels">Address</label><input onChange={handleAddress} type="text" class="form-control" placeholder={address} value={address}/></Col>
-
-<Col class="col-md-6"><label class="labels">Date of birth</label><DatePicker selected={dbirth} onChange={(date:Date) => setDbirth(date)} /></Col>
-                        </Row>
-
+                        <Col class="col-md-6"><label class="labels">Date of birth</label><DatePicker selected={dbirth} onChange={(date:Date) => setDbirth(date)} /></Col>
+                    </Row>
                     <Row class="row mt-2">
                         <Col class="col-md-6"><label class="labels">Contact Number</label><input onChange={handleContactn} type="text" class="form-control" value={contactn} placeholder="Start from 7"/></Col>
-                        <Col class="col-md-6"><label class="labels">Emergency Contact Number</label><input onChange={handleEmerg} type="text" class="form-control" value={emerg} placeholder={emerg}/></Col>
-                        </Row>
-                <Row>
-                    <Col class="col-md-6"><label className="labels">Maritial status</label>
-                            <select
-                                onChange={handleMstatus}
-                                value={mstatus}
-                            >
-                                <option>...</option>
-                                <option>Single</option>
-                                <option>Married</option>
-                            </select></Col>
-                </Row>
-                        
-            </div>
-        </Col>
-                       
-    </Row>
+                        <Col class="col-md-6"><label class="labels">Emergency Contact Number</label><input onChange={handleEmerg} type="text" class="form-control" value={emerg} placeholder="Start from 7"/></Col>
+                    </Row>
+                    <Row class="row mt-2">
+                        <Col class="col-md-12"><label className="labels">Maritial status</label>
+                                <select
+                                    onChange={handleMstatus}
+                                    value={mstatus}
+                                >
+                                    <option>...</option>
+                                    <option>Single</option>
+                                    <option>Married</option>
+                                </select></Col>
+                    </Row>
+                </div>
+            </Col>
+
+        </Row>
+       
     </div>
                    
                 
