@@ -13,6 +13,7 @@ npm install react-scripts --save
 npm install react-datepicker --save
 npm install react-router-dom@6
 npm install react-bootstrap bootstrap
+npm install cdbreact
 npm start 
 ```
 
