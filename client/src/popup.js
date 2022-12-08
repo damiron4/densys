@@ -5,7 +5,7 @@ import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import Button from 'react-s/Button';
+import Button from 'react-bootstrap/Button';
 import Alert from 'react-bootstrap/Alert';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import ToggleButton from 'react-bootstrap/ToggleButton';
@@ -14,6 +14,7 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 
 export default function Popup(props){
     //console.log(times)
+    
     const [name, setName] = useState('');
     const [surname, setSurname] = useState('');
     const [contactn, setContactn] = useState('');
@@ -65,7 +66,6 @@ export default function Popup(props){
 							
 							<Form.Group className="mb-3">
 								<Form.Label>Name</Form.Label>
-                                <p>{id_d}</p>
 								<Form.Control
 									type="text"
                                     onChange={handleName}

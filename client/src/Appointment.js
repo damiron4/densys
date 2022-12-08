@@ -145,8 +145,7 @@ const errorMessage = () => {
 	);
 };
 
-jsarray = contact;
-sessionStorage.setItem("contact", JSON.stringify(jsarray));
+// sessionStorage.setItem("contact", JSON.stringify(contacts));
 
 return (
 	
