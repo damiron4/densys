@@ -12,12 +12,11 @@ import DatePicker from 'react-datepicker';
 import ReadOnlyForm from './ReadOnlyForm';
 import EditableForm from "./EditableForm";
 
-function FormDoc() {
+function FormDoc()  {
 	const {id} = useParams();
-	const [contacts, setContacts] = useState(data);  //Ali scsfa
+	const [contacts, setContacts] = useState([]);  //Ali scsfa
 	const [dbirth, setDbirth] = useState(new Date());
 	const [submitted, setSubmitted] = useState(false);
-	
 	
 	const [editFormData, setEditFormData] = useState({
     name: "",
@@ -124,6 +123,25 @@ function FormDoc() {
 	  
 		  setContacts(newContacts);
 		}; 
+
+
+
+const getDoctors = async () => {
+  try {
+    const response = await fetch("http://localhost:5001/doctor");
+    const jsonData = await response.json();
+
+    setContacts(jsonData);
+    console.log(jsonData);
+  } catch (err) {
+    console.error(err.message);
+  }
+};
+
+
+useEffect(() => {
+	getDoctors();
+  }, []);
 
 return (
 <div className="background">
